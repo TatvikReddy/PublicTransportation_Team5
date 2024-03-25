@@ -1,3 +1,6 @@
+# Mongo
+config.env
+
 # Prerequisites
 *.d
 
