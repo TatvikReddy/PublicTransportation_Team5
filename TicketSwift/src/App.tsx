@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import TicketSwiftLogo from './TicketSwiftLogo.png';
+import TicketSwiftLogo from './TicketSwiftLogo.png'; // Make sure the image path is correct
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
