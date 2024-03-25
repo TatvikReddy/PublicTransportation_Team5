@@ -2,10 +2,12 @@ import React from 'react';
 
 import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png'; // import the image
+import { MongoClient } from 'mongodb';
 
 
 
 function App() {
+  
   return (
     <div className="App">
       <div className="menu-icon">
@@ -35,16 +37,5 @@ function App() {
     
   );
 }
-
-
-  /*return (
-    <div className="v7_2">
-      <div className="v7_3"></div>
-      <div className="v7_5"></div>
-      <div className="v7_12 name">Your Name</div>
-    </div>
-  );
-}
-*/
 
 export default App;
