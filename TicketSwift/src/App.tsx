@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png'; // import the image
 
-// Only import MongoClient if it's used in the application
-// import { MongoClient } from 'mongodb';
-
 function HomePage() {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="App">
-      <div className="menu-icon">
+      <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!isMenuOpen)}>
         <div></div>
         <div></div>
         <div></div>
       </div>
-      <div className="circle"></div> 
-      <span className="circle-text">Login</span>
+      <div className="circle-container">
+        <div className="circle"></div>
+        <span className="circle-text">Login</span>
+      </div>
       <header className="App-header">
         <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
         <p>
@@ -31,7 +32,7 @@ function HomePage() {
 
 function LoginPage() {
   return (
-    <div>
+    <div className="login-page">
       {/* Your login form goes here */}
     </div>
   );
