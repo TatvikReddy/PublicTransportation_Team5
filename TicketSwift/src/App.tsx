@@ -1,14 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import TicketSwiftLogo from './TicketSwiftLogo.png'; // import the image
+import { MongoClient } from 'mongodb';
+
+
 
 function App() {
+  
   return (
     <div className="App">
+      <div className="menu-icon">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div className="circle"></div> 
+      <span className="circle-text">Login</span>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      
+      <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
+      
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Welcome to TicketSwift, please sign in or create an account to but transportation tickets.
         </p>
         <a
           className="App-link"
@@ -16,10 +30,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Sign Up / Login
         </a>
       </header>
     </div>
+    
   );
 }
 
