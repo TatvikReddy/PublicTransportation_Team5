@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import TicketSwiftLogo from './TicketSwiftLogo.png'; // import the image
+import TicketSwiftLogo from './TicketSwiftLogo.png';
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -33,7 +33,13 @@ function HomePage() {
 function LoginPage() {
   return (
     <div className="login-page">
-      {/* Your login form goes here */}
+      <div className="login-container">
+        <h2>Login or Create an Account</h2>
+        <input type="email" placeholder="Enter email" />
+        <input type="password" placeholder="Enter password" />
+        <button className="login-button">Login</button>
+        <button className="create-account-button">Create an Account</button>
+      </div>
     </div>
   );
 }
