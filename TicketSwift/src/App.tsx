@@ -1,13 +1,12 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png'; // import the image
-import { MongoClient } from 'mongodb';
 
+// Only import MongoClient if it's used in the application
+// import { MongoClient } from 'mongodb';
 
-
-function App() {
-  
+function HomePage() {
   return (
     <div className="App">
       <div className="menu-icon">
@@ -18,23 +17,34 @@ function App() {
       <div className="circle"></div> 
       <span className="circle-text">Login</span>
       <header className="App-header">
-      
-      <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
-      
+        <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
         <p>
-          Welcome to TicketSwift, please sign in or create an account to but transportation tickets.
+          Welcome to TicketSwift, please sign in or create an account to buy transportation tickets.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link to="/login" className="App-link">
           Sign Up / Login
-        </a>
+        </Link>
       </header>
     </div>
-    
+  );
+}
+
+function LoginPage() {
+  return (
+    <div>
+      {/* Your login form goes here */}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </Router>
   );
 }
 
