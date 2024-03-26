@@ -38,8 +38,51 @@ function LoginPage() {
         <input type="email" placeholder="Enter email" />
         <input type="password" placeholder="Enter password" />
         <button className="login-button">Login</button>
-        <button className="create-account-button">Create an Account</button>
+        <Link to="/create-account" className="create-account-link">Create an Account</Link>
+        <Link to="/reset-password" className="reset-password-link">Reset Password</Link>
       </div>
+    </div>
+  );
+}
+
+function CreateAccountPage() {
+  return (
+    <div className="create-account-page">
+      <h2>Create Account</h2>
+      <input type="text" placeholder="Enter first name" />
+      <input type="text" placeholder="Enter last name" />
+      <input type="email" placeholder="Enter email" />
+      <input type="text" placeholder="Enter username" />
+      <input type="password" placeholder="Enter password" />
+      <input type="password" placeholder="Re-enter password" />
+      {/* Input fields... */}
+      <button>Create Account</button>
+      <Link to="/login" className="back-to-login-link">Back to Login</Link>
+    </div>
+  );
+}
+
+function ResetPasswordPage() {
+  return (
+    <div className="reset-password-page">
+      <h2>Reset Password</h2>
+      <input type="email" placeholder="Enter email" />
+      <input type="password" placeholder="Enter new password" />
+      <input type="password" placeholder="Re-enter new password" />
+      <button>Confirm new password</button>
+      {/* Input fields... */}
+      <button>Confirm new password</button>
+      <Link to="/login" className="back-to-login-link">Back to Login</Link>
+    </div>
+  );
+}
+
+function ViewProfilePage() {
+  return (
+    <div className="view-profile-page">
+      <h2>View Profile</h2>
+      {/* Profile information... */}
+      <Link to="/" className="back-to-home-link">Back to Home</Link>
     </div>
   );
 }
@@ -50,6 +93,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/create-account" element={<CreateAccountPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/profile" element={<ViewProfilePage />} />
       </Routes>
     </Router>
   );
