@@ -14,8 +14,9 @@ function HomePage() {
         <div></div>
       </div>
       <div className="circle-container">
-        <div className="circle"></div>
-        <span className="circle-text">Login</span>
+        {/* This Link with the 'circle' class will take you to the profile page */}
+        <Link to="/profile" className="circle"></Link>
+        <span className="circle-text">Login</span> {/* You may want to wrap this text in the Link if it should be clickable */}
       </div>
       <header className="App-header">
         <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
@@ -40,6 +41,10 @@ function LoginPage() {
         <button className="login-button">Login</button>
         <Link to="/create-account" className="create-account-link">Create an Account</Link>
         <Link to="/reset-password" className="reset-password-link">Reset Password</Link>
+        <Link to="/profile" className="circle-container">
+          <div className="circle"></div>
+          <span className="circle-text">Login</span>
+        </Link>
       </div>
     </div>
   );
@@ -81,8 +86,9 @@ function ViewProfilePage() {
   return (
     <div className="view-profile-page">
       <h2>View Profile</h2>
+      
       {/* Profile information... */}
-      <Link to="/" className="back-to-home-link">Back to Home</Link>
+      <Link to="/" className="home-button">Home</Link>
     </div>
   );
 }

@@ -28,11 +28,16 @@
 .circle {
   width: 50px;
   height: 50px;
-  background-color: #555;
+  background-color: grey;
   border-radius: 50%;
   position: absolute;
   top: 20px;
   right: 20px;
+  cursor: pointer;
+}
+
+.circle:hover {
+  background-color: #d3d3d3;
 }
 
 .circle-container {
@@ -80,4 +85,20 @@
 
 .menu-icon.open div:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.home-buton {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #f3f3f3;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.home-buton:hover {
+  background-color: #e1e1e1;
 }
