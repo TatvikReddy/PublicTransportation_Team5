@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import TicketSwiftLogo from './TicketSwiftLogo.png'; // Make sure the image path is correct
+import TicketSwiftLogo from './TicketSwiftLogo.png';
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -16,15 +16,15 @@ function HomePage() {
       <div className="circle-container">
         {/* This Link with the 'circle' class will take you to the profile page */}
         <Link to="/profile" className="circle"></Link>
-        <span className="circle-text">Login</span> {/* You may want to wrap this text in the Link if it should be clickable */}
+        <span className="circle-text">Profile</span>
       </div>
       <header className="App-header">
         <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
         <p>
           Welcome to TicketSwift, please sign in or create an account to buy transportation tickets.
         </p>
-        <Link to="/login" className="App-link">
-          Sign Up / Login
+        <Link to="/login" className="button App-link">
+          <button className="button">Sign Up / Login</button>
         </Link>
       </header>
     </div>
@@ -38,12 +38,12 @@ function LoginPage() {
         <h2>Login or Create an Account</h2>
         <input type="email" placeholder="Enter email" />
         <input type="password" placeholder="Enter password" />
-        <button className="login-button">Login</button>
-        <Link to="/create-account" className="create-account-link">Create an Account</Link>
-        <Link to="/reset-password" className="reset-password-link">Reset Password</Link>
-        <Link to="/profile" className="circle-container">
-          <div className="circle"></div>
-          <span className="circle-text">Login</span>
+        <button className="button login-button">Login</button>
+        <Link to="/create-account" className="button">
+          <button className="button create-account-button">Create an Account</button>
+        </Link>
+        <Link to="/reset-password" className="button">
+          <button className="button reset-password-button">Reset Password</button>
         </Link>
       </div>
     </div>
@@ -60,9 +60,10 @@ function CreateAccountPage() {
       <input type="text" placeholder="Enter username" />
       <input type="password" placeholder="Enter password" />
       <input type="password" placeholder="Re-enter password" />
-      {/* Input fields... */}
-      <button>Create Account</button>
-      <Link to="/login" className="back-to-login-link">Back to Login</Link>
+      <button className="button create-account-button">Create Account</button>
+      <Link to="/login" className="button">
+        <button className="button back-to-login-button">Back to Login</button>
+      </Link>
     </div>
   );
 }
@@ -74,10 +75,10 @@ function ResetPasswordPage() {
       <input type="email" placeholder="Enter email" />
       <input type="password" placeholder="Enter new password" />
       <input type="password" placeholder="Re-enter new password" />
-      <button>Confirm new password</button>
-      {/* Input fields... */}
-      <button>Confirm new password</button>
-      <Link to="/login" className="back-to-login-link">Back to Login</Link>
+      <button className="button reset-password-button">Reset Password</button>
+      <Link to="/login" className="button">
+        <button className="button back-to-login-button">Back to Login</button>
+      </Link>
     </div>
   );
 }
@@ -86,9 +87,9 @@ function ViewProfilePage() {
   return (
     <div className="view-profile-page">
       <h2>View Profile</h2>
-      
-      {/* Profile information... */}
-      <Link to="/" className="home-button">Home</Link>
+      <Link to="/" className="button">
+        <button className="button home-button">Home</button>
+      </Link>
     </div>
   );
 }

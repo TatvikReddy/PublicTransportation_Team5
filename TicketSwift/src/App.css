@@ -1,3 +1,17 @@
+:root {
+  --primary-color: #333;
+  --secondary-color: #f3f3f3;
+  --hover-color: #696969;
+  --text-color: #000000;
+  --link-color: #000000;
+  --background-color: #F3EFE6;
+  --circle-color: grey;
+  --hover-circle-color: #d3d3d3;
+  --button-text-color: white;
+  --button-padding: 10px 20px;
+  --border-radius: 5px;
+}
+
 .App {
   text-align: center;
 }
@@ -8,27 +22,32 @@
 }
 
 .App-header {
-  background-color: #F3EFE6;
+  background-color: var(--background-color);
   min-height: 110vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #000000;
+  color: var(--text-color);
 }
 
 .App-link {
-  color: #000000;
+  color: var(--link-color);
   margin-top: 20px;
   text-decoration: none;
   font-size: calc(10px + 2vmin);
 }
 
+.circle,
+.menu-icon div {
+  background-color: var(--circle-color);
+  transition: all 0.3s linear;
+}
+
 .circle {
   width: 50px;
   height: 50px;
-  background-color: grey;
   border-radius: 50%;
   position: absolute;
   top: 20px;
@@ -37,19 +56,24 @@
 }
 
 .circle:hover {
-  background-color: #d3d3d3;
+  background-color: var(--hover-circle-color);
+}
+
+.circle-container,
+.menu-icon {
+  position: fixed;
+  top: 20px;
+  cursor: pointer;
 }
 
 .circle-container {
   display: flex;
   justify-content: flex-end;
-  position: fixed;
-  top: 20px;
   right: 20px;
 }
 
 .circle-text {
-  color: #FFFFFF;
+  color: white;
   margin-right: 65px;
   margin-top: 15px;
   position: absolute;
@@ -75,8 +99,10 @@
   transition: all 0.3s linear;
 }
 
-.menu-icon.open div:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+.menu-icon.open div:nth-child(1),
+.menu-icon.open div:nth-child(3) {
+  transform: rotate(45deg);
+  transform-origin: center;
 }
 
 .menu-icon.open div:nth-child(2) {
@@ -84,21 +110,50 @@
 }
 
 .menu-icon.open div:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
+  transform: rotate(-45deg);
 }
 
-.home-buton {
+/* Button styles */
+.login-button,
+.create-account-button,
+.reset-password-button,
+.back-to-login-button,
+.home-button,
+.button button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: var(--button-padding);
   margin-top: 20px;
-  background-color: #f3f3f3;
-  color: #333;
+  border-radius: var(--border-radius);
+  cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
   border: none;
 }
 
-.home-buton:hover {
-  background-color: #e1e1e1;
+/* Navigation buttons */
+.create-account-button,
+.login-button,
+.reset-password-button,
+.back-to-login-button,
+.home-button {
+  color: var(--alt-primary-color); /* Dark text color */
+  background-color: var(--secondary-color); /* Light grey background */
+}
+
+/* Action buttons like 'Login' */
+
+.button button {
+  background-color: var(--primary-color); /* Dark background */
+  color: var(--button-text-color); /* White text color */
+}
+
+/* Hover effect for all buttons */
+.login-button:hover,
+.create-account-button:hover,
+.reset-password-button:hover,
+.back-to-login-button:hover,
+.home-button:hover,
+.button button:hover {
+  background-color: var(--hover-color);
 }
