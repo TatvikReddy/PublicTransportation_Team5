@@ -33,10 +33,14 @@ function HomePage() {
 function LoginPage() {
   return (
     <div className="login-page">
-      <div className="login-container">
-        <h2>Login or Create an Account</h2>
-        <input type="email" placeholder="Enter email" />
-        <input type="password" placeholder="Enter password" />
+      <div className="logo-circle">
+        <img src={TicketSwiftLogo} alt="logo" />
+        </div>
+        <div className="login-container" >
+        <h2>Login or Create an Account </h2>
+
+        <input type="email" placeholder="Enter Email"  style={{ width: '300px', height: '35px',marginBottom: '20px' }} />
+        <input type="password" placeholder="Enter Password" style={{ width: '300px', height: '35px' }}/>
         <button className="login-button">Login</button>
         <button className="create-account-button">Create an Account</button>
       </div>
