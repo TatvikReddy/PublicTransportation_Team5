@@ -22,8 +22,8 @@
 }
 
 .App-header {
-  background-color: var(--background-color);
-  min-height: 110vh;
+  background-color: #F3EFE6;
+  min-height: 93vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,18 +32,27 @@
   color: var(--text-color);
 }
 
-.App-link {
-  color: var(--link-color);
-  margin-top: 20px;
+/* .App-link {
+  color: #000000;
+  margin-top: 30px;
   text-decoration: none;
   font-size: calc(10px + 2vmin);
-}
+} */
 
-.circle,
-.menu-icon div {
-  background-color: var(--circle-color);
-  transition: all 0.3s linear;
-}
+/* .App-link {
+  display: inline-block;
+  padding: 10px 20px; 
+  background-color: #FF964F; 
+  color: #000000; 
+  text-decoration: none;
+  border-radius: 5px; 
+  transition: background-color 0.3s ease;
+} */
+
+/* .App-link:hover {
+  background-color: #d45140; 
+} */
+
 
 .circle {
   width: 50px;
@@ -69,13 +78,15 @@
 .circle-container {
   display: flex;
   justify-content: flex-end;
-  right: 20px;
+  position: fixed;
+  top: -8px;
+  right: -8px;
 }
 
 .circle-text {
-  color: white;
+  color: #000000;
   margin-right: 65px;
-  margin-top: 15px;
+  margin-top: 30px;
   position: absolute;
   right: 20px;
 }
@@ -156,4 +167,83 @@
 .home-button:hover,
 .button button:hover {
   background-color: var(--hover-color);
+}
+
+.login-page {
+  background-color: #F3EFE6; 
+  min-height: 93vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+
+}
+.login-page {
+  color: #333; 
+}
+body {
+  border-top: 70px solid #b93321; 
+}
+
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 10px; 
+  left: 20px; 
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.logo-circle img {
+  width: 100%;
+  height: auto;
+}
+
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -200px; 
+  font-family: calc(15px + 5vmin); 
+}
+
+
+
+.password {
+  margin-top: 200px; 
+  width: 300px;
+  height: 40px; 
+}
+
+.login-button {
+  background-color: #FF964F; 
+  color: #000000; 
+  width: 150px; 
+  height: 35px; 
+  margin-top: 30px;
+  border-radius: 5px; 
+  
+}
+
+.create-account-button {
+
+  background-color: #FF964F; 
+  color: #000000; 
+  width: 150px; 
+  height: 35px; 
+  margin-top: 30px;
+  border-radius: 5px; 
+}
+
+.create-account-button:hover {
+  background-color: #d45140; /* replace with your desired color */
+}
+
+.login-button:hover {
+  background-color: #d45140; /* replace with your desired color */
 }
