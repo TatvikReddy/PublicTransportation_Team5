@@ -1,4 +1,5 @@
 import express from "express"
+import hashPassword from "bcrypt"
 const { MongoClient } = require("mongodb")
 require("dotenv").config({path: "./config.env"})
 
@@ -28,9 +29,8 @@ try
     
     const query = {name: username}
 
-    const userExist = await comments.findOne({ email });
     const result = await comments.findOne(query)
-    if(result != null || userExist)
+    if(result != null)
     {
         console.log("User already exists")
     }
@@ -44,7 +44,7 @@ try
             username,
             password: hashedPassword,
         }
-        const res = await comments.insertOne(doc)
+        const insertionResult = await comments.insertOne(doc)
         console.log("Account successfully created")
         return res.json({ ok: true });
     }
