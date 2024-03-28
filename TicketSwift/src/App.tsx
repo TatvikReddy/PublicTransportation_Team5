@@ -62,6 +62,7 @@ function CreateAccountPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
       setConfirmPassword("true");
       try {
         const { data } = await axios.post(`/api/register`, {
@@ -72,8 +73,10 @@ function CreateAccountPage() {
           confirmPassword
         });
         setConfirmPassword("false");
+        console.log(data); // Log the response from the server
       } catch (err) {
         setConfirmPassword("false");
+        console.error(err); // Log any errors that occur
       }
     };
     return (
