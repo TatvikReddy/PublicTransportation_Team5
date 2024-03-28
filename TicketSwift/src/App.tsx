@@ -147,7 +147,7 @@ function CreateAccountPage() {
 function ResetPasswordPage() {
   return (
     <div className="reset-password-page">
-      <h2>Reset Password</h2>
+      <h2>Reset Password</h2>  
       <input type="email" placeholder="Enter email" />
       <input type="password" placeholder="Enter new password" />
       <input type="password" placeholder="Re-enter new password" />

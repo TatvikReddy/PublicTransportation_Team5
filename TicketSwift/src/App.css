@@ -1,13 +1,13 @@
 :root {
-  --primary-color: #333;
+  --primary-color: #FF964F;
   --secondary-color: #f3f3f3;
-  --hover-color: #696969;
+  --hover-color: #d45140;
   --text-color: #000000;
   --link-color: #000000;
   --background-color: #F3EFE6;
   --circle-color: grey;
   --hover-circle-color: #d3d3d3;
-  --button-text-color: white;
+  --button-text-color: #000000;
   --button-padding: 10px 20px;
   --border-radius: 5px;
 }
@@ -246,3 +246,60 @@ body {
 .login-button:hover {
   background-color: #d45140; /* replace with your desired color */
 }
+
+.reset-password-button {
+  background-color: #FF964F; 
+  color: #000000; 
+  width: 150px; 
+  height: 35px; 
+  margin-top: 30px;
+  border-radius: 5px; 
+}
+
+.reset-password-button:hover {
+  background-color: #d45140; /* replace with your desired color */
+}
+
+.back-to-login-button {
+  background-color: #FF964F; 
+  color: #000000; 
+  width: 150px; 
+  height: 35px; 
+  margin-top: 30px;
+  border-radius: 5px; 
+}
+
+
+
+.reset-password-page {
+  background-color: #F3EFE6; 
+  min-height: 77vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 110px;
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+
+  
+}
+
+.reset-password-page {
+  border-top: 70px solid #b93321;
+  margin-top: -70px; 
+}
+
+
+.register-page {
+  background-color: #F3EFE6; 
+  min-height: 77vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 110px;
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+}
+
+
+
