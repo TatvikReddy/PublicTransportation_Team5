@@ -15,7 +15,6 @@ function HomePage() {
         <div></div>
       </div>
       <div className="circle-container">
-        {/* This Link with the 'circle' class will take you to the profile page */}
         <Link to="/profile" className="circle"></Link>
         <span className="circle-text">Profile</span>
       </div>
@@ -24,7 +23,7 @@ function HomePage() {
         <p>
           Welcome to TicketSwift, please sign in or create an account to buy transportation tickets.
         </p>
-        <Link to="/login" className="button App-link">
+        <Link to="/login" className="button">
           <button className="button">Sign Up / Login</button>
         </Link>
       </header>
@@ -35,27 +34,20 @@ function HomePage() {
 function LoginPage() {
   return (
     <div className="login-page">
-      {/* <div className="login-container">
-        <h2>Login or Create an Account</h2>
-        <input type="email" placeholder="Enter email" />
-        <input type="password" placeholder="Enter password" />
-        <button className="button login-button">Login</button>
-        <Link to="/create-account" className="button">
-          <button className="button create-account-button">Create an Account</button>
-        </Link>
-        <Link to="/reset-password" className="button">
-          <button className="button reset-password-button">Reset Password</button>
-        </Link> */}
       <div className="logo-circle">
         <img src={TicketSwiftLogo} alt="logo" />
-        </div>
-        <div className="login-container" >
-        <h2>Login or Create an Account</h2>   
-
-        <input type="email" placeholder="Enter Email"  style={{ width: '300px', height: '35px',marginBottom: '20px' }} />
-        <input type="password" placeholder="Enter Password" style={{ width: '300px', height: '35px' }}/>
+      </div>
+      <div className="login-container">
+        <h2>Login or Create an Account</h2>
+        <input type="email" placeholder="Enter Email" style={{ width: '300px', height: '35px', marginBottom: '20px' }} />
+        <input type="password" placeholder="Enter Password" style={{ width: '300px', height: '35px' }} />
         <button className="login-button">Login</button>
-        <button className="create-account-button">Create an Account</button>
+        <Link to="/create-account" className="button">
+          <button className="create-account-button">Create an Account</button>
+        </Link>
+        <Link to="/reset-password" className="button">
+          <button className="reset-password-button">Reset Password</button>
+        </Link>
       </div>
     </div>
   );
