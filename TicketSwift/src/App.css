@@ -39,15 +39,14 @@
   font-size: calc(10px + 2vmin);
 } */
 
-/* .App-link {
+.App-link {
   display: inline-block;
-  padding: 10px 20px; 
-  background-color: #FF964F; 
+  padding: 10px 20px;  
   color: #000000; 
   text-decoration: none;
   border-radius: 5px; 
   transition: background-color 0.3s ease;
-} */
+}
 
 /* .App-link:hover {
   background-color: #d45140; 
