@@ -22,10 +22,8 @@ try
     if (!password || password.length < 6) return res.status(400).send("Password is required and should be at least 6 characters long");
     if (password !== confirmPassword) return res.status(400).send("Passwords do not match");
 
-
     await client.connect()
-    const comments = await client.db("sample_mflix").collection("comments")
-    
+    const comments = await client.db("sample_mflix").collection("comments")    
     const query = {name: username}
 
     const userExist = await comments.findOne({ email });
