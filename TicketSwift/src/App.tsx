@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png';
 import axios from "axios";
+import MapPage from './MapPage';
+
+const handleMapButtonClick = () => {
+  // Logic to navigate to the map page
+  // If using React Router v6, you might want to use the `useNavigate` hook to navigate programmatically.
+};
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -26,6 +33,7 @@ function HomePage() {
         <Link to="/login" className="button">
           <button className="button">Sign Up / Login</button>
         </Link>
+        <button className="button" onClick={handleMapButtonClick}>View Map</button>
       </header>
     </div>
   );
@@ -160,9 +168,48 @@ function ResetPasswordPage() {
 }
 
 function ViewProfilePage() {
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    email: '',
+    paymentInfo: '',
+    travelHistory: ''
+  });
+
+  useEffect(() => {
+    // Placeholder for fetching data from database
+    // replace this with your actual data fetching logic
+    async function fetchUserData() {
+      try {
+        // this apparently imulate an API call
+        const response = await fetch('/api/userinfo'); //  API endpoint?
+        const data = await response.json();
+        setUserInfo(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+    
+    fetchUserData();
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  // Event handler for the Report Issue button
+  const handleReportIssue = () => {
+    // Replace this with the actual logic, such as showing a form or modal
+    console.log('Report issue clicked');
+  };
+
   return (
     <div className="view-profile-page">
-      <h2>View Profile</h2>
+      <h2 className="profile-title">View Profile</h2>
+      <div className="profile-image"></div> {/* Profile image here */}
+      <div className="user-info">
+        <div className="info-name">{userInfo.name}</div>
+        <div className="info-email">{userInfo.email}</div>
+        <div className="info-payment">{userInfo.paymentInfo}</div>
+        <div className="info-travel">{userInfo.travelHistory}</div>
+      </div>
+      
+      <button onClick={handleReportIssue} className="button report-issue-button">Report Issue</button>
       <Link to="/" className="button">
         <button className="button home-button">Home</button>
       </Link>
@@ -179,6 +226,7 @@ function App() {
         <Route path="/create-account" element={<CreateAccountPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
+        <Route path="/map" element={<MapPage />} />
       </Routes>
     </Router>
   );
