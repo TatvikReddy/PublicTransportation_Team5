@@ -1,32 +1,36 @@
-// MapPage.js
-import React, { useEffect } from 'react';
+// src/MapPage.jsx
 
-function MapPage() {
+import React, { useEffect, useState } from 'react';
+
+const MapPage = () => {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap`;
-    script.defer = true;
-    script.async = true;
-
-    window.initMap = () => {
-      const uluru = { lat: -25.344, lng: 131.031 };
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru,
-      });
-
-      new google.maps.Marker({ position: uluru, map: map });
-    };
-
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-      window.initMap = undefined;
-    };
+    loadGoogleMapsAPI().then(() => {
+      setMapLoaded(true);
+    });
   }, []);
 
-  return <div id="map" style={{ height: '100vh', width: '100%' }}></div>;
-}
+  const loadGoogleMapsAPI = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
+      script.async = true;
+      window.initMap = () => resolve();
+      document.head.appendChild(script);
+    });
+  };
+
+  useEffect(() => {
+    if (mapLoaded) {
+      new window.google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+      });
+    }
+  }, [mapLoaded]);
+
+  return <div id="map" style={{ width: '100%', height: '100vh' }} />;
+};
 
 export default MapPage;

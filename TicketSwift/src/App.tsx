@@ -13,6 +13,11 @@ const handleMapButtonClick = () => {
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleMapButtonClick = () => {
+    navigate('/map');
+  }
 
   return (
     <div className="App">
@@ -200,19 +205,18 @@ function ViewProfilePage() {
 
   return (
     <div className="view-profile-page">
-      <h2 className="profile-title">View Profile</h2>
-      <div className="profile-image"></div> {/* Profile image here */}
-      <div className="user-info">
-        <div className="info-name">{userInfo.name}</div>
-        <div className="info-email">{userInfo.email}</div>
-        <div className="info-payment">{userInfo.paymentInfo}</div>
-        <div className="info-travel">{userInfo.travelHistory}</div>
-      </div>
-      
-      <button onClick={handleReportIssue} className="button report-issue-button">Report Issue</button>
+      <h2>View Profile</h2>
       <Link to="/" className="button">
         <button className="button home-button">Home</button>
       </Link>
+    </div>
+  );
+}
+
+function ViewGoogleMapPage() {
+  return (
+    <div className="map-page">
+      <MapPage />
     </div>
   );
 }
@@ -226,7 +230,7 @@ function App() {
         <Route path="/create-account" element={<CreateAccountPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
-        <Route path="/map" element={<MapPage />} />
+        <Route path="/map" element={<ViewGoogleMapPage />} />
       </Routes>
     </Router>
   );
