@@ -1,8 +1,8 @@
 // Import required modules
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); // Assuming you have a bcrypt module installed
-console.log('Path to .env file:', require('path').resolve('../src/.env'));
 require('dotenv').config({ path: './src/.env' }); // For loading environment variables
 
 // Connect to MongoDB
@@ -47,6 +47,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Registration endpoint
 app.post('/api/register', async (req, res) => {
