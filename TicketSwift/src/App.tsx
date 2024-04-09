@@ -5,6 +5,7 @@ import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
 import MapPage from './MapPage';
+// import Cookies from 'js-cookie';
 
 const handleMapButtonClick = () => {
   // Logic to navigate to the map page

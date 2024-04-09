@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); // Assuming you have a bcrypt module installed
 require('dotenv').config({ path: './src/.env' }); // For loading environment variables
 const { createHash } = require('crypto');
+const jwt = require("jsonwebtoken");
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -96,19 +97,21 @@ app.post('/api/login', async (req, res) => {
 
         // Hash the password
         const hashedPassword = createHash('sha256').update(password).digest('hex')
-        console.log("website: " + hashedPassword);
+        
 
         // Check if the user already exists
         let existingUser = await User.findOne({ $or: [{ email }] });
-        if (existingUser.password === hashedPassword) {
-            console.log(existingUser);
-            return res.status(200).send("User verified");
-        }
         
-        console.log("database: " + existingUser.password);
-        const shapassword = createHash('sha256').update(password).digest('hex')
-        console.log(shapassword)
-        console.log(createHash('sha256').update(password).digest('hex'))
+        if (existingUser.password === hashedPassword) {
+
+            const token = jwt.sign({email: email}, process.env.SECRET, { expiresIn: 60*60*60 });
+
+            res.cookie("token", token);
+
+            console.log(token + "\n\n");
+
+            return res.status(200).send(token);
+        }
 
         return res.status(400).send("No credential match found")
     } catch (error) {
