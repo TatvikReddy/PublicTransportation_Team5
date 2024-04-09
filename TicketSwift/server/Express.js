@@ -97,7 +97,7 @@ app.post('/api/login', async (req, res) => {
         let existingUser = await User.findOne({ $or: [{ email }] });
         if (existingUser) {
             console.log(existingUser);
-            return res.status(400).send("User with this email or username already exists");
+            return res.status(200).send("User with this email or username already exists");
         }
 
         // Hash the password

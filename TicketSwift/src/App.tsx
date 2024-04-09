@@ -50,15 +50,17 @@ function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(email)
+    console.log(password)
     try {
-      const response = await axios.post('/api/login', {
+      const response = await axios.post('http://localhost:3001/api/login', {
         email,
         password,
       });
       console.log(response.data); // Log the response from the server
       // Optionally, you can redirect the user to another page upon successful registration
     } catch (error) {
-      console.log("Error")
+      console.log(error)
     }
   };
 
@@ -69,9 +71,27 @@ function LoginPage() {
       </div>
       <div className="login-container">
         <h2>Login or Create an Account</h2>
-        <input type="email" placeholder="Enter Email" style={{ width: '300px', height: '35px', marginBottom: '20px' }} />
-        <input type="password" placeholder="Enter Password" style={{ width: '300px', height: '35px' }} />
-        <button className="login-button">Login</button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="button create-account-button">
+            Login
+          </button>
+        </form>
         <Link to="/create-account" className="button">
           <button className="create-account-button">Create an Account</button>
         </Link>
@@ -96,7 +116,7 @@ function CreateAccountPage() {
     e.preventDefault();
     setErrorMessage("");
     try {
-      const response = await axios.post('/api/register', {
+      const response = await axios.post('http://localhost:3001/api/register', {
         firstName,
         lastName,
         email,
