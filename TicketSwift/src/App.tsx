@@ -45,6 +45,23 @@ function HomePage() {
 }
 
 function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/login', {
+        email,
+        password,
+      });
+      console.log(response.data); // Log the response from the server
+      // Optionally, you can redirect the user to another page upon successful registration
+    } catch (error) {
+      console.log("Error")
+    }
+  };
+
   return (
     <div className="login-page">
       <div className="logo-circle">
@@ -173,6 +190,9 @@ function CreateAccountPage() {
 }
 
 function ResetPasswordPage() {
+
+
+
   return (
     <div className="reset-password-page">
       <h2>Reset Password</h2>  

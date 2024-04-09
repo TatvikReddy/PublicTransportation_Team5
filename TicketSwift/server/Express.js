@@ -89,8 +89,37 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+app.post('/api/login', async (req, res) => {
+    try {
+        const { email, password} = req.body;
+
+        // Check if the user already exists
+        let existingUser = await User.findOne({ $or: [{ email }] });
+        if (existingUser) {
+            console.log(existingUser);
+            return res.status(400).send("User with this email or username already exists");
+        }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds = 10
+
+        
+
+        // Create a new user
+        const newUser = new User({
+            email,
+            password: hashedPassword,
+        });
+
+        res.status(201).json({ message: "User registered successfully" });
+    } catch (error) {
+        console.error("Error registering user:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
