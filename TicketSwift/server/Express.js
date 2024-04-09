@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); // Assuming you have a bcrypt module installed
 require('dotenv').config({ path: './src/.env' }); // For loading environment variables
+const { createHash } = require('crypto');
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -68,7 +69,7 @@ app.post('/api/register', async (req, res) => {
         }
 
         // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds = 10
+        const hashedPassword = createHash('sha256').update(password).digest('hex')
 
         // Create a new user
         const newUser = new User({
@@ -91,27 +92,25 @@ app.post('/api/register', async (req, res) => {
 
 app.post('/api/login', async (req, res) => {
     try {
-        const { email, password} = req.body;
+        const { email, password } = req.body;
+
+        // Hash the password
+        const hashedPassword = createHash('sha256').update(password).digest('hex')
+        console.log("website: " + hashedPassword);
 
         // Check if the user already exists
         let existingUser = await User.findOne({ $or: [{ email }] });
-        if (existingUser) {
+        if (existingUser.password === hashedPassword) {
             console.log(existingUser);
-            return res.status(200).send("User with this email or username already exists");
+            return res.status(200).send("User verified");
         }
-
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds = 10
-
         
+        console.log("database: " + existingUser.password);
+        const shapassword = createHash('sha256').update(password).digest('hex')
+        console.log(shapassword)
+        console.log(createHash('sha256').update(password).digest('hex'))
 
-        // Create a new user
-        const newUser = new User({
-            email,
-            password: hashedPassword,
-        });
-
-        res.status(201).json({ message: "User registered successfully" });
+        return res.status(400).send("No credential match found")
     } catch (error) {
         console.error("Error registering user:", error);
         res.status(500).send("Internal Server Error");
