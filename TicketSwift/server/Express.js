@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt'); // Assuming you have a bcrypt module installed
 require('dotenv').config({ path: './src/.env' }); // For loading environment variables
 const { createHash } = require('crypto');
+const jwt = require('jwtwebtoken')
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -102,6 +103,10 @@ app.post('/api/login', async (req, res) => {
         let existingUser = await User.findOne({ $or: [{ email }] });
         if (existingUser.password === hashedPassword) {
             console.log(existingUser);
+
+            const token = jwt.sign(existingUser, process.env.MY_SECRET, { expiresIN: '15m' });
+            res.cookie("token", token)
+
             return res.status(200).send("User verified");
         }
         
