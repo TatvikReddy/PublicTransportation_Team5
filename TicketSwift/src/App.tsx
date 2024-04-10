@@ -13,8 +13,6 @@ const handleMapButtonClick = () => {
   // If using React Router v6, you might want to use the `useNavigate` hook to navigate programmatically.
 };
 
-const scanner = new Html5QrcodeScanner("reader", {fps: 10, qrbox: 250});
-
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
