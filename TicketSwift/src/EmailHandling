@@ -1,0 +1,97 @@
+const nodemailer = require("nodemailer");
+const { MongoClient } = require("mongodb");
+
+const mongoURI = "mongodb://localhost:3000";
+const dbName = "mongodb";
+
+const collectionName = "users";
+
+async function connectToMongoDB() {
+  try {
+    const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connected to MongoDB");
+    return client.db(dbName).collection(collectionName);
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    throw error;
+  }
+}
+
+async function sendEmail(senderEmail, senderPassword, recipientEmail, subject, message) {
+  try {
+    let transporter = nodemailer.createTransport({
+      host: "mongodb://localhost:3000", 
+      port: 3000, 
+      secure: true, 
+      auth: {
+        user: senderEmail,
+        pass: senderPassword,
+      },
+    });
+
+    let info = await transporter.sendMail({
+      from: senderEmail,
+      to: recipientEmail,
+      subject: subject,
+      text: message,
+    });
+
+    console.log("Message sent: %s", info.messageId);
+  } catch (error) {
+    console.error("Error occurred while sending email:", error);
+  }
+}
+
+async function emailChangeNotification(userEmail, newEmail) {
+  const subject = "Email Change Notification";
+  const message = `Your email has been changed to ${newEmail}.`;
+  await sendEmail("sender@example.com", "password", userEmail, subject, message);
+}
+
+async function emailErrorHandling(userEmail) {
+  const subject = "Email Error";
+  const message = "The email address provided is not valid.";
+  await sendEmail("sender@example.com", "password", userEmail, subject, message);
+}
+
+async function passwordChangeNotification(userEmail) {
+  const subject = "Password Change Notification";
+  const message = "Your password has been changed.";
+  await sendEmail("sender@example.com", "password", userEmail, subject, message);
+}
+
+async function connectToDatabase() {
+  try {
+    const collection = await connectToMongoDB();
+    console.log("Connected to the user database collection");
+    return collection;
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+    throw error;
+  }
+}
+
+async function accountCreatedNotification(userEmail) {
+  const subject = "Account Creation Notification";
+  const message = "Your account has been successfully created.";
+  await sendEmail("johnsworkatutd@gmail.com", "password", userEmail, subject, message);
+}
+
+async function promptFeedbackByEmail(userEmail) {
+  const subject = "Feedback Request";
+  const message = "We value your feedback. Please provide your feedback here.";
+  await sendEmail("johnsworkatutd@gmail.com", "password", userEmail, subject, message);
+}
+
+async function testFunctions() {
+  await emailChangeNotification("johnsworkatutd@gmail.com", "newemail@gmail.com");
+  await emailErrorHandling("johnsworkatutd@gmail.com.com");
+  await passwordChangeNotification("johnsworkatutd@gmail.com.com");
+  await connectToDatabase();
+  await accountCreatedNotification("johnsworkatutd@gmail.com.com");
+  await promptFeedbackByEmail("johnsworkatutd@gmail.com.com");
+}
+
+// Run the test
+testFunctions();

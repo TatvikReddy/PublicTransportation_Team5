@@ -331,5 +331,50 @@ body {
   color: #000000;
 }
 
+.map-page {
+  position: relative;
+  height: 100vh;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.map-controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+input {
+  width: 300px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e9ecef;
+}
+
 
 
