@@ -276,6 +276,11 @@ function ViewProfilePage() {
       <Link to="/travel-history" className="button">
         <button className="button travel-history-button">Travel History</button>
       </Link>
+
+      <Link to="/ticket" className="button">
+        <button className="button ticket-button">View Tickets</button>
+      </Link>
+
       <h3>User Name: {userInfo.name}</h3>
   <p>Email: {userInfo.email}</p>
   <p>Payment Info: {userInfo.paymentInfo}</p>
@@ -288,8 +293,15 @@ function ViewProfilePage() {
 function TicketPage() {
   // This page will show the ticket information with a QR code, similar to the one shown in the image
   return (
+
     <div className="ticket-page">
-      {/* Insert the layout and elements to replicate the ticket display */}
+      <h1>Ticket</h1> 
+      <Link to="/" className="button">
+        <button className="button home-button">Home</button>
+      </Link>
+      <Link to="/profile" className="button">
+        <button className="button profile-button">Back to Profile</button>
+      </Link>
     </div>
   );
 }
