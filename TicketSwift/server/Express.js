@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt'); // Assuming you have a bcrypt module installed
 require('dotenv').config({ path: './src/.env' }); // For loading environment variables
 const { createHash } = require('crypto');
 const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -50,6 +51,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 // Registration endpoint
 app.post('/api/register', async (req, res) => {
@@ -102,16 +104,16 @@ app.post('/api/login', async (req, res) => {
         // Check if the user already exists
         let existingUser = await User.findOne({ $or: [{ email }] });
         
-        if (existingUser.password === hashedPassword) {
+        //if (existingUser.password === hashedPassword) {
 
             const token = jwt.sign({email: email}, process.env.SECRET, { expiresIn: 60*60*60 });
 
-            res.cookie("token", token);
+            res.cookie( "token", token,{ maxAge: 1000 * 60 * 10, httpOnly: false });
 
             console.log(token + "\n\n");
 
             return res.status(200).send(token);
-        }
+        //}
 
         return res.status(400).send("No credential match found")
     } catch (error) {

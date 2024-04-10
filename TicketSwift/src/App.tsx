@@ -4,13 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
+import { Html5QrcodeScanner } from 'html5-qrcode';
+// import { Cookies } from 'js-cookie';
 import MapPage from './MapPage';
-// import Cookies from 'js-cookie';
 
 const handleMapButtonClick = () => {
   // Logic to navigate to the map page
   // If using React Router v6, you might want to use the `useNavigate` hook to navigate programmatically.
 };
+
+const scanner = new Html5QrcodeScanner("reader", {fps: 10, qrbox: 250});
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -278,6 +281,8 @@ function ViewGoogleMapPage() {
 }
 
 function App() {
+  
+
   return (
     <Router>
       <Routes>
