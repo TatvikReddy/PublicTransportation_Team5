@@ -272,7 +272,88 @@ function ViewProfilePage() {
   <p>Payment Info: {userInfo.paymentInfo}</p>
   <p>Travel History: {userInfo.travelHistory}</p>
     </div>
-    //////////////
+    //
+  );
+}
+
+function TicketPage() {
+  // This page will show the ticket information with a QR code, similar to the one shown in the image
+  return (
+    <div className="ticket-page">
+      {/* Insert the layout and elements to replicate the ticket display */}
+    </div>
+  );
+}
+
+function ReportIssuePage() {
+  // This page will contain a form for reporting issues
+  return (
+    <div className="report-issue-page">
+      {/* Insert the layout and elements to replicate the issue reporting form */}
+    </div>
+  );
+}
+
+function FavoritedRoutesPage() {
+  // This page will display the user's favorited routes
+  return (
+    <div className="favorited-routes-page">
+      {/* Insert the layout and elements to replicate the favorites display */}
+    </div>
+  );
+}
+
+function TravelHistoryPage() {
+  // This page will show the ticket information with a QR code, similar to the one shown in the image
+  return (
+    <div className="travel-history-page">
+      {/* Insert the layout and elements to replicate the ticket display */}
+    </div>
+  );
+}
+
+// function EnterLocationPage() {
+//   // This page will contain a form for reporting issues
+//   return (
+//     <div className="enter-location-page">
+//       {/* Insert the layout and elements to replicate the issue reporting form */}
+//     </div>
+//   );
+// }
+
+function ViewRoutesPage() {
+  // This page will display the user's favorited routes
+  return (
+    <div className="view-routes-page">
+      {/* Insert the layout and elements to replicate the favorites display */}
+    </div>
+  );
+}
+
+function RegisterTicketPage() {
+  // This page will show the ticket information with a QR code, similar to the one shown in the image
+  return (
+    <div className="registor-ticket-page">
+      {/* Insert the layout and elements to replicate the ticket display */}
+    </div>
+  );
+}
+
+function PurchaseTicketPage() {
+  // This page will contain a form for reporting issues
+  return (
+    <div className="purchase-ticket-page">
+      {/* Insert the layout and elements to replicate the issue reporting form */}
+    </div>
+  );
+}
+
+function CheckoutTicketPage() {
+  // This page will display the user's favorited routes
+  return (
+    <div className="checkout-ticket-page">
+      {/* Insert the layout and elements to replicate the favorites display */}
+    </div>
   );
 }
 
@@ -296,6 +377,16 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
         <Route path="/map" element={<ViewGoogleMapPage />} />
+        <Route path="/ticket" element={<TicketPage />} /> 
+        <Route path="/report-issue" element={<ReportIssuePage />} /> 
+        <Route path="/favorites" element={<FavoritedRoutesPage />} /> 
+        <Route path="/travel-history" element={<TravelHistoryPage />} />
+        {/* <Route path="/enter-location" element={<EnterLocationPage />} /> */}
+        <Route path="/view-routes" element={<ViewRoutesPage />} />
+        <Route path="/register-ticket" element={<RegisterTicketPage />} />
+        <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
+        <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
+        
       </Routes>
     </Router>
   );
