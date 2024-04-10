@@ -263,13 +263,8 @@ function ViewProfilePage() {
   return (
     <div className="view-profile-page">
       <h2>View Profile</h2>
-        <input type="name" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="paymentInfo" placeholder="Payment information" />
-        <input type="travelHistory" placeholder="Travel history" />
-        <Link to="/" className="button">
-        <button className="button home-button">Home</button>
-      </Link>
+      <button className="button name-button">Name</button>
+      <button className="button email-button">Email</button>
       <Link to="/report-issue" className="button">
         <button className="button report-issue-button">Report Issue</button>
       </Link>
@@ -284,11 +279,6 @@ function ViewProfilePage() {
       <Link to="/ticket" className="button">
         <button className="button ticket-button">View Tickets</button>
       </Link>
-
-      <h3>User Name: {userInfo.name}</h3>
-  <p>Email: {userInfo.email}</p>
-  <p>Payment Info: {userInfo.paymentInfo}</p>
-  <p>Travel History: {userInfo.travelHistory}</p>
     </div>
     //
   );
