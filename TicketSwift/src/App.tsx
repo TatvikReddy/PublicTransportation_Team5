@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
+import { Html5QrcodeScanner } from 'html5-qrcode';
+// import { Cookies } from 'js-cookie';
 import MapPage from './MapPage';
 
 const handleMapButtonClick = () => {
@@ -277,6 +279,8 @@ function ViewGoogleMapPage() {
 }
 
 function App() {
+  
+
   return (
     <Router>
       <Routes>
