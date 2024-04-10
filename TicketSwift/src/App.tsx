@@ -263,8 +263,8 @@ function ViewProfilePage() {
   return (
     <div className="view-profile-page">
       <h2>View Profile</h2>
-      <button className="button name-button">Name</button>
-      <button className="button email-button">Email</button>
+      <button className="button name-button">Name: John Doe</button>
+      <button className="button email-button">Email: JohnDoe@gmail.com</button>
       <Link to="/report-issue" className="button">
         <button className="button report-issue-button">Report Issue</button>
       </Link>
