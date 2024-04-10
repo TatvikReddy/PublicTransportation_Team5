@@ -400,7 +400,6 @@ function ViewGoogleMapPage() {
 }
 
 function App() {
-  
 
   return (
     <Router>
