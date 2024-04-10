@@ -263,7 +263,11 @@ function ViewProfilePage() {
   return (
     <div className="view-profile-page">
       <h2>View Profile</h2>
-      <Link to="/" className="button">
+        <input type="name" placeholder="Name" />
+        <input type="email" placeholder="Email" />
+        <input type="paymentInfo" placeholder="Payment information" />
+        <input type="travelHistory" placeholder="Travel history" />
+        <Link to="/" className="button">
         <button className="button home-button">Home</button>
       </Link>
 
