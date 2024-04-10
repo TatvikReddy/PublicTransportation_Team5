@@ -209,7 +209,13 @@ function ViewProfilePage() {
       <Link to="/" className="button">
         <button className="button home-button">Home</button>
       </Link>
+
+      <h3>User Name: {userInfo.name}</h3>
+  <p>Email: {userInfo.email}</p>
+  <p>Payment Info: {userInfo.paymentInfo}</p>
+  <p>Travel History: {userInfo.travelHistory}</p>
     </div>
+    //////////////
   );
 }
 
