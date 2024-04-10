@@ -270,13 +270,128 @@ function ViewProfilePage() {
         <Link to="/" className="button">
         <button className="button home-button">Home</button>
       </Link>
+      <Link to="/report-issue" className="button">
+        <button className="button report-issue-button">Report Issue</button>
+      </Link>
+      <Link to="/favorited-routes" className="button">
+        <button className="button favorited-routes-button">Favorited Routes</button>
+      </Link>
 
+      <Link to="/travel-history" className="button">
+        <button className="button travel-history-button">Travel History</button>
+      </Link>
       <h3>User Name: {userInfo.name}</h3>
   <p>Email: {userInfo.email}</p>
   <p>Payment Info: {userInfo.paymentInfo}</p>
   <p>Travel History: {userInfo.travelHistory}</p>
     </div>
-    //////////////
+    //
+  );
+}
+
+function TicketPage() {
+  // This page will show the ticket information with a QR code, similar to the one shown in the image
+  return (
+    <div className="ticket-page">
+      {/* Insert the layout and elements to replicate the ticket display */}
+    </div>
+  );
+}
+
+function ReportIssuePage() {
+  // This page will contain a form for reporting issues
+  return (
+<div className="report-issue-page">
+      <h1>Report Issue</h1>
+      <Link to="/" className="button">
+        <button className="button home-button">Back to Home</button>
+      </Link>
+      <Link to="/profile" className="button">
+        <button className="button profile-button">Back to Profile</button>
+      </Link>
+      <input placeholder="Name" />
+      <input placeholder="Email" />
+      <input placeholder="Subject" />
+      <input placeholder="Issue" />
+      <button type="submit">Submit</button>
+    </div>
+  );
+}
+
+function FavoritedRoutesPage() {
+  // This page will display the user's favorited routes
+  return (
+    <div className="favorited-routes-page">
+      <h1>Favorited Routes</h1>
+      <Link to="/" className="button">
+        <button className="button home-button">Home</button>
+      </Link>
+      <Link to="/profile" className="button">
+        <button className="button profile-button">Back to Profile</button>
+      </Link>
+    </div>
+  );
+}
+
+function TravelHistoryPage() {
+  // This page will show the ticket information with a QR code, similar to the one shown in the image
+  return (
+    <div className="travel-history-page">
+
+      <h1>Travel History</h1>
+      <Link to="/" className="button">
+        <button className="button home-button">Home</button>
+      </Link>
+      <Link to="/profile" className="button">
+        <button className="button profile-button">Back to Profile</button>
+      </Link>
+    </div>
+    
+  );
+}
+
+// function EnterLocationPage() {
+//   // This page will contain a form for reporting issues
+//   return (
+//     <div className="enter-location-page">
+//       {/* Insert the layout and elements to replicate the issue reporting form */}
+//     </div>
+//   );
+// }
+
+function ViewRoutesPage() {
+  // This page will display the user's favorited routes
+  return (
+    <div className="view-routes-page">
+      {/* Insert the layout and elements to replicate the favorites display */}
+    </div>
+  );
+}
+
+function RegisterTicketPage() {
+  // This page will show the ticket information with a QR code, similar to the one shown in the image
+  return (
+    <div className="registor-ticket-page">
+      {/* Insert the layout and elements to replicate the ticket display */}
+    </div>
+  );
+}
+
+function PurchaseTicketPage() {
+  // This page will contain a form for reporting issues
+  return (
+    <div className="purchase-ticket-page">
+      {/* Insert the layout and elements to replicate the issue reporting form */}
+    </div>
+  );
+}
+
+function CheckoutTicketPage() {
+  // This page will display the user's favorited routes
+  return (
+    <div className="checkout-ticket-page">
+      {/* Insert the layout and elements to replicate the favorites display */}
+    </div>
   );
 }
 
@@ -300,6 +415,16 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
         <Route path="/map" element={<ViewGoogleMapPage />} />
+        <Route path="/ticket" element={<TicketPage />} /> 
+        <Route path="/report-issue" element={<ReportIssuePage />} /> 
+        <Route path="/favorites" element={<FavoritedRoutesPage />} /> 
+        <Route path="/travel-history" element={<TravelHistoryPage />} />
+        {/* <Route path="/enter-location" element={<EnterLocationPage />} /> */}
+        <Route path="/view-routes" element={<ViewRoutesPage />} />
+        <Route path="/register-ticket" element={<RegisterTicketPage />} />
+        <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
+        <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
+        
       </Routes>
     </Router>
   );
