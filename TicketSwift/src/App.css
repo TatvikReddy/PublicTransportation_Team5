@@ -411,4 +411,10 @@ button:hover {
 }
 
 
+.route-placeholder {
+  background-color: var(--circle-color);
+  height: 100px;
+  margin-bottom: 10px;
+}
+
 

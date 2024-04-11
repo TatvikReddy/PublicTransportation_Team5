@@ -13,6 +13,13 @@ const handleMapButtonClick = () => {
   // If using React Router v6, you might want to use the `useNavigate` hook to navigate programmatically.
 };
 
+interface Route {
+  id: number; // Use the appropriate type for the ID
+  from: string;
+  to: string;
+  // ... any other properties of a route
+}
+
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -369,20 +376,46 @@ function ReportIssuePage() {
   );
 }
 
+
 function FavoritedRoutesPage() {
-  // This page will display the user's favorited routes
+  // Replace the following line with actual data fetching logic and type the state
+  const [favoritedRoutes, setFavoritedRoutes] = useState<Route[]>([]);
+
+  // Replace with your API call or context fetching logic
+  useEffect(() => {
+    // Dummy async function to simulate fetching data
+    async function fetchFavoritedRoutes() {
+      // Your fetch logic here...
+      // For now, we'll set some dummy data
+      setFavoritedRoutes([
+        { id: 1, from: 'City A', to: 'City B' },
+        { id: 2, from: 'City C', to: 'City D' },
+        // ... more routes
+      ]);
+    }
+
+    fetchFavoritedRoutes();
+  }, []);
+
   return (
-    <div className="favorited-routes-page">
-      <h1>Favorited Routes</h1>
-      <Link to="/" className="button">
-        <button className="button home-button">Home</button>
-      </Link>
-      <Link to="/profile" className="button">
-        <button className="button profile-button">Back to Profile</button>
-      </Link>
+    <div className="App-header">
+      <div className="logo-circle">
+        {/* Insert logo here */}
+      </div>
+      <h1>Favorites</h1>
+      <div>
+        {favoritedRoutes.map((route) => (
+          <div key={route.id} className="info-item">
+            {/* If you have a route image, place <img> tag here */}
+            <div className="route-placeholder"></div>
+            <p>{`${route.from} to ${route.to}`}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
+
 
 function TravelHistoryPage() {
   // This page will show the ticket information with a QR code, similar to the one shown in the image
@@ -460,7 +493,7 @@ function App() {
         <Route path="/map" element={<ViewGoogleMapPage />} />
         <Route path="/ticket" element={<TicketPage />} /> 
         <Route path="/report-issue" element={<ReportIssuePage />} /> 
-        <Route path="/favorites" element={<FavoritedRoutesPage />} /> 
+        <Route path="/favorited-routes" element={<FavoritedRoutesPage />} /> 
         <Route path="/travel-history" element={<TravelHistoryPage />} />
         
         <Route path="/view-routes" element={<ViewRoutesPage />} />
