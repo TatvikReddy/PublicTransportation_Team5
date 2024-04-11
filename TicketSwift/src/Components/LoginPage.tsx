@@ -35,24 +35,29 @@ function LoginPage() {
         </div>
         <div className="login-container">
           <h2>Login or Create an Account</h2>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <button type="submit" className="button create-account-button">
+          <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ margin: '10px 0' }}
+        />
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ margin: '10px 0' }}
+            
+        />
+    </div>
+            <button type="submit" className="button create-account-button" >
               Login
             </button>
           </form>

@@ -6,6 +6,7 @@ function TicketPage() {
     // This page will show the ticket information with a QR code, similar to the one shown in the image
     return (
       <div className="ticket-page">
+        <h1>Ticket</h1> 
         <div className="ticket-header">
           <div className="ticket-company-logo"> {/* Logo goes here, possibly as an <img> */}</div>
           <div className="ticket-time">Month/Day/Year</div>
@@ -55,10 +56,8 @@ function TicketPage() {
         <div className="ticket-qr-code">
           {/* QR Code should be generated and inserted here */}
         </div>
-        <h1>Ticket</h1> 
-        <Link to="/" className="button">
-          <button className="button home-button">Home</button>
-        </Link>
+        
+
         <Link to="/profile" className="button">
           <button className="button profile-button">Back to Profile</button>
         </Link>

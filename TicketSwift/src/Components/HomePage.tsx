@@ -31,7 +31,7 @@ function HomePage() {
             <button className="button">Sign Up / Login</button>
           </Link>
 
-          <button className="button" onClick={handleMapButtonClick}>View Map</button>
+          <button className="button" onClick={handleMapButtonClick} style ={{width: '20%', height: '38px', marginTop: '20px', borderRadius: '5px' }}>View Map</button>
         </header>
       </div>
     );

@@ -49,8 +49,10 @@ function CreateAccountPage() {
       <div className="register-page">
         <h1>Register</h1>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <div className="register-form">
-          <form onSubmit={handleSubmit}>
+        <div className="register-form" style={{ width: '50%' }}>
+          
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             <input
               type="text"
               name="firstName"
@@ -58,6 +60,7 @@ function CreateAccountPage() {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
+              style={{ margin: '10px 0' }}
             />
             <input
               type="text"
@@ -66,6 +69,7 @@ function CreateAccountPage() {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
+              style={{ margin: '10px 0' }}
             />
             <input
               type="email"
@@ -74,6 +78,7 @@ function CreateAccountPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              style={{ margin: '10px 0' }}
             />
             <input
               type="text"
@@ -82,6 +87,7 @@ function CreateAccountPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              style={{ margin: '10px 0' }}
             />
             <input
               type="password"
@@ -90,6 +96,7 @@ function CreateAccountPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              style={{ margin: '10px 0' }}
             />
             <input
               type="password"
@@ -98,7 +105,10 @@ function CreateAccountPage() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+              style={{ margin: '10px 0' }}
             />
+            </div>
+            
             <button type="submit" className="button create-account-button">
               Create Account
             </button>

@@ -8,22 +8,19 @@ function ReportIssuePage() {
     return (
   <div className="report-issue-page">
         <h1>Report Issue</h1>
-        <Link to="/" className="button">
-          <button className="button home-button">Back to Home</button>
-        </Link>
-        <Link to="/profile" className="button">
-          <button className="button profile-button">Back to Profile</button>
-        </Link>
         <Link to="/">
           <div className="logo-circle">
           <img src={TicketSwiftLogo} alt="logo" />
           </div>
            </Link>
-        <input placeholder="Name" />
-        <input placeholder="Email" />
-        <input placeholder="Subject" />
-        <input placeholder="Issue" />
-        <button type="submit">Submit</button>
+           <textarea placeholder="Name" style={{ width: '50%', height: '40px',marginTop: '30px' }}></textarea>
+        <textarea placeholder="Email" style={{ width: '50%', height: '40px',marginTop: '10px' }}></textarea>
+        <textarea placeholder="Subject" style={{ width: '50%', height: '40px',marginTop: '10px' }}></textarea>
+        <textarea placeholder="Issue" style={{ width: '50%', height: '150px', marginTop: '10px' }}></textarea>
+        <button type="submit"style={{ width: '18%', height: '38px', marginTop: '20px', borderRadius: '5px' }}>Submit</button>
+        <Link to="/profile" className="button">
+          <button className="button profile-button">Back to Profile</button>
+        </Link>
       </div>
     );
 }
