@@ -43,7 +43,15 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+const ticketSchema = new mongoose.Schema({
+    uuid: {
+        type: String,
+        required: true,
+    },
+});
+
 const User = mongoose.model('User', userSchema);
+const Ticket = mongoose.model('Ticket', ticketSchema)
 
 // Initialize express app
 const app = express();
@@ -99,7 +107,6 @@ app.post('/api/login', async (req, res) => {
 
         // Hash the password
         const hashedPassword = createHash('sha256').update(password).digest('hex')
-        
 
         // Check if the user already exists
         let existingUser = await User.findOne({ $or: [{ email }] });
@@ -121,6 +128,28 @@ app.post('/api/login', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+app.post('/api/makeqr', async (req, res) => {
+    try {
+        const qr = crypto.randomUUID();
+        
+        let qrCheck = await Ticket.findOne({ $or: [{ qr }] });
+        if (qrCheck === null){
+            console.log(qr)
+
+            const qrUUID = new Ticket({uuid : qr,});
+
+            console.log(qrUUID.uuid)
+
+            await qrUUID.save();
+            return res.status(200).send(qr)
+        }
+    } catch (error) {
+        console.error("Error registering user:", error);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
 
 // Start the server
 const PORT = process.env.PORT || 3001;

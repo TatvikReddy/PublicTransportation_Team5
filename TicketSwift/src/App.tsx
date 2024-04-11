@@ -7,7 +7,8 @@ import axios, { AxiosError } from "axios";
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import Cookies from 'universal-cookie';
 import MapPage from './MapPage';
-
+import QRCode from "react-qr-code";
+import ReactDOM from "react-dom";
 
 const handleMapButtonClick = () => {
   // Logic to navigate to the map page
@@ -271,9 +272,9 @@ function ViewProfilePage() {
       </Link>
 
       <h3>User Name: {userInfo.name}</h3>
-  <p>Email: {userInfo.email}</p>
-  <p>Payment Info: {userInfo.paymentInfo}</p>
-  <p>Travel History: {userInfo.travelHistory}</p>
+      <p>Email: {userInfo.email}</p>
+      <p>Payment Info: {userInfo.paymentInfo}</p>
+      <p>Travel History: {userInfo.travelHistory}</p>
     </div>
     //
   );
@@ -401,6 +402,33 @@ function QrReaderPage() {
   );
 }
 
+function QrMakerPage() {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3001/api/makeqr');
+      ReactDOM.render(<QRCode value={response.data}/>, document.getElementById("qr"));
+      console.log(response.data); // Log the response from the server
+      // Optionally, you can redirect the user to another page upon successful registration
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  return (
+    <div className="qr-maker-page">
+      <form onSubmit={handleSubmit}>
+        <button type="submit" className="button create-account-button">
+              Create QR Code
+        </button>
+      </form>
+      <div id="qr" style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   
 
@@ -422,7 +450,8 @@ function App() {
         <Route path="/register-ticket" element={<RegisterTicketPage />} />
         <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
-        <Route path="/qr" element={<QrReaderPage />} />
+        <Route path="/readqr" element={<QrReaderPage />} />
+        <Route path="/makeqr" element={<QrMakerPage />} />
       </Routes>
     </Router>
   );
