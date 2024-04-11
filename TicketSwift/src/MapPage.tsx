@@ -13,12 +13,13 @@ const API_KEY = 'AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo';
 const App = () => (
   <APIProvider apiKey={API_KEY}>
     <Map
-      defaultCenter={{lat: 43.65, lng: -79.38}}
+      defaultCenter={{lat: 32.9857, lng: -96.7502}}
       defaultZoom={9}
       gestureHandling={'greedy'}
       fullscreenControl={false}>
       <Directions />
     </Map>
+    <div id="sidepanel"></div>
   </APIProvider>
 );
 
@@ -45,6 +46,7 @@ function Directions() {
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
 
+    
     directionsService
       .route({
         origin: '800 W Campbell Rd, Richardson, TX 75080',
@@ -53,6 +55,7 @@ function Directions() {
         provideRouteAlternatives: true
       })
       .then(response => {
+        directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
       });
