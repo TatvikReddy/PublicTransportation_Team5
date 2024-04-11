@@ -5,8 +5,10 @@ import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
 import { Html5QrcodeScanner } from 'html5-qrcode';
-// import { Cookies } from 'js-cookie';
+import Cookies from 'universal-cookie';
 import MapPage from './MapPage';
+import QRCode from "react-qr-code";
+import ReactDOM from "react-dom";
 
 const handleMapButtonClick = () => {
   // Logic to navigate to the map page
@@ -66,6 +68,8 @@ function LoginPage() {
         email,
         password,
       });
+      const cookies = new Cookies();
+      cookies.set("token", response.data)
       console.log(response.data); // Log the response from the server
       // Optionally, you can redirect the user to another page upon successful registration
     } catch (error) {
@@ -286,6 +290,10 @@ function ViewProfilePage() {
       <Link to="/ticket" className="button">
         <button className="button ticket-button">View Tickets</button>
       </Link>
+      <h3>User Name: {userInfo.name}</h3>
+      <p>Email: {userInfo.email}</p>
+      <p>Payment Info: {userInfo.paymentInfo}</p>
+      <p>Travel History: {userInfo.travelHistory}</p>
     </div>
     //
   );
@@ -480,6 +488,66 @@ function ViewGoogleMapPage() {
   );
 }
 
+function QrReaderPage() {
+
+  const [scanResult, setScanResult] = useState(null)
+
+  useEffect(() => {
+  
+    const scanner = new Html5QrcodeScanner('reader', {qrbox : {height: 250, width: 250}, fps: 5}, true);
+
+    scanner.render(success, error);
+
+    function success(result: any){
+      scanner.clear();
+      setScanResult(result);
+    }
+
+    function error(err: any){
+      console.log(err);
+    }
+  },[]);
+    
+
+
+  return (
+    <div className="qr-reader-page">
+      <h1>hello</h1>
+      { scanResult
+      ? <div>{scanResult}</div>
+      : <div id="reader"></div>
+      }
+    </div>
+  );
+}
+
+function QrMakerPage() {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3001/api/makeqr');
+      ReactDOM.render(<QRCode value={response.data}/>, document.getElementById("qr"));
+      console.log(response.data); // Log the response from the server
+      // Optionally, you can redirect the user to another page upon successful registration
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  return (
+    <div className="qr-maker-page">
+      <form onSubmit={handleSubmit}>
+        <button type="submit" className="button create-account-button">
+              Create QR Code
+        </button>
+      </form>
+      <div id="qr" style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+      </div>
+    </div>
+  );
+}
+
 function App() {
 
   return (
@@ -500,7 +568,8 @@ function App() {
         <Route path="/register-ticket" element={<RegisterTicketPage />} />
         <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
-        
+        <Route path="/readqr" element={<QrReaderPage />} />
+        <Route path="/makeqr" element={<QrMakerPage />} />
       </Routes>
     </Router>
   );
