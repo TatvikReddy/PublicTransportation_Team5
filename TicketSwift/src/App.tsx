@@ -8,6 +8,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 import Cookies from 'universal-cookie';
 import MapPage from './MapPage';
 
+
 const handleMapButtonClick = () => {
   // Logic to navigate to the map page
   // If using React Router v6, you might want to use the `useNavigate` hook to navigate programmatically.
@@ -367,6 +368,39 @@ function ViewGoogleMapPage() {
   );
 }
 
+function QrReaderPage() {
+
+  const [scanResult, setScanResult] = useState(null)
+
+  useEffect(() => {
+  
+    const scanner = new Html5QrcodeScanner('reader', {qrbox : 250, fps: 5}, true);
+
+    scanner.render(success, error);
+
+    function success(result: any){
+      scanner.clear();
+      setScanResult(result);
+    }
+
+    function error(err: any){
+      console.log(err);
+    }
+  },[]);
+    
+
+
+  return (
+    <div className="qr-reader-page">
+      <h1>hello</h1>
+      { scanResult
+      ? <div>{scanResult}</div>
+      : <div id="reader"></div>
+      }
+    </div>
+  );
+}
+
 function App() {
   
 
@@ -388,7 +422,7 @@ function App() {
         <Route path="/register-ticket" element={<RegisterTicketPage />} />
         <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
-        
+        <Route path="/qr" element={<QrReaderPage />} />
       </Routes>
     </Router>
   );
