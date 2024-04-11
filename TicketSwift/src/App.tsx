@@ -5,7 +5,7 @@ import './App.css';
 import TicketSwiftLogo from './TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
 import { Html5QrcodeScanner } from 'html5-qrcode';
-// import { Cookies } from 'js-cookie';
+import Cookies from 'universal-cookie';
 import MapPage from './MapPage';
 
 const handleMapButtonClick = () => {
@@ -59,6 +59,8 @@ function LoginPage() {
         email,
         password,
       });
+      const cookies = new Cookies();
+      cookies.set("token", response.data)
       console.log(response.data); // Log the response from the server
       // Optionally, you can redirect the user to another page upon successful registration
     } catch (error) {
