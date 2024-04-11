@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: true,
     auth: {
-      user: "johnsworkatutd@gmail.com", //Ticket Swift email address (enable two factor authentication and generate an app password for this email address)
-      pass: "geci rwpj idqu uanq", //Go to security --> set up two factor authentication --> app passwords --> generate app password
+      user: "ticketswiftofficial@gmail.com", //Ticket Swift email address (enable two factor authentication and generate an app password for this email address)
+      pass: "hnlw tfkn uppv zbys", //Go to security --> set up two factor authentication --> app passwords --> generate app password
     },
   });
 
