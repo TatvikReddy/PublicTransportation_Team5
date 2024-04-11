@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../App.css';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
 
 interface Route {
@@ -45,6 +46,11 @@ function FavoritedRoutesPage() {
             </div>
           ))}
         </div>
+        <Link to="/">
+          <div className="logo-circle">
+          <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+           </Link>
       </div>
     );
 }

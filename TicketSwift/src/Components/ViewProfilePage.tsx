@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../App.css';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
 
 function ViewProfilePage() {
@@ -53,10 +54,12 @@ function ViewProfilePage() {
         <Link to="/ticket" className="button">
           <button className="button ticket-button">View Tickets</button>
         </Link>
-        <h3>User Name: {userInfo.name}</h3>
-        <p>Email: {userInfo.email}</p>
-        <p>Payment Info: {userInfo.paymentInfo}</p>
-        <p>Travel History: {userInfo.travelHistory}</p>
+        <Link to="/">
+          <div className="logo-circle">
+          <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+           </Link>
+
       </div>
       //
     );

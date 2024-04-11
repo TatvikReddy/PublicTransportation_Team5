@@ -1,5 +1,6 @@
 //need to add more imports because this page still not done
 import '../App.css';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
 
 

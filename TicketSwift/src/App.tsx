@@ -17,6 +17,10 @@ import CheckoutTicketPage from './Components/CheckoutTicketPage';
 import QrReaderPage from './Components/QrReaderPage';
 import QrMakerPage from './Components/QrMakerPage';
 
+
+
+
+
 function App() {
 
   return (

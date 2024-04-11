@@ -62,6 +62,11 @@ function LoginPage() {
           <Link to="/reset-password" className="button">
             <button className="reset-password-button">Reset Password</button>
           </Link>
+          <Link to="/">
+          <div className="logo-circle">
+          <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+           </Link>
         </div>
       </div>
     );

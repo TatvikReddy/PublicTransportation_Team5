@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import '../App.css';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
 
 function TravelHistoryPage() {
@@ -15,6 +16,11 @@ function TravelHistoryPage() {
         <Link to="/profile" className="button">
           <button className="button profile-button">Back to Profile</button>
         </Link>
+        <Link to="/">
+          <div className="logo-circle">
+          <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+           </Link>
       </div>
       
     );

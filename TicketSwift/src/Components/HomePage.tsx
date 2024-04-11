@@ -30,6 +30,7 @@ function HomePage() {
           <Link to="/login" className="button">
             <button className="button">Sign Up / Login</button>
           </Link>
+
           <button className="button" onClick={handleMapButtonClick}>View Map</button>
         </header>
       </div>

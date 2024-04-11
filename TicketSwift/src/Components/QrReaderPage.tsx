@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 //need to add more imports because this page still not done
 import '../App.css';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
 import { Html5QrcodeScanner } from 'html5-qrcode';
 

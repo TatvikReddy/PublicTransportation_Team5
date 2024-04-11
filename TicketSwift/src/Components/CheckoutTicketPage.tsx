@@ -7,6 +7,8 @@ function CheckoutTicketPage() {
     return (
       <div className="checkout-ticket-page">
         {/* Insert the layout and elements to replicate the favorites display */}
+
+
       </div>
     );
 }

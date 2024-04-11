@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../App.css';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
 function TicketPage() {
     // This page will show the ticket information with a QR code, similar to the one shown in the image
@@ -61,6 +62,11 @@ function TicketPage() {
         <Link to="/profile" className="button">
           <button className="button profile-button">Back to Profile</button>
         </Link>
+        <Link to="/">
+          <div className="logo-circle">
+          <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+           </Link>
       </div>
     );
 }

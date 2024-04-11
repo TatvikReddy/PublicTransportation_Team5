@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
+import TicketSwiftLogo from '../TicketSwiftLogo.png';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 
 import {
   APIProvider,
@@ -20,6 +23,11 @@ const App = () => (
       <Directions />
     </Map>
     <div id="sidepanel"></div>
+    <Link to="/">
+          <div className="logo-circle">
+          <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+           </Link>
   </APIProvider>
 );
 
@@ -90,6 +98,8 @@ function Directions() {
           </li>
         ))}
       </ul>
+
+      
     </div>
   );
 }
