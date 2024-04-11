@@ -374,7 +374,7 @@ function QrReaderPage() {
 
   useEffect(() => {
   
-    const scanner = new Html5QrcodeScanner('reader', {qrbox : 250, fps: 5}, true);
+    const scanner = new Html5QrcodeScanner('reader', {qrbox : {height: 250, width: 250}, fps: 5}, true);
 
     scanner.render(success, error);
 
