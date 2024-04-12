@@ -71,6 +71,10 @@ function Directions() {
     return () => directionsRenderer.setMap(null);
   }, [directionsService, directionsRenderer]);
 
+  //State variables for input
+  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("")
+
   // Update direction route
   useEffect(() => {
     if (!directionsRenderer) return;
@@ -79,8 +83,45 @@ function Directions() {
 
   if (!leg) return null;
 
+  //Function to handle submit information
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   return (
     <div className="directions">
+      
+      {/* Form for text input */}
+      <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <input
+            type="to"
+            name="to"
+            placeholder="Enter start destination"
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+            required
+            style={{ margin: '10px 0' }}
+          />
+          <input
+            type="from"
+            name="from"
+            placeholder="Enter end destination"
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+            required
+            style={{ margin: '10px 0' }}
+
+          />
+        </div>
+        <button type="submit" className="button create-account-button" >
+          Map Routes
+        </button>
+      </form>
       <h2>{selected.summary}</h2>
       <p>
         {leg.start_address.split(',')[0]} to {leg.end_address.split(',')[0]}
