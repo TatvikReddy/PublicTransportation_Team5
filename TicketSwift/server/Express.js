@@ -150,6 +150,22 @@ app.post('/api/makeqr', async (req, res) => {
     }
 })
 
+app.post('/api/readqr', async (req, res) => {
+    try {
+        const { uuid } = req.body;
+
+        let qrCheck = await Ticket.findOne({ $or: [{ uuid }] });
+        if (qrCheck !== null){
+            return res.status(200).send('true')
+        }
+        return res.status(400).send("invalid qr")
+
+    } catch (error) {
+        console.error("Error registering user:", error);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
 
 // Start the server
 const PORT = process.env.PORT || 3001;
