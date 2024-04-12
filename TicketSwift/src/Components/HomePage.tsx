@@ -19,7 +19,7 @@ function HomePage() {
                 <div></div>
             </div>
             {isMenuOpen && (
-                <div className="menu-overlay">
+                <div className="menu-overlay" onClick={() => setMenuOpen(false)}>
                     <div className="menu">
                         <div className="menu-item">
                             <Link to="/profile" className="menu-link">My Account</Link>
