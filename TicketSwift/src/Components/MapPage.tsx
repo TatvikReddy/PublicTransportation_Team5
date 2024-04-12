@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import '../App.css';
 
 
 import {
@@ -32,22 +33,26 @@ const App = () => (
 );
 
 function Directions() {
+
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes');
-  const [directionsService, setDirectionsService] =
-    useState<google.maps.DirectionsService>();
-  const [directionsRenderer, setDirectionsRenderer] =
-    useState<google.maps.DirectionsRenderer>();
+  const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService>();
+  const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer>();
   const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([]);
   const [routeIndex, setRouteIndex] = useState(0);
   const selected = routes[routeIndex];
   const leg = selected?.legs[0];
+  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("");
+  
 
   // Initialize directions service and renderer
   useEffect(() => {
     if (!routesLibrary || !map) return;
-    setDirectionsService(new routesLibrary.DirectionsService());
-    setDirectionsRenderer(new routesLibrary.DirectionsRenderer({map}));
+    const newDirectionsService = new routesLibrary.DirectionsService();
+    const newDirectionsRenderer = new routesLibrary.DirectionsRenderer({ map });
+    setDirectionsService(newDirectionsService);
+    setDirectionsRenderer(newDirectionsRenderer);
   }, [routesLibrary, map]);
 
   // Use directions service
@@ -71,10 +76,6 @@ function Directions() {
     return () => directionsRenderer.setMap(null);
   }, [directionsService, directionsRenderer]);
 
-  //State variables for input
-  const [to, setTo] = useState("");
-  const [from, setFrom] = useState("")
-
   // Update direction route
   useEffect(() => {
     if (!directionsRenderer) return;
@@ -93,55 +94,52 @@ function Directions() {
   };
 
   return (
-    <div className="directions">
-      
-      {/* Form for text input */}
-      <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <input
-            type="to"
-            name="to"
-            placeholder="Enter start destination"
-            value={to}
-            onChange={(e) => setTo(e.target.value)}
-            required
-            style={{ margin: '10px 0' }}
-          />
-          <input
-            type="from"
-            name="from"
-            placeholder="Enter end destination"
-            value={from}
-            onChange={(e) => setFrom(e.target.value)}
-            required
-            style={{ margin: '10px 0' }}
-
-          />
-        </div>
-        <button type="submit" className="button create-account-button" >
-          Map Routes
-        </button>
-      </form>
-      
-      <h2>{selected.summary}</h2>
-      <p>
-        {leg.start_address.split(',')[0]} to {leg.end_address.split(',')[0]}
-      </p>
-      <p>Distance: {leg.distance?.text}</p>
-      <p>Duration: {leg.duration?.text}</p>
-
-      <h2>Other Routes</h2>
-      <ul>
-        {routes.map((route, index) => (
-          <li key={route.summary}>
-            <button onClick={() => setRouteIndex(index)}>
-              {route.summary}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      
+    <div>
+      <div style={{ position: 'absolute', top: 0, width: '100%', padding: '10px', backgroundColor: '#fff' }}>
+        <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+            <input
+              type="text"
+              name="from"
+              placeholder="Enter start location"
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              required
+              style={{ padding: '10px', width: '40%' }}
+            />
+            <input
+              type="text"
+              name="to"
+              placeholder="Enter end location"
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              required
+              style={{ padding: '10px', width: '40%' }}
+            />
+            <button type="submit" style={{ padding: '10px 20px' }}>Go</button>
+          </div>
+        </form>
+      </div>
+  
+      <div className="directions" style={{ marginTop: '60px' }}>
+        <h2>{selected.summary}</h2>
+        <p>
+          {leg.start_address.split(',')[0]} to {leg.end_address.split(',')[0]}
+        </p>
+        <p>Distance: {leg.distance?.text}</p>
+        <p>Duration: {leg.duration?.text}</p>
+  
+        <h2>Other Routes</h2>
+        <ul>
+          {routes.map((route, index) => (
+            <li key={route.summary}>
+              <button onClick={() => setRouteIndex(index)}>
+                {route.summary}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
