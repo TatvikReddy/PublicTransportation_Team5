@@ -42,6 +42,7 @@ function Directions() {
   const [routeIndex, setRouteIndex] = useState(0);
   const selected = routes[routeIndex];
   const leg = selected?.legs[0];
+  
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("");
   
