@@ -418,3 +418,157 @@ button:hover {
 }
 
 
+.ticket-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: #FFFFFF
+}
+
+
+
+.ticket-route, .ticket-passenger, .ticket-details, .ticket-price {
+  grid-column: span 3;
+}
+
+.ticket-from, .ticket-to, .ticket-seat, .ticket-class, .ticket-company, .ticket-depart, .ticket-arrive, .ticket-status {
+  grid-column: span 1;
+}
+
+
+
+
+.ticket-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 10px;
+  align-items: left;
+  justify-items: center;
+  width: 100%; 
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.ticket-info span {
+  text-align: justify;
+  word-wrap: break-word;
+}
+
+body {
+  background-color:#F3EFE6; 
+}
+
+.purchase-button {
+  
+  color: #000000; 
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.purchase-button {
+  background-color: #73C2FB; 
+  margin-top: 50px
+}
+
+.input-container {
+  background-color: #F3EFE6; 
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 110px;
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+  margin-top: 10px
+}
+
+.rectangle {
+  width: 400px; 
+  height: 200px; 
+  background-color: grey; 
+  margin-bottom: 10px; 
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 15px;
+  margin-top: 30px; 
+  margin-left: 50px; 
+}
+
+.rectangle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.rectangle-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.purchase-button {
+  background-color: #73C2FB; 
+  color: black; 
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.purchase-button:hover {
+  background-color: #6fb0de; 
+}
+
+.billing-info-title {
+  margin-bottom: 10px; 
+  font-size: 16px; 
+}
+
+.input-container {
+  margin-top: -10px; 
+
+}
+
+.payment-title {
+  font-size: 16px; 
+}
+
+.purchase-button {
+  background-color:73C2FB; 
+  color: black; 
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.checkout-title {
+  margin-bottom: 10px; 
+  margin-top:50px;
+  font-size: 50px
+}
+
+.billing-info-title {
+  margin-top: 0;
+  margin-bottom: 5px; 
+}

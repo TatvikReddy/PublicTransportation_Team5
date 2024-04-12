@@ -1,15 +1,32 @@
-//need to add more imports because this page still not done
+import { Link } from 'react-router-dom';
 import '../App.css';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 
-
-
 function RegisterTicketPage() {
-    // This page will show the ticket information with a QR code, similar to the one shown in the image
     return (
-      <div className="registor-ticket-page">
-        {/* Insert the layout and elements to replicate the ticket display */}
+        <div className="register-ticket-page">
+            <form>
+            <div className="rectangle-container">
+
+    <div className="rectangle"></div>
+    <p className="rectangle-text">To: Houston</p>
+    <p className="rectangle-text">From: Dallas</p>
       </div>
+            <div className="input-container">
+    <input type="text" placeholder="First Name" />
+    <input type="text" placeholder="Last Name" />
+    <Link to="/purchase-ticket">
+                <button type="button" className="purchase-button">Proceed to purchase ticket</button>
+                </Link>
+</          div>
+
+                <Link to="/">
+          <div className="logo-circle">
+            <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+              </Link>
+            </form>
+        </div>
     );
 }
 
