@@ -3,15 +3,12 @@ import {createRoot} from 'react-dom/client';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../App.css';
-
-
 import {
   APIProvider,
   Map,
   useMapsLibrary,
   useMap
 } from '@vis.gl/react-google-maps';
-
 const API_KEY = 'AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo';
 
 const App = () => (
@@ -36,16 +33,16 @@ function Directions() {
 
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes');
+  const placesLibrary = useMapsLibrary('places');
   const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService>();
   const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer>();
   const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([]);
   const [routeIndex, setRouteIndex] = useState(0);
   const selected = routes[routeIndex];
   const leg = selected?.legs[0];
-  
-  const [to, setTo] = useState("");
-  const [from, setFrom] = useState("");
-  
+  const [to, setTo] = useState("800 W Campbell Rd, Richardson, TX 75080");
+  const [from, setFrom] = useState("433 Coit Rd, Plano, TX 75075");
+
 
   // Initialize directions service and renderer
   useEffect(() => {
@@ -56,15 +53,28 @@ function Directions() {
     setDirectionsRenderer(newDirectionsRenderer);
   }, [routesLibrary, map]);
 
+  // Initialize places autocomplete service
+  useEffect(() => {
+    if (!placesLibrary) return;
+    const fromAutocomplete = new placesLibrary.Autocomplete(document.getElementById("start") as HTMLInputElement, {
+      componentRestrictions: {'country': ['US']},
+      fields: ['place_id', 'geometry', 'name']
+    });
+
+    const toAutocomplete = new placesLibrary.Autocomplete(document.getElementById("destination") as HTMLInputElement, {
+      componentRestrictions: {'country': ['US']},
+      fields: ['place_id', 'geometry', 'name']
+    });
+  }, [placesLibrary]);
+
   // Use directions service
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
 
-    
     directionsService
       .route({
-        origin: '800 W Campbell Rd, Richardson, TX 75080',
-        destination: '433 Coit Rd, Plano, TX 75075',
+        origin: from,
+        destination: to,
         travelMode: google.maps.TravelMode.TRANSIT,
         provideRouteAlternatives: true
       })
@@ -100,6 +110,7 @@ function Directions() {
         <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
             <input
+              id = "start"
               type="text"
               name="from"
               placeholder="Enter start location"
@@ -109,6 +120,7 @@ function Directions() {
               style={{ padding: '10px', width: '40%' }}
             />
             <input
+              id = "destination"
               type="text"
               name="to"
               placeholder="Enter end location"
