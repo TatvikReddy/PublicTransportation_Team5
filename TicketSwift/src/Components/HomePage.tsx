@@ -11,13 +11,28 @@ function HomePage() {
       navigate('/map');
     }
   
-    return (
-      <div className="App">
-        <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!isMenuOpen)}>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+    return  (
+        <div className="App">
+            <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!isMenuOpen)}>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            {isMenuOpen && (
+                <div className="menu-overlay">
+                    <div className="menu">
+                        <div className="menu-item">
+                            <Link to="/profile" className="menu-link">My Account</Link>
+                        </div>
+                        <div className="menu-item">
+                            <Link to="/routes" className="menu-link">Find Routes</Link>
+                        </div>
+                        <div className="menu-item">
+                            <Link to="/tickets" className="menu-link">Register for Tickets</Link>
+                        </div>
+                    </div>
+                </div>
+            )}
         <div className="circle-container">
           <Link to="/profile" className="circle"></Link>
           <span className="circle-text">Profile</span>
