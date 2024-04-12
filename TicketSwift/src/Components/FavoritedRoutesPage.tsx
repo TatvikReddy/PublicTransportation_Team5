@@ -51,6 +51,9 @@ function FavoritedRoutesPage() {
           <img src={TicketSwiftLogo} alt="logo" />
           </div>
            </Link>
+           <Link to="/profile" className="button">
+          <button className="button profile-button">Back to Profile</button>
+        </Link>
       </div>
     );
 }

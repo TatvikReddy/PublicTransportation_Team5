@@ -10,14 +10,11 @@ import TicketPage from './Components/TicketPage';
 import ReportIssuePage from './Components/ReportIssuePage';
 import FavoritedRoutesPage from './Components/FavoritedRoutesPage';
 import TravelHistoryPage from './Components/TravelHistoryPage';
-import ViewRoutesPage from './Components/ViewRoutesPage';
 import RegisterTicketPage from './Components/RegisterTicketPage';
 import PurchaseTicketPage from './Components/PurchaseTicketPage';
 import CheckoutTicketPage from './Components/CheckoutTicketPage';
 import QrReaderPage from './Components/QrReaderPage';
 import QrMakerPage from './Components/QrMakerPage';
-
-
 
 
 
@@ -36,7 +33,6 @@ function App() {
         <Route path="/report-issue" element={<ReportIssuePage />} /> 
         <Route path="/favorited-routes" element={<FavoritedRoutesPage />} /> 
         <Route path="/travel-history" element={<TravelHistoryPage />} />
-        <Route path="/view-routes" element={<ViewRoutesPage />} />
         <Route path="/register-ticket" element={<RegisterTicketPage />} />
         <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
