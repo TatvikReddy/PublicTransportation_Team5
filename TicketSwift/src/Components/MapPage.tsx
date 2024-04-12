@@ -122,6 +122,7 @@ function Directions() {
           Map Routes
         </button>
       </form>
+      
       <h2>{selected.summary}</h2>
       <p>
         {leg.start_address.split(',')[0]} to {leg.end_address.split(',')[0]}
