@@ -21,15 +21,16 @@ function HomePage() {
             {isMenuOpen && (
                 <div className="menu-overlay" onClick={() => setMenuOpen(false)}>
                     <div className="menu">
-                        <div className="menu-item">
-                            <Link to="/profile" className="menu-link">My Account</Link>
-                        </div>
-                        <div className="menu-item">
-                            <Link to="/routes" className="menu-link">Find Routes</Link>
-                        </div>
-                        <div className="menu-item">
-                            <Link to="/tickets" className="menu-link">Register for Tickets</Link>
-                        </div>
+                    <div className="dropdown">
+                            <button className="dropbtn">Dropdown 
+                                <i className="fa fa-caret-down"></i>
+                            </button>
+                            <div className="dropdown-content">
+                                <Link to="/profile">My Account</Link>
+                                <Link to="/find-routes">Find Routes</Link>
+                                <Link to="/register-for-tickets">Register for Tickets</Link>
+                            </div>
+                        </div>  
                     </div>
                 </div>
             )}
