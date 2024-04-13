@@ -537,6 +537,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 50vh;
+  margin-top: 50px;
 }
 
 .rectangle-container {
@@ -544,6 +545,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.parent-container {
+  display: flex;
+  justify-content: center;
 }
 
 .purchase-button {
@@ -600,4 +606,14 @@ body {
 .billing-info-title {
   margin-top: 0;
   margin-bottom: 5px; 
+}
+
+.total-text {
+  font-size: 16px; 
+}
+
+
+
+h2 {
+  font-size: 30px; 
 }

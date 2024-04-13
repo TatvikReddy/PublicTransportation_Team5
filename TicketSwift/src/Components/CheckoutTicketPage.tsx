@@ -27,6 +27,7 @@ function CheckoutTicketPage() {
             <input type="text" placeholder="Security Code" />
             
             <h2 className="payment-title">Your Order</h2>
+            <h2 className="payment-title">Total: $0.00</h2>
             <button type="submit" className="purchase-button">Submit</button>
           </div>
 

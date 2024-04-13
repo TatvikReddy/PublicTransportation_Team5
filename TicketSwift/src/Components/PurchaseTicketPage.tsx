@@ -11,12 +11,14 @@ function PurchaseTicketPage() {
       <div className="rectangle-container">
 
 <div className="rectangle"></div>
-<p className="rectangle-text">To: Houston</p>
-<p className="rectangle-text">From: Dallas</p>
+<p className="rectangle-text">Ticket</p>
+<p className="rectangle-text">Each: $0.00</p>
+<p className="rectangle-text">Qty: 1</p>
+<p className="rectangle-text">Total: $0.00</p>
 </div>
       <div className="input-container">
-<input type="text" placeholder="First Name" />
-<input type="text" placeholder="Last Name" />
+      <p className="rectangle-text total-text">Tax: $0.00</p>
+      <p className="rectangle-text total-text">Total: $0.00</p>
                 <Link to="/checkout-ticket">
                 <button type="button" className="purchase-button">Proceed to Checkout</button>
                 </Link>
