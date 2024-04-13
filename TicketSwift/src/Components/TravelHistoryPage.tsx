@@ -25,6 +25,9 @@ function TravelHistoryPage() {
           </div>
         ))}
         </div>
+        <Link to="/profile">
+  <button className="back-to-profile">Back to Profile</button>
+</Link>
       </div>
     );
 }
