@@ -26,10 +26,10 @@ function HomePage() {
                                 <i className="fa fa-caret-down"></i>
                             </button>
                             <div className="dropdown-content">
-                                <Link to="/profile">My Account</Link>
-                                <Link to="/find-routes">Find Routes</Link>
-                                <Link to="/register-for-tickets">Register for Tickets</Link>
-                            </div>
+                              <Link to="/profile">My Account</Link>
+                              <Link to="/find-routes">Find Routes</Link>
+                              <Link to="/register-for-tickets">Register for Tickets</Link>
+                          </div>
                         </div>  
                     </div>
                 </div>

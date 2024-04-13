@@ -24,12 +24,13 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  background-color: #f1f1f1;
+  min-width: 100vw; /* Set the minimum width to 100% of the viewport width */
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  top: 0; /* Position the dropdown at the top of the screen */
+  left: 0; /* Position the dropdown at the left of the screen */
 }
-
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
