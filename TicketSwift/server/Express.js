@@ -7,11 +7,17 @@ require('dotenv').config({ path: './src/.env' }); // For loading environment var
 const { createHash } = require('crypto');
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
+const emailHandling = require('./EmailHandling');
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
+const changePasswordSubject = "Change password request";
+const changePasswordText = "This is your notification that your password has been changed. If you did not request this change, please reply to this email.";
+const feedbackSubject = 'Feedback request';
+const feedbackText = 'Thank you for your feedback';
 
 // Define user schema and model
 const userSchema = new mongoose.Schema({
@@ -125,6 +131,47 @@ app.post('/api/login', async (req, res) => {
         return res.status(400).send("No credential match found")
     } catch (error) {
         console.error("Error registering user:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post('/api/resetpassword', async (req, res) => {
+    
+    try {
+        const { email, password, confirmPassword } = req.body;
+        console.log(email)
+        emailHandling.sendEmail(email, changePasswordSubject, changePasswordText);
+
+        // Hash the password
+        const hashedPassword = createHash('sha256').update(password).digest('hex')
+
+        // Check if the user already exists
+        let existingUser = await User.findOne({ $or: [{ email }] });
+        
+        if (!existingUser) {
+            return res.status(400).send("User does not exist");
+        }
+
+        existingUser.password = hashedPassword;
+
+        await existingUser.save();
+
+        return res.status(200).send("Password has been changed")
+    } catch (error) {
+        console.error("Error registering user:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.post('/api/reportissue', async (req, res) => {
+    
+    try {
+        const { name, email, subject, issue } = req.body;
+
+        emailHandling.sendEmail(email, feedbackSubject, feedbackText); // Send feedback email
+        return res.status(200).send("Issue has been reported")
+    } catch (error) {
+        console.error("Error registering feedback:", error);
         res.status(500).send("Internal Server Error");
     }
 });

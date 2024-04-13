@@ -60,7 +60,10 @@ function ViewProfilePage() {
           </div>
            </Link>
 
+
+            
       </div>
+      
       //
     );
 }

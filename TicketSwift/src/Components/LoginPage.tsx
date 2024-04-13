@@ -4,11 +4,13 @@ import '../App.css';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ function LoginPage() {
       const cookies = new Cookies();
       cookies.set("token", response.data)
       // Optionally, you can redirect the user to another page upon successful registration
+      navigate("/ticket")
     } catch (error) {
       console.log(error)
     }

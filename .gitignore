@@ -33,3 +33,4 @@ config.env
 *.exe
 *.out
 *.app
+/node_modules
