@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import '../App.css';
 import axios, { AxiosError } from "axios";
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
@@ -13,12 +13,19 @@ function CreateAccountPage() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+    const location = useLocation();
+
+    // Use the useEffect hook to set isAdmin based on the current path
+    useEffect(() => {
+        setIsAdmin(location.pathname === '/create-account-admin');
+    }, [location]);
   
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setErrorMessage("");
       try {
-        const response = await axios.post('http://localhost:3001/api/register', {
+        const response = await axios.post(`http://localhost:3001/api/${isAdmin ? 'create-account-admin' : 'create-account'}`, {
           firstName,
           lastName,
           email,
