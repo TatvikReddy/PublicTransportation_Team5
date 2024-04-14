@@ -67,6 +67,8 @@
 
 
 
+
+
 .menu-overlay {
   position: fixed;
   top: 0;
@@ -403,9 +405,9 @@ body {
   padding-top: 110px;
   font-size: calc(10px + 2vmin);
   color: #000000;
-
   
 }
+
 
 .reset-password-page {
   border-top: 70px solid #b93321;
@@ -495,9 +497,6 @@ button:hover {
   grid-column: span 1;
 }
 
-
-
-
 .ticket-info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -547,6 +546,47 @@ body {
   font-size: calc(10px + 2vmin);
   color: #000000;
   margin-top: 10px
+}
+
+/* .input-container-reset {
+  background-color: #F3EFE6; 
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 110px;
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+  margin-top: 10px
+} */
+
+.input-container-reset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -200px; 
+    font-family: calc(15px + 5vmin); 
+  
+}
+
+.input-container-reset {
+  margin-top: -10px; 
+
+}
+
+h2 {
+  margin-bottom: 10px; /* Decrease this value */
+}
+
+
+.input-container-report {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -200px; 
+  font-family: calc(15px + 5vmin); 
 }
 
 .rectangle {
@@ -681,7 +721,7 @@ h2 {
 }
 h1 {
   text-align: center;
-  text-shadow: 2px 2px 4px #000000; /* Adjust as needed */
+  
 }
 
 .back-to-profile {

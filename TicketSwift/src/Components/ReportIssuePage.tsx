@@ -30,13 +30,17 @@ function ReportIssuePage() {
 
     return (
   <div className="report-issue-page">
+    
         <h1>Report Issue</h1>
+       
         <form onSubmit={handleSubmit}>
         <Link to="/">
           <div className="logo-circle">
           <img src={TicketSwiftLogo} alt="logo" />
           </div>
            </Link>
+
+           
            <textarea placeholder="Name" style={{ width: '50%', height: '40px',marginTop: '30px' }} value={name}
               onChange={(e) => setName(e.target.value)} ></textarea>
         <textarea placeholder="Email" style={{ width: '50%', height: '40px',marginTop: '10px' }} value={email}
@@ -46,12 +50,15 @@ function ReportIssuePage() {
         <textarea placeholder="Issue" style={{ width: '50%', height: '150px', marginTop: '10px' }} value={issue}
               onChange={(e) => setIssue(e.target.value)}> </textarea>
         <button type="submit"style={{ width: '18%', height: '38px', marginTop: '20px', borderRadius: '5px' }}>Submit</button>
+
+
         <Link to="/profile" className="button">
           <button className="button profile-button">Back to Profile</button>
           
         </Link>
         </form>
       </div>
+
     );
 }
 

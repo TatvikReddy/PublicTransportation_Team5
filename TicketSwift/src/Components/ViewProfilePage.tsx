@@ -37,7 +37,7 @@ function ViewProfilePage() {
   
     return (
       <div className="view-profile-page">
-        <h2>View Profile</h2>
+        <h1>View Profile</h1>
         <button className="button name-button">Name: John Doe</button>
         <button className="button email-button">Email: JohnDoe@gmail.com</button>
         <Link to="/report-issue" className="button">
