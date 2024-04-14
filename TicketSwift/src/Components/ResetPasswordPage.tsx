@@ -27,22 +27,20 @@ function ResetPasswordPage() {
   
   return (
     <div className="reset-password-page">
-    <h1>Reset Password</h1>  
-    <div className="input-container-reset">
-      <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Enter email" value={email}
-                onChange={(e) => setEmail(e.target.value)} 
-                required />
-        <input type="password" placeholder="Enter new password" value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required />
-        <input type="password" placeholder="Re-enter new password" value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required />
-        <button type ="submit" className="button reset-password-button">Reset Password</button>
-      </form>
-    </div>
-
+      <h1>Reset Password</h1> 
+      <div className="parent-div">
+  <form onSubmit={handleSubmit}>
+    <input type="email" placeholder="Enter email" value={email}
+            onChange={(e) => setEmail(e.target.value)} 
+            required />
+    <input type="password" placeholder="Enter new password" value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required />
+    <input type="password" placeholder="Re-enter new password" value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required />
+    <button type ="submit" className="button reset-password-button">Reset Password</button>
+  </form>
 
       <Link to="/login" className="button">
         <button className="button back-to-login-button">Back to Login</button>
@@ -53,6 +51,9 @@ function ResetPasswordPage() {
           </div>
            </Link>
     </div>
+    </div>
+
+
 
   );
 

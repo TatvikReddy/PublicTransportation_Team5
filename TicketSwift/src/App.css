@@ -566,20 +566,9 @@ body {
   margin-top: 10px
 } */
 
-.input-container-reset {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: -200px; 
-    font-family: calc(15px + 5vmin); 
-  
-}
 
-.input-container-reset {
-  margin-top: -10px; 
 
-}
+
 
 h2 {
   margin-bottom: 10px; /* Decrease this value */
@@ -738,4 +727,15 @@ h1 {
     height: 35px; 
     margin-top: 30px;
     border-radius: 5px; 
+  }
+  .parent-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* This will center the items vertically */
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will center the inputs horizontally */
   }

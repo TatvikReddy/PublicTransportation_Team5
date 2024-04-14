@@ -41,6 +41,9 @@ function ViewProfilePage() {
   
     return (
       <div className="view-profile-page">
+        <h1>View Profile</h1>
+        <button className="button name-button">Name: {userInfo.name}</button>
+        <button className="button email-button">Email: {userInfo.email}</button>
         
         <Link to="/report-issue" className="button">
           <button className="button report-issue-button">Report Issue</button>
