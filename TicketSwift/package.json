@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/markerclusterer": "^2.5.3",
+    "@paypal/react-paypal-js": "^8.2.0",
     "@react-google-maps/api": "^2.19.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -31,6 +33,7 @@
     "qr-scanner": "^1.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-autocomplete": "^2.7.3",
     "react-native-svg": "^15.1.0",
     "react-qr-code": "^2.0.12",
     "react-router-dom": "^6.22.3",
