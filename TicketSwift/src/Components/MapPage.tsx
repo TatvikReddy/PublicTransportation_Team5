@@ -9,13 +9,14 @@ import {
   useMapsLibrary,
   useMap
 } from '@vis.gl/react-google-maps';
+import Autocomplete from "react-google-autocomplete";
 const API_KEY = 'AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo';
 
 const App = () => (
   <APIProvider apiKey={API_KEY}>
     <Map
-      defaultCenter={{lat: 32.9857, lng: -96.7502}}
       defaultZoom={9}
+      defaultCenter={{lat: 32.9857, lng: -96.7502}}
       gestureHandling={'greedy'}
       fullscreenControl={false}>
       <Directions />
@@ -40,9 +41,50 @@ function Directions() {
   const [routeIndex, setRouteIndex] = useState(0);
   const selected = routes[routeIndex];
   const leg = selected?.legs[0];
-  const [to, setTo] = useState("800 W Campbell Rd, Richardson, TX 75080");
-  const [from, setFrom] = useState("433 Coit Rd, Plano, TX 75075");
+  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("");
+  var origin = "800 W Campbell Rd, Richardson, TX 75080";
+  var destination = "433 Coit Rd, Plano, TX 75075";
 
+  //directionsRenderer?.setMap(null);
+
+  function handleOriginPlace(place: string)
+  {
+    origin = place;
+    if (!directionsService || !directionsRenderer) return;
+
+    directionsService
+      .route({
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.TRANSIT,
+        provideRouteAlternatives: true
+      })
+      .then(response => {
+        directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
+        directionsRenderer.setDirections(response);
+        setRoutes(response.routes);
+      });
+  }
+  function handleDestinationPlace(place: string)
+  {
+    destination = place;
+    if (!directionsService || !directionsRenderer) return;
+
+    directionsService
+      .route({
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.TRANSIT,
+        provideRouteAlternatives: true
+      })
+      .then(response => {
+        directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
+        directionsRenderer.setDirections(response);
+        setRoutes(response.routes);
+      });
+
+  }
 
   // Initialize directions service and renderer
   useEffect(() => {
@@ -52,7 +94,7 @@ function Directions() {
     setDirectionsService(newDirectionsService);
     setDirectionsRenderer(newDirectionsRenderer);
   }, [routesLibrary, map]);
-
+  
   // Initialize places autocomplete service
   useEffect(() => {
     if (!placesLibrary) return;
@@ -60,6 +102,8 @@ function Directions() {
       componentRestrictions: {'country': ['US']},
       fields: ['place_id', 'geometry', 'name']
     });
+
+    //fromAutocomplete.addListener("place_changed", onPlaceChanged)
 
     const toAutocomplete = new placesLibrary.Autocomplete(document.getElementById("destination") as HTMLInputElement, {
       componentRestrictions: {'country': ['US']},
@@ -73,8 +117,8 @@ function Directions() {
 
     directionsService
       .route({
-        origin: from,
-        destination: to,
+        origin: origin,
+        destination: destination,
         travelMode: google.maps.TravelMode.TRANSIT,
         provideRouteAlternatives: true
       })
@@ -85,6 +129,7 @@ function Directions() {
       });
 
     return () => directionsRenderer.setMap(null);
+    
   }, [directionsService, directionsRenderer]);
 
   // Update direction route
@@ -109,25 +154,31 @@ function Directions() {
       <div style={{ position: 'absolute', top: 0, width: '100%', padding: '10px', backgroundColor: '#fff' }}>
         <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-            <input
-              id = "start"
-              type="text"
-              name="from"
-              placeholder="Enter start location"
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-              required
-              style={{ padding: '10px', width: '40%' }}
+            <div>Start Location: </div>
+            <Autocomplete
+              apiKey={API_KEY}
+              onPlaceSelected={(place) => {
+                console.log(place.formatted_address);
+                handleOriginPlace(place.formatted_address as string);
+              }}
+              options={{
+                types: ["address"],
+                componentRestrictions: {country: 'US'},
+              }
+              }
             />
-            <input
-              id = "destination"
-              type="text"
-              name="to"
-              placeholder="Enter end location"
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              required
-              style={{ padding: '10px', width: '40%' }}
+            <div>Destination: </div>
+            <Autocomplete
+              apiKey={API_KEY}
+              onPlaceSelected={(place) => {
+                console.log(place.formatted_address);
+                handleDestinationPlace(place.formatted_address as string);
+              }}
+              options={{
+                types: ["address"],
+                componentRestrictions: {country: 'US'},
+              }
+              }
             />
             <button type="submit" style={{ padding: '10px 20px' }}>Go</button>
           </div>
