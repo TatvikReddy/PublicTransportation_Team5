@@ -24,7 +24,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: #333; /* Match the color of the top bar */
   min-width: 100vw; /* Set the minimum width to 100% of the viewport width */
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -32,12 +32,17 @@
   left: 0; /* Position the dropdown at the left of the screen */
 }
 .dropdown-content a {
-  color: black;
+  color: white; 
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  font-size: 20px; /* Set the font size as needed */
 }
-
+.dropdown-content a:hover {
+  background-color: #ddd; /* Change to the color you want when hovering */
+  color: black; /* Change the text color when hovering */
+  border: 1px solid black; /* Add a border when hovering */
+}
 .dropdown:hover .dropdown-content {
   display: block;
 }
