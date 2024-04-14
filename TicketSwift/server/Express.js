@@ -163,6 +163,22 @@ app.post('/api/resetpassword', async (req, res) => {
     }
 });
 
+app.post('/api/userinfo', async (req, res) => {
+    
+    const { token } = req.body;
+    console.log(token);
+    var base64Payload = token.split('.')[1];
+    var payload = Buffer.from(base64Payload, 'base64');
+    payload = JSON.parse(payload.toString())
+    const email = payload.email;
+    let existingUser = await User.findOne({ $or: [{ email }] });
+    console.log(email);
+    console.log(existingUser);
+
+    return res.status(200).send(existingUser)
+
+})
+
 app.post('/api/reportissue', async (req, res) => {
     
     try {
