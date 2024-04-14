@@ -70,7 +70,7 @@ app.use(cookieParser());
 // Registration endpoint
 app.post('/api/register', async (req, res) => {
     try {
-        const { firstName, lastName, email, username, password, confirmPassword } = req.body;
+        const { firstName, lastName, email, username, password, confirmPassword, isAdmin } = req.body;
 
         // Validation checks
         if (!firstName || !lastName) return res.status(400).send("First name and last name are required");
@@ -95,6 +95,7 @@ app.post('/api/register', async (req, res) => {
             email,
             username,
             password: hashedPassword,
+            isAdmin
         });
 
         // Save the user to the database
@@ -119,7 +120,7 @@ app.post('/api/login', async (req, res) => {
         
         if (existingUser.password === hashedPassword) {
 
-            const token = jwt.sign({email: email}, process.env.SECRET, { expiresIn: 60*60*60 });
+            const token = jwt.sign({email: email,id: existingUser._id, role: existingUser.isAdmin}, process.env.SECRET, { expiresIn: 60*60*60 });
 
             res.cookie( "token", token,{ maxAge: 1000 * 60 * 10, httpOnly: false });
 
