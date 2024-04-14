@@ -15,6 +15,7 @@ import PurchaseTicketPage from './Components/PurchaseTicketPage';
 import CheckoutTicketPage from './Components/CheckoutTicketPage';
 import QrReaderPage from './Components/QrReaderPage';
 import QrMakerPage from './Components/QrMakerPage';
+import PaymentPage from './Components/Payment';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/create-account" element={<CreateAccountPage />} />
+        <Route path="/create-account-admin" element={<CreateAccountPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
         <Route path="/map" element={<MapPage />} />
@@ -38,6 +40,7 @@ function App() {
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
         <Route path="/readqr" element={<QrReaderPage />} />
         <Route path="/makeqr" element={<QrMakerPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
     </Router>
   );

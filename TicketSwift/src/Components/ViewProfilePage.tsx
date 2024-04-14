@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../App.css';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
+import axios from 'axios';
 
 
 function ViewProfilePage() {
@@ -18,9 +19,12 @@ function ViewProfilePage() {
       async function fetchUserData() {
         try {
           // this apparently imulate an API call
-          const response = await fetch('/api/userinfo'); //  API endpoint?
-          const data = await response.json();
-          setUserInfo(data);
+          const token = localStorage.getItem("token")
+          const response = await axios.post('http://localhost:3001/api/userinfo', {
+            token
+          });
+          console.log(response);
+          setUserInfo(response.data);  // Get from API to set user email to local variable
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -37,9 +41,7 @@ function ViewProfilePage() {
   
     return (
       <div className="view-profile-page">
-        <h1>View Profile</h1>
-        <button className="button name-button">Name: John Doe</button>
-        <button className="button email-button">Email: JohnDoe@gmail.com</button>
+        
         <Link to="/report-issue" className="button">
           <button className="button report-issue-button">Report Issue</button>
         </Link>

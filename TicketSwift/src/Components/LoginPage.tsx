@@ -11,6 +11,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState("")
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,10 +22,13 @@ function LoginPage() {
       });
       const cookies = new Cookies();
       cookies.set("token", response.data)
+      console.log(response)
+      localStorage.setItem("token", response.data)
       // Optionally, you can redirect the user to another page upon successful registration
       navigate("/ticket")
     } catch (error) {
-      console.log(error)
+      console.log(errorMsg)
+      setErrorMsg("Invalid email or password"); 
     }
   };
 
@@ -34,7 +38,7 @@ function LoginPage() {
         <img src={TicketSwiftLogo} alt="logo" />
       </div>
       <div className="login-container">
-        <h1>Login or Create an Account</h1>
+
         <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <input
