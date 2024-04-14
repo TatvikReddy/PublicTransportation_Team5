@@ -39,7 +39,7 @@ function Directions() {
   const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer>();
   const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([]);
   const [routeIndex, setRouteIndex] = useState(0);
-  const selected = routes[routeIndex];
+  var selected = routes[routeIndex];
   const leg = selected?.legs[0];
   const [to, setTo] = useState("");
   const [from, setFrom] = useState("");
@@ -64,6 +64,7 @@ function Directions() {
         directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
+        console.log(response);
       });
   }
   function handleDestinationPlace(place: string)
@@ -82,6 +83,7 @@ function Directions() {
         directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
+        console.log(response);
       });
 
   }
@@ -180,7 +182,7 @@ function Directions() {
               }
               }
             />
-            <button type="submit" style={{ padding: '10px 20px' }}>Go</button>
+            <button type="submit" style={{ padding: '10px 20px' }} onClick= {() => console.log(routes[(directionsRenderer?.getRouteIndex() as number)])}>Go</button>
           </div>
         </form>
       </div>
