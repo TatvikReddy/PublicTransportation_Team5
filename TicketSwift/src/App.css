@@ -3,68 +3,19 @@
   --secondary-color: #f3f3f3;
   --hover-color: #d45140;
   --text-color: #000000;
-  --link-color: #000000;
   --background-color: #F3EFE6;
   --circle-color: grey;
   --hover-circle-color: #d3d3d3;
-  --button-text-color: #000000;
   --button-padding: 10px 20px;
   --border-radius: 5px;
 }
 
-.App {
-  text-align: center;
-}
-.dropdown {
-  position: absolute;
-  top: 0; /* Adjust as needed */
-  left: 0; /* Adjust as needed */
-  display: inline-block;
-  width: 80px; 
-  height: 70px;
-  background-color: #b93321;background-color: #b93321;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #333; /* Match the color of the top bar */
-  min-width: 25vw; /* Set the minimum width to 100% of the viewport width */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  top: 0; /* Position the dropdown at the top of the screen */
-  left: 0; /* Position the dropdown at the left of the screen */
-}
-.dropdown-content a {
-  color: white; 
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 20px; /* Set the font size as needed */
-}
-.dropdown-content a:hover {
-  background-color: #ddd; /* Change to the color you want when hovering */
-  color: black; /* Change the text color when hovering */
-  border: 1px solid black; /* Add a border when hovering */
-}
-.dropdown:hover .dropdown-content {
-  display: block;
+body {
+  background-color: var(--background-color);
+  border-top: 70px solid #b93321;
 }
 
-.dropbtn {
-  background-color: #b93321;
-  color: #b93321;;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
-
-.App-logo {
-  height: 55vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #F3EFE6;
+.App, .login-page, .report-issue-page, .travel-history-page, .ticket-page {
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -74,32 +25,66 @@
   color: var(--text-color);
 }
 
+.dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 80px;
+  height: 70px;
+  background-color: #b93321;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 25vw;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
 
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+}
 
+.dropdown:hover .dropdown-content,
+.dropdown-content a:hover {
+  display: block;
+  background-color: #ddd;
+  color: black;
+  border: 1px solid black;
+}
+
+.dropbtn, .login-button, .create-account-button, .reset-password-button, .back-to-login-button, .home-button, .button button, .purchase-button, .report-issue-button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: var(--button-padding);
+  margin-top: 20px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn, .login-button, .create-account-button, .reset-password-button, .back-to-login-button, .home-button, .button button, .purchase-button, .report-issue-button:hover {
+  background-color: var(--hover-color);
+}
 
 .menu-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: transparent; /* Make the background transparent */
-  border: none; /* Remove the border */
+  background: transparent;
 }
+
 .menu {
-  background: #fff;
+  background: var(--secondary-color);
   padding: 20px;
   border-radius: 15px;
-}
-
-.menu-item {
-  margin-bottom: 10px;
-}
-
-.menu-link {
-  text-decoration: none;
-  color: #333;
 }
 
 .circle {
@@ -110,43 +95,11 @@
   top: -10px;
   right: 20px;
   cursor: pointer;
-}
-
-.menu-overlay, .menu {
-  margin: 0;
-  padding: 0;
+  background-color: var(--circle-color);
 }
 
 .circle:hover {
   background-color: var(--hover-circle-color);
-}
-
-
-.menu-icon {
-  position: fixed;
-  top: 20px;
-  cursor: pointer;
-}
-
-.circle-container {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 10px;
-  right: 20px; 
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-end;
-  }
-  
-
-.circle-text {
-  color: #000000;
-  margin-right: 65px;
-  margin-top: 5px;
-  position: absolute;
-  right: 20px;
 }
 
 .menu-icon {
@@ -159,19 +112,18 @@
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+  background: #333;
 }
 
 .menu-icon div {
   width: 2rem;
   height: 0.25rem;
-  background: #333;
   transition: all 0.3s linear;
 }
 
 .menu-icon.open div:nth-child(1),
 .menu-icon.open div:nth-child(3) {
   transform: rotate(45deg);
-  transform-origin: center;
 }
 
 .menu-icon.open div:nth-child(2) {
@@ -182,282 +134,20 @@
   transform: rotate(-45deg);
 }
 
-/* Button styles */
-.login-button,
-.create-account-button,
-.reset-password-button,
-.back-to-login-button,
-.home-button,
-.button button {
-  display: inline-block;
-  padding: var(--button-padding);
-  margin-top: 20px;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 5px;
-  cursor: pointer;
-  border: none;
-}
-
-/* Navigation buttons */
-.create-account-button,
-.login-button,
-.reset-password-button,
-.back-to-login-button,
-.home-button {
-  color: var(--alt-primary-color); /* Dark text color */
-  background-color: var(--secondary-color); /* Light grey background */
-}
-
-/* Action buttons like 'Login' */
-
-.button button {
-  background-color: var(--primary-color); /* Dark background */
-  color: var(--button-text-color); /* White text color */
-}
-
-/* Hover effect for all buttons */
-.login-button:hover,
-.create-account-button:hover,
-.reset-password-button:hover,
-.back-to-login-button:hover,
-.home-button:hover,
-.button button:hover {
-  background-color: var(--hover-color);
-}
-
-.login-page {
-  background-color: #F3EFE6; 
-  min-height: 93vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-
-}
-
-.report-issue-page {
-  background-color: #F3EFE6; 
-  min-height: 93vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-
-}
-.travel-history-page {
-  background-color: #F3EFE6; 
-  min-height: 93vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-}
-
-.ticket-page {
-  background-color: #F3EFE6; 
-  min-height: 93vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-}
-
-.login-page {
-  color: #333; 
-}
-body {
-  border-top: 70px solid #b93321; 
-}
-
-.logo-circle {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 10px; 
-  left: 20px; 
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.logo-circle img {
-  width: 100%;
-  height: auto;
-}
-
-
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: -200px; 
-  font-family: calc(15px + 5vmin); 
-}
-
-
-
-.password {
-  margin-top: 200px; 
-  width: 300px;
-  height: 40px; 
-}
-
-.login-button {
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
-  margin-top: 30px;
-  border-radius: 5px; 
-  
-}
-
-.create-account-button {
-
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
-  margin-top: 30px;
-  border-radius: 5px; 
-}
-
-.create-account-button:hover {
-  background-color: #d45140; /* replace with your desired color */
-}
-
-.login-button:hover {
-  background-color: #d45140; /* replace with your desired color */
-}
-
-
-/* Profile page styles */
-.view-profile-page {
-  background-color: var(--background-color);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 70px; /* Adjusted to account for your header height */
-}
-
-.profile-image {
-  background-color: var(--circle-color);
-  border-radius: 50%;
-  height: 120px; 
-  width: 120px;
-  margin-bottom: 30px;
-}
-
-.user-info {
-  width: 80%; /* Adjust as necessary for your layout */
-}
-
-.info-item {
+.profile-image, .info-item {
   background-color: var(--secondary-color);
-  padding: 15px;
-  margin-bottom: 10px;
   border-radius: var(--border-radius);
 }
 
-.report-issue-button, .home-button {
-  background-color: var(--primary-color);
-  color: var(--button-text-color);
-  padding: var(--button-padding);
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  margin-top: 20px;
+input, button {
+  width: 300px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
 }
 
-.report-issue-button:hover, .home-button:hover {
-  background-color: var(--hover-color);
-}
-
-/* Map page styles */
-#map {
-  height: 400px; /* Adjust as needed */
-  width: 100%;
-}
-
-
-.reset-password-button {
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
-  margin-top: 30px;
-  border-radius: 5px; 
-}
-
-.reset-password-button:hover {
-  background-color: #d45140; /* replace with your desired color */
-}
-
-.back-to-login-button {
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
-  margin-top: 30px;
-  border-radius: 5px; 
-}
-
-
-
-.reset-password-page {
-  background-color: #F3EFE6; 
-  min-height: 77vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 110px;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-  
-}
-
-
-.reset-password-page {
-  border-top: 70px solid #b93321;
-  margin-top: -70px; 
-}
-
-
-.register-page {
-  background-color: #F3EFE6; 
-  min-height: 77vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 110px;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-}
-
-.map-page {
-  position: relative;
-  height: 100vh;
-}
-
-.map-container {
-  height: 100%;
-  width: 100%;
-}
-
-.map {
-  height: 100%;
-  width: 100%;
+button:hover {
+  background-color: #e9ecef;
 }
 
 .map-controls {
@@ -471,51 +161,6 @@ body {
   z-index: 1;
 }
 
-input {
-  width: 300px;
-  padding: 5px;
-  margin: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  background-color: #f8f9fa;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #e9ecef;
-}
-
-
-.route-placeholder {
-  background-color: var(--circle-color);
-  height: 100px;
-  margin-bottom: 10px;
-}
-
-
-.ticket-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; 
-  background-color: #FFFFFF
-}
-
-
-
-.ticket-route, .ticket-passenger, .ticket-details, .ticket-price {
-  grid-column: span 3;
-}
-
-.ticket-from, .ticket-to, .ticket-seat, .ticket-class, .ticket-company, .ticket-depart, .ticket-arrive, .ticket-status {
-  grid-column: span 1;
-}
-
 .ticket-info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -523,239 +168,7 @@ button:hover {
   gap: 10px;
   align-items: left;
   justify-items: center;
-  width: 100%; 
-  margin: auto;
+  width: 100%;
   padding: 20px;
   box-sizing: border-box;
 }
-.ticket-info span {
-  text-align: justify;
-  word-wrap: break-word;
-}
-
-body {
-  background-color:#F3EFE6; 
-}
-
-.purchase-button {
-  
-  color: #000000; 
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.purchase-button {
-  background-color: #73C2FB; 
-  margin-top: 50px
-}
-
-.input-container {
-  background-color: #F3EFE6; 
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 110px;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-  margin-top: 10px
-}
-
-/* .input-container-reset {
-  background-color: #F3EFE6; 
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 110px;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
-  margin-top: 10px
-} */
-
-
-
-
-
-h2 {
-  margin-bottom: 10px; /* Decrease this value */
-}
-
-
-.input-container-report {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: -200px; 
-  font-family: calc(15px + 5vmin); 
-}
-
-.rectangle {
-  width: 400px; 
-  height: 200px; 
-  background-color: grey; 
-  margin-bottom: 10px; 
-  display: flex;
-  flex-direction: column;
-
-  border-radius: 15px;
-  margin-top: 30px; 
-  margin-left: 50px; 
-}
-
-.rectangle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50vh;
-  margin-top: 50px;
-}
-
-.rectangle-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.parent-container {
-  display: flex;
-  justify-content: center;
-}
-
-.purchase-button {
-  background-color: #73C2FB; 
-  color: black; 
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.purchase-button:hover {
-  background-color: #6fb0de; 
-}
-
-.billing-info-title {
-  margin-bottom: 10px; 
-  font-size: 16px; 
-}
-
-.input-container {
-  margin-top: -10px; 
-
-}
-
-.payment-title {
-  font-size: 16px; 
-}
-
-.purchase-button {
-  background-color:73C2FB; 
-  color: black; 
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.checkout-title {
-  margin-bottom: 10px; 
-  margin-top:50px;
-  font-size: 50px
-}
-
-.billing-info-title {
-  margin-top: 0;
-  margin-bottom: 5px; 
-}
-
-.total-text {
-  font-size: 16px; 
-}
-
-
-
-h2 {
-  font-size: 30px; 
-}
-
-/*travel history page styles*/
-.travel-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px; /* Adjust as needed */
-}
-
-.blank-box {
-  width: 143px; /* Adjust as needed */
-  height: 92px; /* Adjust as needed */
-  border: 1px solid #D9D9D9; /* Adjust as needed */
-  background-color: #D9D9D9; /* Set the background color to #D9D9D9 */
-  margin-right: 20px; /* Add space to the right of the rectangle */
-}
-
-.travel-text {
-  margin-right: 10px; /* Adjust as needed */
-}
-
-.travel-history-page {
-  background-color: #F3EFE6; /* Set the background color to #F3EFE6 */
-  min-height: 93vh; /* Adjust as needed */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Align items to the start of the container */
-  padding-top: 20px; /* Add some padding at the top */
-  font-size: calc(10px + 2vmin); /* Adjust as needed */
-  color: #000000; /* Set the text color to #000000 */
-}
-h1 {
-  text-align: center;
-  
-}
-
-.back-to-profile {
-
-    background-color: #FF964F; 
-    color: #000000; 
-    width: 150px; 
-    height: 35px; 
-    margin-top: 30px;
-    border-radius: 5px; 
-  }
-  .parent-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* This will center the items vertically */
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* This will center the inputs horizontally */
-  }
-
-  .profile-image-container img {
-    width: 180px; 
-    height: 180px;
-    border-radius: 50%; 
-    object-fit: cover; 
-  }
