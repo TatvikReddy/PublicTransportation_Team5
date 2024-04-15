@@ -20,30 +20,30 @@ import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function Navigation() {
-  const navigate = useNavigate();
-  const cookies = new Cookies();
+// function Navigation() {
+//   const navigate = useNavigate();
+//   const cookies = new Cookies();
 
-  useEffect(() => {
-    const token = cookies.get('token');
+//   useEffect(() => {
+//     const token = cookies.get('token');
 
-    if (token) {
-      // If the token is present, navigate to the map page
-      navigate('/map');
-    } else {
-      // If there's no token, navigate to the login page
-      navigate('/login');
-    }
-  }, []);
+//     if (token) {
+//       // If the token is present, navigate to the map page
+//       navigate('/map');
+//     } else {
+//       // If there's no token, navigate to the login page
+//       navigate('/login');
+//     }
+//   }, []);
 
-  return null;
-}
+//   return null;
+// }
 
 function App() {
 
   return (
     <Router>
-      <Navigation />
+      {/* <Navigation /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

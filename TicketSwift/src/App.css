@@ -22,7 +22,7 @@
   display: inline-block;
   width: 80px; 
   height: 70px;
-  background-color: #b93321;
+  background-color: #b93321;background-color: #b93321;
 }
 .dropdown-content {
   display: none;
@@ -751,4 +751,11 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center; /* This will center the inputs horizontally */
+  }
+
+  .profile-image-container img {
+    width: 180px; 
+    height: 180px;
+    border-radius: 50%; 
+    object-fit: cover; 
   }

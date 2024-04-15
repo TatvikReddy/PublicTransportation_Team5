@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import '../App.css';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 import axios from 'axios';
+import Profile from '../profile.jpg';
 
 
 function ViewProfilePage() {
@@ -42,6 +43,11 @@ function ViewProfilePage() {
     return (
       <div className="view-profile-page">
         <h2>View Profile</h2>
+
+        <div className="profile-image-container">
+          <img src={Profile} alt="Profile" />
+          </div>
+
         <button className="button email-button">Email: {userInfo.email}</button>
         
         <Link to="/report-issue" className="button">
