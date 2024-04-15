@@ -20,19 +20,22 @@
   top: 0; /* Adjust as needed */
   left: 0; /* Adjust as needed */
   display: inline-block;
+  background-color: #b93321;
+  width: 80px; 
+  height: 70px
 }
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #333; /* Match the color of the top bar */
-  min-width: 100vw; /* Set the minimum width to 100% of the viewport width */
+  width: 25vw; /* Set the minimum width to 100% of the viewport width */
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   top: 0; /* Position the dropdown at the top of the screen */
   left: 0; /* Position the dropdown at the left of the screen */
 }
 .dropdown-content a {
-  color: white; 
+  color:#FFFFFF; 
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -45,11 +48,12 @@
 }
 .dropdown:hover .dropdown-content {
   display: block;
+
 }
 
 .dropbtn {
-  background-color: #333;
-  color: white;
+  background-color: #b93321;
+  color: #b93321;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -82,8 +86,10 @@
   width: 100%;
   height: 100%;
   background: transparent; /* Make the background transparent */
-  border: none; /* Remove the border */
-}
+  border: none; 
+} 
+
+
 .menu {
   background: #fff;
   padding: 20px;
@@ -97,6 +103,10 @@
 .menu-link {
   text-decoration: none;
   color: #333;
+}
+.menu-overlay, .menu {
+  margin: 0;
+  padding: 0;
 }
 
 .circle {
@@ -113,7 +123,7 @@
   background-color: var(--hover-circle-color);
 }
 
-.circle-container,
+/* .circle-container,
 .menu-icon {
   position: fixed;
   top: 20px;
@@ -126,7 +136,21 @@
   position: fixed;
   top: 20px;
   right: 20px;
+} */
+
+
+.circle-container {
+width: 50px;
+height: 50px;
+position: absolute;
+top: 10px;
+right: 20px; 
+border-radius: 50%;
+overflow: hidden;
+display: flex;
+justify-content: flex-end;
 }
+
 
 .circle-text {
   color: #000000;
@@ -739,3 +763,5 @@ h1 {
     flex-direction: column;
     align-items: center; /* This will center the inputs horizontally */
   }
+
+/* ////////////////// */
