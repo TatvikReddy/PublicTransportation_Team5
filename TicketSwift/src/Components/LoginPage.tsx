@@ -25,7 +25,7 @@ function LoginPage() {
       console.log(response)
       localStorage.setItem("token", response.data)
       // Optionally, you can redirect the user to another page upon successful registration
-      navigate("/ticket")
+      navigate("/profile")
     } catch (error) {
       console.log(errorMsg)
       setErrorMsg("Invalid email or password"); 

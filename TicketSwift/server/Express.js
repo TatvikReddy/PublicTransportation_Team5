@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
 const changePasswordSubject = "Change password request";
-const changePasswordText = "This is your notification that your password has been changed. If you did not request this change, please reply to this email.";
+const changePasswordText = "This is your notification that your password has been changed.";
 const feedbackSubject = 'Feedback request';
 const feedbackText = 'Thank you for your feedback';
 
@@ -54,6 +54,19 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+    securityQuestion: {
+        type: String,
+        default : "Please select a security question...",
+        required: true,
+    },
+    securityAnswer: {
+        type: String,
+        required: true,
+    }
 });
 
 const ticketSchema = new mongoose.Schema({
@@ -77,7 +90,9 @@ app.use(cookieParser());
 // Registration endpoint
 app.post('/api/register', async (req, res) => {
     try {
-        const { firstName, lastName, email, username, password, confirmPassword, isAdmin } = req.body;
+        const { firstName, lastName, email, username, password, confirmPassword, isAdmin, securityQuestion, securityAnswer } = req.body;
+
+        console.log(req.body)
 
         // Validation checks
         if (!firstName || !lastName) return res.status(400).send("First name and last name are required");
@@ -85,6 +100,7 @@ app.post('/api/register', async (req, res) => {
         if (!username) return res.status(400).send("Username is required");
         if (!password || password.length < 6) return res.status(400).send("Password is required and should be at least 6 characters long");
         if (password !== confirmPassword) return res.status(400).send("Passwords do not match");
+        if (securityQuestion === null || securityAnswer === null) return res.status(400).send("Security question and answer are required");
 
         // Check if the user already exists
         let existingUser = await User.findOne({ $or: [{ email }, { username }] });
@@ -102,9 +118,14 @@ app.post('/api/register', async (req, res) => {
             email,
             username,
             password: hashedPassword,
-            isAdmin
+            isAdmin, 
+            securityQuestion,
+            securityAnswer
         });
-
+        
+        console.log(newUser)
+        console.log(newUser.securityQuestion)
+        
         // Save the user to the database
         await newUser.save();
 
@@ -146,27 +167,39 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/resetpassword', async (req, res) => {
     
     try {
-        const { email, password, confirmPassword } = req.body;
+        const { email, password, confirmPassword, securityQuestion, securityAnswer } = req.body;
+
+        if (!email) return res.status(400).send("Email is required");
+        if (!password || password.length < 6) return res.status(400).send("Password is required and should be at least 6 characters long");
+        if (password !== confirmPassword) return res.status(400).send("Passwords do not match");
+        if (securityQuestion === null || securityAnswer === null) return res.status(400).send("Security question and answer are required");
+
+      let existingUser = await User.findOne({ $or: [{ email }] });
+        
+        if (!existingUser) {
+          return res.status(400).send("User does not exist");
+        }      
+
+        if (existingUser.securityQuestion !== securityQuestion || existingUser.securityAnswer !== securityAnswer) {
+          return res.status(400).send("Security question or answer is incorrect");
+        }
+
         console.log(email)
-        emailHandling.sendEmail(email, changePasswordSubject, changePasswordText);
 
         // Hash the password
         const hashedPassword = createHash('sha256').update(password).digest('hex')
 
         // Check if the user already exists
-        let existingUser = await User.findOne({ $or: [{ email }] });
-        
-        if (!existingUser) {
-            return res.status(400).send("User does not exist");
-        }
 
         existingUser.password = hashedPassword;
+
+        emailHandling.sendEmail(email, changePasswordSubject, changePasswordText);
 
         await existingUser.save();
 
         return res.status(200).send("Password has been changed")
     } catch (error) {
-        console.error("Error registering user:", error);
+        console.error("Error resetting password:", error);
         res.status(500).send("Internal Server Error");
     }
 });

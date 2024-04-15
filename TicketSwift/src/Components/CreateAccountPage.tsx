@@ -12,9 +12,12 @@ function CreateAccountPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [securityQuestion, setSecurityQuestion] = useState("");
+    const [securityAnswer, setSecurityAnswer] = useState(""); 
     const [errorMessage, setErrorMessage] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
     const location = useLocation();
+    
 
     // Use the useEffect hook to set isAdmin based on the current path
     useEffect(() => {
@@ -25,13 +28,16 @@ function CreateAccountPage() {
       e.preventDefault();
       setErrorMessage("");
       try {
-        const response = await axios.post(`http://localhost:3001/api/${isAdmin ? 'create-account-admin' : 'create-account'}`, {
+        //const response = await axios.post(`http://localhost:3001/api/${isAdmin ? 'create-account-admin' : 'create-account'}`, {
+          const response = await axios.post(`http://localhost:3001/api/register`, {
           firstName,
           lastName,
           email,
           username,
           password,
-          confirmPassword
+          confirmPassword, 
+          securityQuestion,
+          securityAnswer
         });
         console.log(response.data); // Log the response from the server
         // Optionally, you can redirect the user to another page upon successful registration
@@ -114,6 +120,29 @@ function CreateAccountPage() {
               required
               style={{ margin: '10px 0' }}
             />
+
+      <select 
+        value={securityQuestion} 
+        onChange={(e) => setSecurityQuestion(e.target.value)}
+        required
+        style={{ margin: '10px 0' }} 
+      >
+        <option value= "" >Please select a security question...</option>
+        <option value="What is your favorite fruit?">What is your favorite fruit?</option>
+        <option value="What is your favorite brand of cereal?">What is your favorite brand of cereal?</option>
+        <option value="What is your mother's name?">What is your mother's name?</option>
+      </select>
+
+      <input  
+        type="text"
+        name= "securityAnswer"
+        placeholder = "Enter security answer"
+        value= {securityAnswer}
+        onChange={(e) => setSecurityAnswer(e.target.value)}
+        required
+        style={{ margin: '10px 0' }} 
+        />
+
             </div>
             
             <button type="submit" className="button create-account-button">
