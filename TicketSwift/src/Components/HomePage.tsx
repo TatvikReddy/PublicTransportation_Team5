@@ -24,7 +24,7 @@ function HomePage() {
                 <div className="menu-overlay" onClick={() => setMenuOpen(false)}>
                     <div className="menu">
                     <div className="dropdown">
-                            <button className="dropbtn">Dropdown 
+                            <button className="dropbtn">
                                 <i className="fa fa-caret-down"></i>
                             </button>
                             <div className="dropdown-content">
@@ -37,7 +37,7 @@ function HomePage() {
                 </div>
             )}
         <div className="circle-container">
-          <Link to="/profile" className="circle"></Link>
+          {/* <Link to="/profile" className="circle"></Link> */}
           <span className="circle-text">Profile</span>
         </div>
         <header className="App-header">
@@ -48,6 +48,12 @@ function HomePage() {
           <Link to="/login" className="button">
             <button className="button">Sign Up / Login</button>
           </Link>
+
+          <Link to="/profile">
+          <div className="circle-container">
+          <img src={Profile} alt="Profile" />
+          </div>
+           </Link>
 
           <button className="button-map" onClick={handleMapButtonClick} style ={{width: '135px', height: '38px', marginTop: '20px', borderRadius: '5px' }}>View Map</button>
         </header>
