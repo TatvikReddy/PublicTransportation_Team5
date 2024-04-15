@@ -8,8 +8,6 @@ import ResetPasswordPage from './Components/ResetPasswordPage';
 import ViewProfilePage from './Components/ViewProfilePage';
 import TicketPage from './Components/TicketPage';
 import ReportIssuePage from './Components/ReportIssuePage';
-import FavoritedRoutesPage from './Components/FavoritedRoutesPage';
-import TravelHistoryPage from './Components/TravelHistoryPage';
 import RegisterTicketPage from './Components/RegisterTicketPage';
 import PurchaseTicketPage from './Components/PurchaseTicketPage';
 import CheckoutTicketPage from './Components/CheckoutTicketPage';
@@ -54,8 +52,6 @@ function App() {
         <Route path="/map" element={<MapPage />} />
         <Route path="/ticket" element={<TicketPage />} /> 
         <Route path="/report-issue" element={<ReportIssuePage />} /> 
-        <Route path="/favorited-routes" element={<FavoritedRoutesPage />} /> 
-        <Route path="/travel-history" element={<TravelHistoryPage />} />
         <Route path="/register-ticket" element={<RegisterTicketPage />} />
         <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
