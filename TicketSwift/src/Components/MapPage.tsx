@@ -15,7 +15,7 @@ const API_KEY = 'AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo';
 const App = () => (
   <APIProvider apiKey={API_KEY}>
     <Map
-      defaultZoom={9}
+      defaultZoom={15}
       defaultCenter={{lat: 32.9857, lng: -96.7502}}
       gestureHandling={'greedy'}
       fullscreenControl={false}>
@@ -23,15 +23,14 @@ const App = () => (
     </Map>
     <div id="sidepanel"></div>
     <Link to="/">
-          <div className="logo-circle">
-          <img src={TicketSwiftLogo} alt="logo" />
-          </div>
-           </Link>
+      <div className="logo-circle">
+      <img src={TicketSwiftLogo} alt="logo" />
+      </div>
+    </Link>
   </APIProvider>
 );
 
 function Directions() {
-
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes');
   const placesLibrary = useMapsLibrary('places');
@@ -41,15 +40,10 @@ function Directions() {
   const [routeIndex, setRouteIndex] = useState(0);
   var selected = routes[routeIndex];
   const leg = selected?.legs[0];
-  const [to, setTo] = useState("");
-  const [from, setFrom] = useState("");
   var origin = "800 W Campbell Rd, Richardson, TX 75080";
   var destination = "433 Coit Rd, Plano, TX 75075";
 
-  //directionsRenderer?.setMap(null);
-
-  function handleOriginPlace(place: string)
-  {
+  function handleOriginPlace(place: string) {
     origin = place;
     if (!directionsService || !directionsRenderer) return;
 
@@ -64,11 +58,14 @@ function Directions() {
         directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
-        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+        alert(error);
       });
   }
-  function handleDestinationPlace(place: string)
-  {
+  
+  function handleDestinationPlace(place: string) {
     destination = place;
     if (!directionsService || !directionsRenderer) return;
 
@@ -77,15 +74,17 @@ function Directions() {
         origin: origin,
         destination: destination,
         travelMode: google.maps.TravelMode.TRANSIT,
-        provideRouteAlternatives: true
+        provideRouteAlternatives: true,
       })
       .then(response => {
-        directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
-        directionsRenderer.setDirections(response);
-        setRoutes(response.routes);
-        console.log(response);
+          directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
+          directionsRenderer.setDirections(response);
+          setRoutes(response.routes);
+      })
+      .catch(error => {
+        console.error(error);
+        alert(error);
       });
-
   }
 
   // Initialize directions service and renderer
@@ -97,22 +96,6 @@ function Directions() {
     setDirectionsRenderer(newDirectionsRenderer);
   }, [routesLibrary, map]);
   
-  // Initialize places autocomplete service
-  useEffect(() => {
-    if (!placesLibrary) return;
-    const fromAutocomplete = new placesLibrary.Autocomplete(document.getElementById("start") as HTMLInputElement, {
-      componentRestrictions: {'country': ['US']},
-      fields: ['place_id', 'geometry', 'name']
-    });
-
-    //fromAutocomplete.addListener("place_changed", onPlaceChanged)
-
-    const toAutocomplete = new placesLibrary.Autocomplete(document.getElementById("destination") as HTMLInputElement, {
-      componentRestrictions: {'country': ['US']},
-      fields: ['place_id', 'geometry', 'name']
-    });
-  }, [placesLibrary]);
-
   // Use directions service
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
@@ -128,6 +111,10 @@ function Directions() {
         directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
+      })
+      .catch(error => {
+        console.error(error);
+        alert(error);
       });
 
     return () => directionsRenderer.setMap(null);
@@ -158,9 +145,10 @@ function Directions() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
             <div>Start Location: </div>
             <Autocomplete
+              defaultValue={origin}
               apiKey={API_KEY}
               onPlaceSelected={(place) => {
-                console.log(place.formatted_address);
+                //console.log(place.formatted_address);
                 handleOriginPlace(place.formatted_address as string);
               }}
               options={{
@@ -171,16 +159,16 @@ function Directions() {
             />
             <div>Destination: </div>
             <Autocomplete
+              defaultValue={destination}
               apiKey={API_KEY}
               onPlaceSelected={(place) => {
-                console.log(place.formatted_address);
+                //console.log(place.formatted_address);
                 handleDestinationPlace(place.formatted_address as string);
               }}
               options={{
                 types: ["address"],
                 componentRestrictions: {country: 'US'},
-              }
-              }
+              }}
             />
             <button type="submit" style={{ padding: '10px 20px' }} onClick= {() => console.log(routes[(directionsRenderer?.getRouteIndex() as number)])}>Go</button>
           </div>
