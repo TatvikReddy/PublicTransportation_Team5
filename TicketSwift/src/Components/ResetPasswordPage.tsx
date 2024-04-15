@@ -70,6 +70,10 @@ function ResetPasswordPage() {
           </div>
            </Link>
     </div>
+
+
+
+
   );
 
 }

@@ -43,6 +43,7 @@ function ViewProfilePage() {
       <div className="view-profile-page">
         <h2>View Profile</h2>
         <button className="button email-button">Email: {userInfo.email}</button>
+        
         <Link to="/report-issue" className="button">
           <button className="button report-issue-button">Report Issue</button>
         </Link>

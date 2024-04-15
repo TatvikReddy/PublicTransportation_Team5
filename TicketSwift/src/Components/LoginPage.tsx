@@ -38,8 +38,7 @@ function LoginPage() {
         <img src={TicketSwiftLogo} alt="logo" />
       </div>
       <div className="login-container">
-        <h2>Login or Create an Account</h2>
-        <p style={{ color: 'red' }}>{errorMsg}</p>
+      <h1>Login or Create an Account</h1>
         <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <input

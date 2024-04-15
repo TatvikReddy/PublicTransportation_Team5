@@ -27,7 +27,7 @@ function QrMakerPage() {
       <div className="qr-maker-page">
         <form onSubmit={handleSubmit}>
           <button type="submit" className="button create-account-button">
-          <Link to="/readqr" style={{ textDecoration: 'none', color: 'black' }}>Create QR Code</Link>
+            Create QR Code
           </button>
         </form>
         <div id="qr" style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
