@@ -25,7 +25,7 @@ function CreateAccountPage() {
       e.preventDefault();
       setErrorMessage("");
       try {
-        const response = await axios.post(`http://localhost:3001/api/${isAdmin ? 'create-account-admin' : 'create-account'}`, {
+        const response = await axios.post(`http://localhost:3001/api/${isAdmin ? 'create-account-admin' : 'register'}`, {
           firstName,
           lastName,
           email,
