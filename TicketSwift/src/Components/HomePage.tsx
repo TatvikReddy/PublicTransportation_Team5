@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../App.css';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
-import Profile from '../profile.jpg';
 
 function HomePage() {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -23,7 +22,7 @@ function HomePage() {
                 <div className="menu-overlay" onClick={() => setMenuOpen(false)}>
                     <div className="menu">
                     <div className="dropdown">
-                            <button className="dropbtn">
+                            <button className="dropbtn">Dropdown 
                                 <i className="fa fa-caret-down"></i>
                             </button>
                             <div className="dropdown-content">
@@ -36,8 +35,7 @@ function HomePage() {
                 </div>
             )}
         <div className="circle-container">
-          <Link to="/profile" className="circle">
-          </Link>
+          <Link to="/profile" className="circle"></Link>
           <span className="circle-text">Profile</span>
         </div>
         <header className="App-header">
@@ -49,13 +47,6 @@ function HomePage() {
             <button className="button">Sign Up / Login</button>
           </Link>
 
-          <Link to="/profile">
-          <div className="circle-container">
-          <img src={Profile} alt="Profile" />
-          </div>
-           </Link>
-
-           
           <button className="button-map" onClick={handleMapButtonClick} style ={{width: '135px', height: '38px', marginTop: '20px', borderRadius: '5px' }}>View Map</button>
         </header>
       </div>
@@ -63,4 +54,3 @@ function HomePage() {
   }
 
   export default HomePage;
-
