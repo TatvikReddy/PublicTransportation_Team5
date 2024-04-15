@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import {
   APIProvider,
@@ -10,6 +11,8 @@ import {
   useMap
 } from '@vis.gl/react-google-maps';
 import Autocomplete from "react-google-autocomplete";
+import Payment from "./Payment"
+
 const API_KEY = 'AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo';
 
 const App = () => (
@@ -42,6 +45,7 @@ function Directions() {
   const leg = selected?.legs[0];
   var origin = "800 W Campbell Rd, Richardson, TX 75080";
   var destination = "433 Coit Rd, Plano, TX 75075";
+  const navigate = useNavigate();
 
   function handleOriginPlace(place: string) {
     origin = place;
@@ -138,6 +142,11 @@ function Directions() {
     }
   };
 
+  const handleProceedToPayment = () => {
+    console.log(routes[(directionsRenderer?.getRouteIndex() as number)]);
+    navigate(`/payment?transit_distance=${routes[(directionsRenderer?.getRouteIndex() as number)].legs[0].steps[1].distance!.text}`);
+  }
+
   return (
     <div>
       <div style={{ position: 'absolute', top: 0, width: '100%', padding: '10px', backgroundColor: '#fff' }}>
@@ -170,7 +179,7 @@ function Directions() {
                 componentRestrictions: {country: 'US'},
               }}
             />
-            <button type="submit" style={{ padding: '10px 20px' }} onClick= {() => console.log(routes[(directionsRenderer?.getRouteIndex() as number)])}>Go</button>
+            <button type="submit" style={{ padding: '10px 20px' }} onClick= {() => {handleProceedToPayment()}}>Proceed to Payment</button>
           </div>
         </form>
       </div>

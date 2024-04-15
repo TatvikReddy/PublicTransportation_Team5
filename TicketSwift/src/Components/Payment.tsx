@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSearchParams } from 'react-router-dom';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 // Renders errors or successfull transactions on the screen.
@@ -7,6 +8,10 @@ function Message({ content } : any) {
 }
 
 function PaymentPage() {
+  const [searchParams] = useSearchParams();
+  const transit_distance = searchParams.get('transit_distance');
+  console.log(transit_distance);
+
   const initialOptions = {
     "clientId": "test",
     "enable-funding": "paylater,venmo,card",
