@@ -241,7 +241,7 @@
 
 .report-issue-page {
   background-color: #f3efe6;
-  min-height: 93vh;
+  /* min-height: 93vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -732,9 +732,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%; /* This will center the items vertically */
+  justify-content: center; /* This will center the items vertically */
 }
 
 form {

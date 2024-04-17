@@ -41,12 +41,12 @@ function ReportIssuePage() {
           </div>
         </Link>
 
-        <div
+        <div 
           style={{
             display: "flex",
             flexDirection: "column",
+            alignItems: "center",
             width: "700px",
-            marginLeft: "360px",
           }}
         >
           <textarea
@@ -100,7 +100,6 @@ function ReportIssuePage() {
             <button
               type="submit"
               style={{
-                width: "18%",
                 height: "38px",
                 marginTop: "20px",
                 borderRadius: "5px",
