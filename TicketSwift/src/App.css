@@ -729,10 +729,11 @@ h1 {
 }
 
 .parent-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* This will center the items vertically */
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  text-align: center;
+  width: "700px";
 }
 
 form {

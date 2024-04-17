@@ -41,14 +41,7 @@ function ReportIssuePage() {
           </div>
         </Link>
 
-        <div 
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "700px",
-          }}
-        >
+        <div className="parent-div">
           <textarea
             placeholder="Name"
             style={{
