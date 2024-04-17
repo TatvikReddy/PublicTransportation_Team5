@@ -53,13 +53,6 @@ function ViewProfilePage() {
         <Link to="/report-issue" className="button">
           <button className="button report-issue-button">Report Issue</button>
         </Link>
-        <Link to="/favorited-routes" className="button">
-          <button className="button favorited-routes-button">Favorited Routes</button>
-        </Link>
-  
-        <Link to="/travel-history" className="button">
-          <button className="button travel-history-button">Travel History</button>
-        </Link>
   
         <Link to="/ticket" className="button">
           <button className="button ticket-button">View Tickets</button>
