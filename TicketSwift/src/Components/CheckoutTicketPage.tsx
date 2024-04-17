@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import '../App.css';
-import TicketSwiftLogo from '../TicketSwiftLogo.png';
+import { Link } from "react-router-dom";
+import "../App.css";
+import TicketSwiftLogo from "../TicketSwiftLogo.png";
 function CheckoutTicketPage() {
   return (
     <div className="checkout-ticket-page">
@@ -18,17 +18,19 @@ function CheckoutTicketPage() {
             <input type="text" placeholder="Postal Code" />
             <input type="text" placeholder="Phone Number" />
             <input type="text" placeholder="Email" />
-            
+
             <h2 className="payment-title">Payment</h2>
             <input type="text" placeholder="Payment Method" />
             <input type="text" placeholder="Card Number" />
             <input type="text" placeholder="Name on Card" />
             <input type="text" placeholder="Expiration Date: Month/Year" />
             <input type="text" placeholder="Security Code" />
-            
+
             <h2 className="payment-title">Your Order</h2>
             <h2 className="payment-title">Total: $0.00</h2>
-            <button type="submit" className="purchase-button">Submit</button>
+            <button type="submit" className="purchase-button">
+              Submit
+            </button>
           </div>
 
           <Link to="/">

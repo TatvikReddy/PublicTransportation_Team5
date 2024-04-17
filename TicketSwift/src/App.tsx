@@ -1,22 +1,22 @@
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import './App.css';
-import MapPage from './Components/MapPage';
-import HomePage from './Components/HomePage';
-import LoginPage from './Components/LoginPage';
-import CreateAccountPage from './Components/CreateAccountPage';
-import ResetPasswordPage from './Components/ResetPasswordPage';
-import ViewProfilePage from './Components/ViewProfilePage';
-import TicketPage from './Components/TicketPage';
-import ReportIssuePage from './Components/ReportIssuePage';
-import RegisterTicketPage from './Components/RegisterTicketPage';
-import PurchaseTicketPage from './Components/PurchaseTicketPage';
-import CheckoutTicketPage from './Components/CheckoutTicketPage';
-import QrReaderPage from './Components/QrReaderPage';
-import QrMakerPage from './Components/QrMakerPage';
-import PaymentPage from './Components/Payment';
-import Cookies from 'universal-cookie';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import MapPage from "./Components/MapPage";
+import HomePage from "./Components/HomePage";
+import LoginPage from "./Components/LoginPage";
+import CreateAccountPage from "./Components/CreateAccountPage";
+import ResetPasswordPage from "./Components/ResetPasswordPage";
+import ViewProfilePage from "./Components/ViewProfilePage";
+import TicketPage from "./Components/TicketPage";
+import ReportIssuePage from "./Components/ReportIssuePage";
+import RegisterTicketPage from "./Components/RegisterTicketPage";
+import PurchaseTicketPage from "./Components/PurchaseTicketPage";
+import CheckoutTicketPage from "./Components/CheckoutTicketPage";
+import QrReaderPage from "./Components/QrReaderPage";
+import QrMakerPage from "./Components/QrMakerPage";
+import PaymentPage from "./Components/Payment";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // function Navigation() {
 //   const navigate = useNavigate();
@@ -38,7 +38,6 @@ import { useEffect } from 'react';
 // }
 
 function App() {
-
   return (
     <Router>
       {/* <Navigation /> */}
@@ -50,8 +49,8 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
         <Route path="/map" element={<MapPage />} />
-        <Route path="/ticket" element={<TicketPage />} /> 
-        <Route path="/report-issue" element={<ReportIssuePage />} /> 
+        <Route path="/ticket" element={<TicketPage />} />
+        <Route path="/report-issue" element={<ReportIssuePage />} />
         <Route path="/register-ticket" element={<RegisterTicketPage />} />
         <Route path="/purchase-ticket" element={<PurchaseTicketPage />} />
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
@@ -61,7 +60,6 @@ function App() {
       </Routes>
     </Router>
   );
-
 }
 
 export default App;

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 // Renders errors or successfull transactions on the screen.
-function Message({ content } : any) {
+function Message({ content }: any) {
   return <p>{content}</p>;
 }
 
 function PaymentPage() {
   const [searchParams] = useSearchParams();
-  const transit_distance = searchParams.get('transit_distance');
+  const transit_distance = searchParams.get("transit_distance");
   console.log(transit_distance);
 
   const initialOptions = {
-    "clientId": "test",
+    clientId: "test",
     "enable-funding": "paylater,venmo,card",
     "disable-funding": "",
     "data-sdk-integration-source": "integrationbuilder_sc",
@@ -74,7 +74,7 @@ function PaymentPage() {
                   headers: {
                     "Content-Type": "application/json",
                   },
-                },
+                }
               );
 
               const orderData = await response.json();
@@ -92,7 +92,7 @@ function PaymentPage() {
               } else if (errorDetail) {
                 // (2) Other non-recoverable errors -> Show a failure message
                 throw new Error(
-                  `${errorDetail.description} (${orderData.debug_id})`,
+                  `${errorDetail.description} (${orderData.debug_id})`
                 );
               } else {
                 // (3) Successful transaction -> Show confirmation or thank you message
@@ -100,18 +100,18 @@ function PaymentPage() {
                 const transaction =
                   orderData.purchase_units[0].payments.captures[0];
                 setMessage(
-                  `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
+                  `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
                 );
                 console.log(
                   "Capture result",
                   orderData,
-                  JSON.stringify(orderData, null, 2),
+                  JSON.stringify(orderData, null, 2)
                 );
               }
             } catch (error) {
               console.error(error);
               setMessage(
-                `Sorry, your transaction could not be processed...${error}`,
+                `Sorry, your transaction could not be processed...${error}`
               );
             }
           }}

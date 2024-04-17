@@ -1,33 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import {createRoot} from 'react-dom/client';
-import TicketSwiftLogo from '../TicketSwiftLogo.png';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import React, { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
+import TicketSwiftLogo from "../TicketSwiftLogo.png";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 import {
   APIProvider,
   Map,
   useMapsLibrary,
-  useMap
-} from '@vis.gl/react-google-maps';
+  useMap,
+} from "@vis.gl/react-google-maps";
 import Autocomplete from "react-google-autocomplete";
-import Payment from "./Payment"
+import Payment from "./Payment";
 
-const API_KEY = 'AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo';
+const API_KEY = "AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo";
 
 const App = () => (
   <APIProvider apiKey={API_KEY}>
     <Map
       defaultZoom={15}
-      defaultCenter={{lat: 32.9857, lng: -96.7502}}
-      gestureHandling={'greedy'}
-      fullscreenControl={false}>
+      defaultCenter={{ lat: 32.9857, lng: -96.7502 }}
+      gestureHandling={"greedy"}
+      fullscreenControl={false}
+    >
       <Directions />
     </Map>
     <div id="sidepanel"></div>
     <Link to="/">
       <div className="logo-circle">
-      <img src={TicketSwiftLogo} alt="logo" />
+        <img src={TicketSwiftLogo} alt="logo" />
       </div>
     </Link>
   </APIProvider>
@@ -35,10 +36,12 @@ const App = () => (
 
 function Directions() {
   const map = useMap();
-  const routesLibrary = useMapsLibrary('routes');
-  const placesLibrary = useMapsLibrary('places');
-  const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService>();
-  const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer>();
+  const routesLibrary = useMapsLibrary("routes");
+  const placesLibrary = useMapsLibrary("places");
+  const [directionsService, setDirectionsService] =
+    useState<google.maps.DirectionsService>();
+  const [directionsRenderer, setDirectionsRenderer] =
+    useState<google.maps.DirectionsRenderer>();
   const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([]);
   const [routeIndex, setRouteIndex] = useState(0);
   var selected = routes[routeIndex];
@@ -56,19 +59,21 @@ function Directions() {
         origin: origin,
         destination: destination,
         travelMode: google.maps.TravelMode.TRANSIT,
-        provideRouteAlternatives: true
+        provideRouteAlternatives: true,
       })
-      .then(response => {
-        directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
+      .then((response) => {
+        directionsRenderer.setPanel(
+          document.getElementById("sidepanel") as HTMLElement
+        );
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         alert(error);
       });
   }
-  
+
   function handleDestinationPlace(place: string) {
     destination = place;
     if (!directionsService || !directionsRenderer) return;
@@ -80,12 +85,14 @@ function Directions() {
         travelMode: google.maps.TravelMode.TRANSIT,
         provideRouteAlternatives: true,
       })
-      .then(response => {
-          directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
-          directionsRenderer.setDirections(response);
-          setRoutes(response.routes);
+      .then((response) => {
+        directionsRenderer.setPanel(
+          document.getElementById("sidepanel") as HTMLElement
+        );
+        directionsRenderer.setDirections(response);
+        setRoutes(response.routes);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         alert(error);
       });
@@ -99,7 +106,7 @@ function Directions() {
     setDirectionsService(newDirectionsService);
     setDirectionsRenderer(newDirectionsRenderer);
   }, [routesLibrary, map]);
-  
+
   // Use directions service
   useEffect(() => {
     if (!directionsService || !directionsRenderer) return;
@@ -109,20 +116,21 @@ function Directions() {
         origin: origin,
         destination: destination,
         travelMode: google.maps.TravelMode.TRANSIT,
-        provideRouteAlternatives: true
+        provideRouteAlternatives: true,
       })
-      .then(response => {
-        directionsRenderer.setPanel(document.getElementById("sidepanel") as HTMLElement);
+      .then((response) => {
+        directionsRenderer.setPanel(
+          document.getElementById("sidepanel") as HTMLElement
+        );
         directionsRenderer.setDirections(response);
         setRoutes(response.routes);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         alert(error);
       });
 
     return () => directionsRenderer.setMap(null);
-    
   }, [directionsService, directionsRenderer]);
 
   // Update direction route
@@ -138,20 +146,35 @@ function Directions() {
     e.preventDefault();
     try {
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   const handleProceedToPayment = () => {
-    console.log(routes[(directionsRenderer?.getRouteIndex() as number)]);
-    navigate(`/payment?transit_distance=${routes[(directionsRenderer?.getRouteIndex() as number)].legs[0].steps[1].distance!.text}`);
-  }
+    console.log(routes[directionsRenderer?.getRouteIndex() as number]);
+    navigate(
+      `/payment?transit_distance=${
+        routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[1]
+          .distance!.text
+      }`
+    );
+  };
 
   return (
     <div>
-      <div style={{ position: 'absolute', top: 0, width: '100%', padding: '10px', backgroundColor: '#fff' }}>
-        <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          width: "100%",
+          padding: "10px",
+          backgroundColor: "#fff",
+        }}
+      >
+        <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "10px" }}
+          >
             <div>Start Location: </div>
             <Autocomplete
               defaultValue={origin}
@@ -162,9 +185,8 @@ function Directions() {
               }}
               options={{
                 types: ["address"],
-                componentRestrictions: {country: 'US'},
-              }
-              }
+                componentRestrictions: { country: "US" },
+              }}
             />
             <div>Destination: </div>
             <Autocomplete
@@ -176,22 +198,30 @@ function Directions() {
               }}
               options={{
                 types: ["address"],
-                componentRestrictions: {country: 'US'},
+                componentRestrictions: { country: "US" },
               }}
             />
-            <button type="submit" style={{ padding: '10px 20px' }} onClick= {() => {handleProceedToPayment()}}>Proceed to Payment</button>
+            <button
+              type="submit"
+              style={{ padding: "10px 20px" }}
+              onClick={() => {
+                handleProceedToPayment();
+              }}
+            >
+              Proceed to Payment
+            </button>
           </div>
         </form>
       </div>
-  
-      <div className="directions" style={{ marginTop: '60px' }}>
+
+      <div className="directions" style={{ marginTop: "60px" }}>
         <h2>{selected.summary}</h2>
         <p>
-          {leg.start_address.split(',')[0]} to {leg.end_address.split(',')[0]}
+          {leg.start_address.split(",")[0]} to {leg.end_address.split(",")[0]}
         </p>
         <p>Distance: {leg.distance?.text}</p>
         <p>Duration: {leg.duration?.text}</p>
-  
+
         <h2>Other Routes</h2>
         <ul>
           {routes.map((route, index) => (

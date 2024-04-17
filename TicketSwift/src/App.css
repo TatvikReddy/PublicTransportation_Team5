@@ -1,10 +1,10 @@
 :root {
-  --primary-color: #FF964F;
+  --primary-color: #ff964f;
   --secondary-color: #f3f3f3;
   --hover-color: #d45140;
   --text-color: #000000;
   --link-color: #000000;
-  --background-color: #F3EFE6;
+  --background-color: #f3efe6;
   --circle-color: grey;
   --hover-circle-color: #d3d3d3;
   --button-text-color: #000000;
@@ -15,44 +15,49 @@
 .App {
   text-align: center;
 }
+
 .dropdown {
   position: absolute;
   top: 0; /* Adjust as needed */
   left: 0; /* Adjust as needed */
   display: inline-block;
-  width: 80px; 
+  width: 80px;
   height: 70px;
-  background-color: #b93321;background-color: #b93321;
+  background-color: #b93321;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #333; /* Match the color of the top bar */
   min-width: 25vw; /* Set the minimum width to 100% of the viewport width */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   top: 0; /* Position the dropdown at the top of the screen */
   left: 0; /* Position the dropdown at the left of the screen */
 }
+
 .dropdown-content a {
-  color: white; 
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   font-size: 20px; /* Set the font size as needed */
 }
+
 .dropdown-content a:hover {
   background-color: #ddd; /* Change to the color you want when hovering */
   color: black; /* Change the text color when hovering */
   border: 1px solid black; /* Add a border when hovering */
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropbtn {
   background-color: #b93321;
-  color: #b93321;;
+  color: #b93321;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -64,7 +69,7 @@
 }
 
 .App-header {
-  background-color: #F3EFE6;
+  background-color: #f3efe6;
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -73,10 +78,6 @@
   font-size: calc(10px + 2vmin);
   color: var(--text-color);
 }
-
-
-
-
 
 .menu-overlay {
   position: fixed;
@@ -87,6 +88,7 @@
   background: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
 }
+
 .menu {
   background: #fff;
   padding: 20px;
@@ -112,7 +114,8 @@
   cursor: pointer;
 }
 
-.menu-overlay, .menu {
+.menu-overlay,
+.menu {
   margin: 0;
   padding: 0;
 }
@@ -120,7 +123,6 @@
 .circle:hover {
   background-color: var(--hover-circle-color);
 }
-
 
 .menu-icon {
   position: fixed;
@@ -133,13 +135,12 @@
   height: 50px;
   position: absolute;
   top: 10px;
-  right: 20px; 
+  right: 20px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   justify-content: flex-end;
-  }
-  
+}
 
 .circle-text {
   color: #000000;
@@ -228,7 +229,7 @@
 }
 
 .login-page {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -236,11 +237,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #000000;
-
 }
 
 .report-issue-page {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -248,10 +248,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #000000;
-
 }
+
 .travel-history-page {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -262,7 +262,7 @@
 }
 
 .ticket-page {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -273,18 +273,19 @@
 }
 
 .login-page {
-  color: #333; 
+  color: #333;
 }
+
 body {
-  border-top: 70px solid #b93321; 
+  border-top: 70px solid #b93321;
 }
 
 .logo-circle {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 10px; 
-  left: 20px; 
+  top: 10px;
+  left: 20px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -294,42 +295,37 @@ body {
   height: auto;
 }
 
-
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -200px; 
-  font-family: calc(15px + 5vmin); 
+  margin-top: -200px;
+  font-family: calc(15px + 5vmin);
 }
 
-
-
 .password {
-  margin-top: 200px; 
+  margin-top: 200px;
   width: 300px;
-  height: 40px; 
+  height: 40px;
 }
 
 .login-button {
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
+  background-color: #ff964f;
+  color: #000000;
+  width: 150px;
+  height: 35px;
   margin-top: 30px;
-  border-radius: 5px; 
-  
+  border-radius: 5px;
 }
 
 .create-account-button {
-
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
+  background-color: #ff964f;
+  color: #000000;
+  width: 150px;
+  height: 35px;
   margin-top: 30px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 .create-account-button:hover {
@@ -339,7 +335,6 @@ body {
 .login-button:hover {
   background-color: #d45140; /* replace with your desired color */
 }
-
 
 /* Profile page styles */
 .view-profile-page {
@@ -354,7 +349,7 @@ body {
 .profile-image {
   background-color: var(--circle-color);
   border-radius: 50%;
-  height: 120px; 
+  height: 120px;
   width: 120px;
   margin-bottom: 30px;
 }
@@ -370,7 +365,8 @@ body {
   border-radius: var(--border-radius);
 }
 
-.report-issue-button, .home-button {
+.report-issue-button,
+.home-button {
   background-color: var(--primary-color);
   color: var(--button-text-color);
   padding: var(--button-padding);
@@ -380,7 +376,8 @@ body {
   margin-top: 20px;
 }
 
-.report-issue-button:hover, .home-button:hover {
+.report-issue-button:hover,
+.home-button:hover {
   background-color: var(--hover-color);
 }
 
@@ -390,14 +387,13 @@ body {
   width: 100%;
 }
 
-
 .reset-password-button {
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
+  background-color: #ff964f;
+  color: #000000;
+  width: 150px;
+  height: 35px;
   margin-top: 30px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
 .reset-password-button:hover {
@@ -405,18 +401,16 @@ body {
 }
 
 .back-to-login-button {
-  background-color: #FF964F; 
-  color: #000000; 
-  width: 150px; 
-  height: 35px; 
+  background-color: #ff964f;
+  color: #000000;
+  width: 150px;
+  height: 35px;
   margin-top: 30px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
-
-
 .reset-password-page {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 77vh;
   display: flex;
   flex-direction: column;
@@ -424,18 +418,15 @@ body {
   padding-top: 110px;
   font-size: calc(10px + 2vmin);
   color: #000000;
-  
 }
-
 
 .reset-password-page {
   border-top: 70px solid #b93321;
-  margin-top: -70px; 
+  margin-top: -70px;
 }
 
-
 .register-page {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 77vh;
   display: flex;
   flex-direction: column;
@@ -467,7 +458,7 @@ body {
   background: white;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
@@ -490,29 +481,35 @@ button:hover {
   background-color: #e9ecef;
 }
 
-
 .route-placeholder {
   background-color: var(--circle-color);
   height: 100px;
   margin-bottom: 10px;
 }
 
-
 .ticket-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-  background-color: #FFFFFF
+  height: 100vh;
+  background-color: #ffffff;
 }
 
-
-
-.ticket-route, .ticket-passenger, .ticket-details, .ticket-price {
+.ticket-route,
+.ticket-passenger,
+.ticket-details,
+.ticket-price {
   grid-column: span 3;
 }
 
-.ticket-from, .ticket-to, .ticket-seat, .ticket-class, .ticket-company, .ticket-depart, .ticket-arrive, .ticket-status {
+.ticket-from,
+.ticket-to,
+.ticket-seat,
+.ticket-class,
+.ticket-company,
+.ticket-depart,
+.ticket-arrive,
+.ticket-status {
   grid-column: span 1;
 }
 
@@ -523,23 +520,23 @@ button:hover {
   gap: 10px;
   align-items: left;
   justify-items: center;
-  width: 100%; 
+  width: 100%;
   margin: auto;
   padding: 20px;
   box-sizing: border-box;
 }
+
 .ticket-info span {
   text-align: justify;
   word-wrap: break-word;
 }
 
 body {
-  background-color:#F3EFE6; 
+  background-color: #f3efe6;
 }
 
 .purchase-button {
-  
-  color: #000000; 
+  color: #000000;
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -549,14 +546,12 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 4px;
-}
-.purchase-button {
-  background-color: #73C2FB; 
-  margin-top: 50px
+  background-color: #73c2fb;
+  margin-top: 50px;
 }
 
 .input-container {
-  background-color: #F3EFE6; 
+  background-color: #f3efe6;
   min-height: 20vh;
   display: flex;
   flex-direction: column;
@@ -564,7 +559,7 @@ body {
   padding-top: 110px;
   font-size: calc(10px + 2vmin);
   color: #000000;
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 /* .input-container-reset {
@@ -579,35 +574,29 @@ body {
   margin-top: 10px
 } */
 
-
-
-
-
 h2 {
   margin-bottom: 10px; /* Decrease this value */
 }
-
 
 .input-container-report {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -200px; 
-  font-family: calc(15px + 5vmin); 
+  margin-top: -200px;
+  font-family: calc(15px + 5vmin);
 }
 
 .rectangle {
-  width: 400px; 
-  height: 200px; 
-  background-color: grey; 
-  margin-bottom: 10px; 
+  width: 400px;
+  height: 200px;
+  background-color: grey;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-
   border-radius: 15px;
-  margin-top: 30px; 
-  margin-left: 50px; 
+  margin-top: 30px;
+  margin-left: 50px;
 }
 
 .rectangle-container {
@@ -631,8 +620,8 @@ h2 {
 }
 
 .purchase-button {
-  background-color: #73C2FB; 
-  color: black; 
+  background-color: #73c2fb;
+  color: black;
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -643,27 +632,27 @@ h2 {
   cursor: pointer;
   border-radius: 4px;
 }
+
 .purchase-button:hover {
-  background-color: #6fb0de; 
+  background-color: #6fb0de;
 }
 
 .billing-info-title {
-  margin-bottom: 10px; 
-  font-size: 16px; 
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .input-container {
-  margin-top: -10px; 
-
+  margin-top: -10px;
 }
 
 .payment-title {
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .purchase-button {
-  background-color:73C2FB; 
-  color: black; 
+  background-color: 73C2FB;
+  color: black;
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -676,24 +665,22 @@ h2 {
 }
 
 .checkout-title {
-  margin-bottom: 10px; 
-  margin-top:50px;
-  font-size: 50px
+  margin-bottom: 10px;
+  margin-top: 50px;
+  font-size: 50px;
 }
 
 .billing-info-title {
   margin-top: 0;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .total-text {
-  font-size: 16px; 
+  font-size: 16px;
 }
 
-
-
 h2 {
-  font-size: 30px; 
+  font-size: 30px;
 }
 
 /*travel history page styles*/
@@ -701,61 +688,64 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px; /* Adjust as needed */
+  margin-bottom: 20px;  /* Adjust as needed */
 }
 
 .blank-box {
-  width: 143px; /* Adjust as needed */
-  height: 92px; /* Adjust as needed */
-  border: 1px solid #D9D9D9; /* Adjust as needed */
-  background-color: #D9D9D9; /* Set the background color to #D9D9D9 */
-  margin-right: 20px; /* Add space to the right of the rectangle */
+  width: 143px;  /* Adjust as needed */
+  height: 92px;  /* Adjust as needed */
+  border: 1px solid #d9d9d9;/* Adjust as needed */
+  background-color: #d9d9d9;/* Set the background color to #D9D9D9 */
+  margin-right: 20px;/* Add space to the right of the rectangle */
 }
 
 .travel-text {
-  margin-right: 10px; /* Adjust as needed */
+  margin-right: 10px;/* Adjust as needed */
 }
 
 .travel-history-page {
-  background-color: #F3EFE6; /* Set the background color to #F3EFE6 */
-  min-height: 93vh; /* Adjust as needed */
+  background-color: #f3efe6;/* Set the background color to #F3EFE6 */
+  min-height: 93vh;/* Adjust as needed */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align items to the start of the container */
-  padding-top: 20px; /* Add some padding at the top */
-  font-size: calc(10px + 2vmin); /* Adjust as needed */
-  color: #000000; /* Set the text color to #000000 */
+  justify-content: flex-start;/* Align items to the start of the container */
+  padding-top: 20px;/* Add some padding at the top */
+  font-size: calc(10px + 2vmin);/* Adjust as needed */
+  color: #000000;/* Set the text color to #000000 */
 }
+
 h1 {
   text-align: center;
-  
 }
 
 .back-to-profile {
+  background-color: #ff964f;
+  color: #000000;
+  width: 150px;
+  height: 35px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
 
-    background-color: #FF964F; 
-    color: #000000; 
-    width: 150px; 
-    height: 35px; 
-    margin-top: 30px;
-    border-radius: 5px; 
-  }
-  .parent-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* This will center the items vertically */
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* This will center the inputs horizontally */
-  }
+.parent-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%; /* This will center the items vertically */
+}
 
-  .profile-image-container img {
-    width: 180px; 
-    height: 180px;
-    border-radius: 50%; 
-    object-fit: cover; 
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This will center the inputs horizontally */
+}
+
+.profile-image-container img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+}
