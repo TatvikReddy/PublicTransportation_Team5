@@ -34,4 +34,4 @@ const sendEmail = (to, subject, text) => {
 
 module.exports = { sendEmail }
 // Example usage
-//const userToEmail = {user}; // User's email address
+//const userToEmail = {user}; // User's email address~

@@ -12,6 +12,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import Autocomplete from "react-google-autocomplete";
 import Payment from "./Payment";
+import axios, { AxiosError } from "axios";
 
 const API_KEY = "AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo";
 
@@ -151,6 +152,15 @@ function Directions() {
   };
 
   const handleProceedToPayment = () => {
+    
+    try {
+      const response = axios.post("http://localhost:3001/api/checkout", routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps);
+      console.log(response);
+      // Optionally, you can redirect the user to another page upon successful registration
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+    }
     console.log(routes[directionsRenderer?.getRouteIndex() as number]);
     navigate(
       `/payment?transit_distance=${
@@ -221,6 +231,7 @@ function Directions() {
         </p>
         <p>Distance: {leg.distance?.text}</p>
         <p>Duration: {leg.duration?.text}</p>
+        <p>Fare: {leg.departure_time?.text}</p>
 
         <h2>Other Routes</h2>
         <ul>

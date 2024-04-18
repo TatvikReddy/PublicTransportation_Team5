@@ -27,6 +27,13 @@ const feedbackSubject = 'Feedback request';
 const feedbackText = 'Thank you for your feedback';
 
 // Define user schema and model
+const ticketSchema = new mongoose.Schema({
+  uuid: {
+      type: String,
+      required: true,
+  },
+});
+
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -66,14 +73,12 @@ const userSchema = new mongoose.Schema({
     securityAnswer: {
         type: String,
         required: true,
-    }
-});
-
-const ticketSchema = new mongoose.Schema({
-    uuid: {
-        type: String,
-        required: true,
     },
+    tickets: {
+      type: Array,
+      of: String,
+      require: true,
+    }
 });
 
 const User = mongoose.model('User', userSchema);
@@ -83,7 +88,7 @@ const Ticket = mongoose.model('Ticket', ticketSchema)
 const app = express();
 
 // Middleware
-app.use(express.json());
+app.use(express.json({limit: '50mb', extended: true}));
 app.use(cors());
 app.use(cookieParser());
 
@@ -396,6 +401,23 @@ const generateAccessToken = async () => {
       res.status(500).json({ error: "Failed to capture order." });
     }
   });
+
+app.post('/api/checkout', async (req, res) => {
+  const trip = crypto.randomUUID();
+  try {
+      // console.log(req.body.steps)
+      for (i in req.body.steps) {
+        console.log(req.body.steps[i].travel_mode);
+        if (req.body.steps[i].travel_mode === "TRANSIT"){
+          if (req.body.steps[i].travel_mode.transit.line === "TRANSIT"){}
+        }
+      }
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
 ///
 
 
