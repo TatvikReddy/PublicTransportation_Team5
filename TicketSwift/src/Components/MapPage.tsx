@@ -152,7 +152,17 @@ function Directions() {
   };
 
   const handleProceedToPayment = () => {
-    
+    let ticketInfo = {
+      depart : routes[directionsRenderer?.getRouteIndex() as number].legs[0].departure_time?.value, 
+      arrival: routes[directionsRenderer?.getRouteIndex() as number].legs[0].arrival_time?.value, 
+      start : routes[directionsRenderer?.getRouteIndex() as number].legs[0].start_address, 
+      end : routes[directionsRenderer?.getRouteIndex() as number].legs[0].end_address}
+    for (let step in routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps){
+      if (routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].travel_mode === "TRANSIT"){
+          console.log(routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step])
+
+      }
+    }
     try {
       const response = axios.post("http://localhost:3001/api/checkout", routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps);
       console.log(response);
