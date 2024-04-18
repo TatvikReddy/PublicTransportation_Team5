@@ -3,11 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 import TicketSwiftLogo from "../TicketSwiftLogo.png";
 import Profile from "../profile.jpg";
-
 import bootstrap from 'bootstrap';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
