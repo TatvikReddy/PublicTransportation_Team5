@@ -36,10 +36,12 @@ function CreateAccountPage() {
                 securityAnswer
             });
             console.log(response.data);
+            alert(response.data.message);
         } catch (error) {
             if ((error as AxiosError).response) {
                 console.error((error as AxiosError).response?.data);
-                setErrorMessage(((error as AxiosError).response?.data as { error?: string })?.error || "An error occurred during registration.");
+                setErrorMessage(String((error as AxiosError).response?.data));
+                alert(String((error as AxiosError).response?.data));
             } else if ((error as AxiosError).request) {
                 console.error((error as AxiosError).request);
                 setErrorMessage("No response received from the server. Please try again later.");
