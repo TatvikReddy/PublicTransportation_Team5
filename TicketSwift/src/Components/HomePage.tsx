@@ -27,9 +27,7 @@ function HomePage() {
         <div className="menu-overlay" onClick={() => setMenuOpen(false)}>
           <div className="menu">
             <div className="dropdown">
-              <button className="dropbtn">
-                <i className="fa fa-caret-down"></i>
-              </button>
+            
               <div className="dropdown-content">
                 <Link to="/profile">My Account</Link>
                 <Link to="/find-routes">Find Routes</Link>
