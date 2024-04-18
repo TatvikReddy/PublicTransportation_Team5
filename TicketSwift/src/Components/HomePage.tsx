@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 import TicketSwiftLogo from "../TicketSwiftLogo.png";
 import Profile from "../profile.jpg";
-import TicketSwiftLogoHome from "../1TicketSwiftLogo.jpg";
+
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -27,9 +27,7 @@ function HomePage() {
         <div className="menu-overlay" onClick={() => setMenuOpen(false)}>
           <div className="menu">
             <div className="dropdown">
-              <button className="dropbtn">
-                <i className="fa fa-caret-down"></i>
-              </button>
+            
               <div className="dropdown-content">
                 <Link to="/profile">My Account</Link>
                 <Link to="/find-routes">Find Routes</Link>
@@ -44,7 +42,7 @@ function HomePage() {
         <span className="circle-text">Profile</span>
       </div>
       <header className="App-header">
-        <img src={TicketSwiftLogoHome} className="App-logo" alt="logo" />
+        <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
         <p>
           Welcome to TicketSwift, please sign in or create an account to buy
           transportation tickets.
