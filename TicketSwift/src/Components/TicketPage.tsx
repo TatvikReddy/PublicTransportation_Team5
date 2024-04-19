@@ -5,7 +5,11 @@ import TicketSwiftLogo from '../TicketSwiftLogo.png';
 function TicketPage() {
   // This page will show the ticket information with a QR code, similar to the one shown in the image
   return (
-    <div className="ticket-info" style={{ marginTop: '100px' }}>
+    
+      
+    <div style={{ marginTop: '100px'}}>
+      <h1>Ticket Information</h1>
+      <div className="ticket-info" >
       <div className="ticket-route" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginRight: '65px' }}>
           <span className="ticket-passenger" style={{ fontSize: '14px' }}>Passenger</span>
@@ -52,10 +56,11 @@ function TicketPage() {
         <span style={{ fontSize: '14px' }}>Price</span>
         <span style={{ fontSize: '18px' }}>$200</span>
       </div>
-      <div className="ticket-qr-code" style={{ textAlign: 'center' }}>
-        {/* QR Code should be generated and inserted here */}
       </div>
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: "20px", display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+        <Link to="/makeqr" className="button">
+          <button className="button profile-button">Make QR</button>
+        </Link>
         <Link to="/profile" className="button">
           <button className="button profile-button">Back to Profile</button>
         </Link>
@@ -66,6 +71,7 @@ function TicketPage() {
         </Link>
       </div>
     </div>
+    
   );
 }
 
