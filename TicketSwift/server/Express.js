@@ -31,6 +31,7 @@ const ticketSchema = new mongoose.Schema({
   uuid: {
       type: String,
       required: true,
+      unique: true,
   },
 });
 
@@ -81,8 +82,36 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+const tripSchema = new mongoose.Schema({
+  arrival: {
+      type: String,
+      required: true,
+  },
+  depart: {
+      type: String,
+      required: true,
+  },
+  end: {
+      type: String,
+      required: true,
+  },
+  start: {
+      type: String,
+      required: true,
+  },
+  tickets: {
+    type: Array,
+    require: true,
+  },
+  uuid: {
+    type: String,
+    require: true,
+  },
+});
+
 const User = mongoose.model('User', userSchema);
 const Ticket = mongoose.model('Ticket', ticketSchema)
+const Trip = mongoose.model('Trip', tripSchema)
 
 // Initialize express app
 const app = express();
@@ -97,7 +126,7 @@ app.post('/api/register', async (req, res) => {
     try {
         const { firstName, lastName, email, username, password, confirmPassword, isAdmin, securityQuestion, securityAnswer } = req.body;
 
-        console.log(req.body)
+        //console.log(req.body)
 
         // Validation checks
         if (!firstName || !lastName) return res.status(400).send("First name and last name are required");
@@ -128,8 +157,8 @@ app.post('/api/register', async (req, res) => {
             securityAnswer
         });
         
-        console.log(newUser)
-        console.log(newUser.securityQuestion)
+        //console.log(newUser)
+        //console.log(newUser.securityQuestion)
         
         // Save the user to the database
         await newUser.save();
@@ -157,7 +186,7 @@ app.post('/api/login', async (req, res) => {
 
             res.cookie( "token", token,{ maxAge: 1000 * 60 * 10, httpOnly: false });
 
-            console.log(token + "\n\n");
+            //console.log(token + "\n\n");
 
             return res.status(200).send(token);
         }
@@ -189,7 +218,7 @@ app.post('/api/resetpassword', async (req, res) => {
           return res.status(400).send("Security question or answer is incorrect");
         }
 
-        console.log(email)
+        //console.log(email)
 
         // Hash the password
         const hashedPassword = createHash('sha256').update(password).digest('hex')
@@ -212,14 +241,14 @@ app.post('/api/resetpassword', async (req, res) => {
 app.post('/api/userinfo', async (req, res) => {
     
     const { token } = req.body;
-    console.log(token);
+    //console.log(token);
     var base64Payload = token.split('.')[1];
     var payload = Buffer.from(base64Payload, 'base64');
     payload = JSON.parse(payload.toString())
     const email = payload.email;
     let existingUser = await User.findOne({ $or: [{ email }] });
-    console.log(email);
-    console.log(existingUser);
+    // console.log(email);
+    // console.log(existingUser);
 
     return res.status(200).send(existingUser)
 
@@ -244,11 +273,11 @@ app.post('/api/makeqr', async (req, res) => {
         
         let qrCheck = await Ticket.findOne({ $or: [{ qr }] });
         if (qrCheck === null){
-            console.log(qr)
+            //console.log(qr)
 
             const qrUUID = new Ticket({uuid : qr,});
 
-            console.log(qrUUID.uuid)
+            //console.log(qrUUID.uuid)
 
             await qrUUID.save();
             return res.status(200).send(qr)
@@ -273,6 +302,17 @@ app.post('/api/readqr', async (req, res) => {
         console.error("Error registering user:", error);
         res.status(500).send("Internal Server Error");
     }
+})
+
+app.post('/api/verify', async (req, res) => {
+  try {
+      console.log("works")
+      res.send(200)
+
+  } catch (error) {
+      console.error("Error registering user:", error);
+      res.status(500).send("Internal Server Error");
+  }
 })
 
 
@@ -310,16 +350,20 @@ const generateAccessToken = async () => {
       "shopping cart information passed from the frontend createOrder() callback:",
       cart,
     );
+    let price = parseInt((cart[0].price), 10) + 0.99;
   
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders`;
+
+
+
     const payload = {
       intent: "CAPTURE",
       purchase_units: [
         {
           amount: {
             currency_code: "USD",
-            value: "100.00",
+            value: price,
           },
         },
       ],
@@ -402,24 +446,43 @@ const generateAccessToken = async () => {
     }
   });
 
-app.post('/api/checkout', async (req, res) => {
-  const trip = crypto.randomUUID();
+app.post('/api/payment', async (req, res) => {
+  const { arrival, depart, end, start, tickets, uuid } = req.body;
+  //console.log(uuid)
+  newTickets = [];
+  for (i in tickets){
+    if (tickets[i].agency[0].name === "Greyhound" || tickets[i].agency[0].name === "FlixBus" || tickets[i].agency[0].name === "Amtrak"){
+      newTickets.push(tickets[i])
+    }
+  }
+
+  const newTrip = new Trip({ arrival, depart, end, start, tickets : newTickets, uuid });
+  await newTrip.save();
+
   try {
-      // console.log(req.body.steps)
-      for (i in req.body.steps) {
-        console.log(req.body.steps[i].travel_mode);
-        if (req.body.steps[i].travel_mode === "TRANSIT"){
-          if (req.body.steps[i].travel_mode.transit.line === "TRANSIT"){}
-        }
-      }
+      //console.log(req.body)
+      
 
   } catch (error) {
       console.error(error);
       res.status(500).send("Internal Server Error");
   }
 });
-///
 
+app.post('/api/checkout', async (req, res) => {
+  uuid = req.body.uuid;
+  console.log(uuid);
+  try {
+    let trip = await Trip.findOne({ $or: [{ uuid }] });
+    console.log(trip)
+    res.send(trip);
+      
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
 
 // Start the server
 const PORT = process.env.PORT || 3001;

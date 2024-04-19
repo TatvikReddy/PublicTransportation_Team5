@@ -13,6 +13,7 @@ import {
 import Autocomplete from "react-google-autocomplete";
 import Payment from "./Payment";
 import axios, { AxiosError } from "axios";
+import createHash from "crypto";
 
 const API_KEY = "AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo";
 
@@ -152,19 +153,43 @@ function Directions() {
   };
 
   const handleProceedToPayment = () => {
-    let ticketInfo = {
+    // $0.22 / mi 
+    const rate = 0
+
+    var tickets: any[] = []
+    console.log(routes[directionsRenderer?.getRouteIndex() as number])
+    for (let step in routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps){
+      if (routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].travel_mode === "TRANSIT"){
+
+        let ticket = {
+          name: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.line.name,
+          arrival_time: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.arrival_time,
+          departure_time: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.departure_time,
+          arrival_stop: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.arrival_stop.name,
+          departure_stop: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.departure_stop.name,
+          agency: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.line.agencies,
+          distance: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance,
+          price: ((routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance!.value) * 0.00062137) * 0.22}
+          console.log(ticket)
+        
+        tickets.push(ticket);
+      }
+    }
+    let uuid = crypto.randomUUID();
+
+    let tripInfo = {
       depart : routes[directionsRenderer?.getRouteIndex() as number].legs[0].departure_time?.value, 
       arrival: routes[directionsRenderer?.getRouteIndex() as number].legs[0].arrival_time?.value, 
       start : routes[directionsRenderer?.getRouteIndex() as number].legs[0].start_address, 
-      end : routes[directionsRenderer?.getRouteIndex() as number].legs[0].end_address}
-    for (let step in routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps){
-      if (routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].travel_mode === "TRANSIT"){
-          console.log(routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step])
+      end : routes[directionsRenderer?.getRouteIndex() as number].legs[0].end_address,
+      tickets: tickets,
+      uuid: uuid}
+      
+    
+    console.log(tripInfo)
 
-      }
-    }
     try {
-      const response = axios.post("http://localhost:3001/api/checkout", routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps);
+      const response = axios.post("http://localhost:3001/api/payment", tripInfo);
       console.log(response);
       // Optionally, you can redirect the user to another page upon successful registration
       navigate("/profile");
@@ -172,12 +197,8 @@ function Directions() {
       console.log(error);
     }
     console.log(routes[directionsRenderer?.getRouteIndex() as number]);
-    navigate(
-      `/payment?transit_distance=${
-        routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[1]
-          .distance!.text
-      }`
-    );
+    
+    navigate(`/payment/${uuid}`);
   };
 
   return (

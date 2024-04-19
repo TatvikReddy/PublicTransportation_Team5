@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import axios, { AxiosError } from "axios";
 
 // Renders errors or successfull transactions on the screen.
 function Message({ content }: any) {
@@ -8,9 +9,37 @@ function Message({ content }: any) {
 }
 
 function PaymentPage() {
-  const [searchParams] = useSearchParams();
-  const transit_distance = searchParams.get("transit_distance");
-  console.log(transit_distance);
+  const params = useParams();
+  var price = 0;
+  let uuid = params.uuid;
+  useEffect(() => {
+    // Placeholder for fetching data from database
+    // replace this with your actual data fetching logic
+    async function fetchData() {
+      try {
+        // this apparently imulate an API call
+        const token = localStorage.getItem("token");
+        const response = await axios.post(
+          "http://localhost:3001/api/checkout",
+          {
+            uuid,
+          }
+        );
+        console.log(response.data);
+        for (let i in response.data.tickets){
+          console.log(response.data.tickets[i])
+          console.log(response.data.tickets[i].price)
+          price += response.data.tickets[i].price;
+          console.log(price)
+        }
+        console.log(price)
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
+    fetchData();
+  }, [])
 
   const initialOptions = {
     clientId: "test",
@@ -43,6 +72,7 @@ function PaymentPage() {
                     {
                       id: "YOUR_PRODUCT_ID",
                       quantity: "YOUR_PRODUCT_QUANTITY",
+                      price: price/2
                     },
                   ],
                 }),
@@ -107,6 +137,8 @@ function PaymentPage() {
                   orderData,
                   JSON.stringify(orderData, null, 2)
                 );
+
+                const response = axios.post("http://localhost:3001/api/verify");
               }
             } catch (error) {
               console.error(error);

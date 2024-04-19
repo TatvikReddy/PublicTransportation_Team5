@@ -56,7 +56,7 @@ function App() {
         <Route path="/checkout-ticket" element={<CheckoutTicketPage />} />
         <Route path="/readqr" element={<QrReaderPage />} />
         <Route path="/makeqr" element={<QrMakerPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/payment/:uuid" element={<PaymentPage />} />
       </Routes>
     </Router>
   );
