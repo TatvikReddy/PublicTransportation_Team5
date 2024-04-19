@@ -20,21 +20,28 @@ function PaymentPage() {
   };
 
   const [message, setMessage] = useState("");
+  const [eachPrice, setEachPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [totalPrice, setTotalPrice] = useState("");
+  const [tax, setTax] = useState("");
+  const [grandTotal, setGrandTotal] = useState("");
 
   return (
-    
     <div className="App-purchase">
       <form>
         <div className="rectangle-container">
           <div className="rectangle"></div>
           <p className="rectangle-text">Ticket</p>
-          <p className="rectangle-text">Each: $0.00</p>
-          <p className="rectangle-text">Qty: 1</p>
-          <p className="rectangle-text">Total: $0.00</p>
+          <p className="rectangle-text">Each: ${eachPrice || "0.00"}</p>
+          <p className="rectangle-text">Qty: {quantity || "1"}</p>
+          <p className="rectangle-text">Total: ${totalPrice || "0.00"}</p>
         </div>
         <div className="input-container">
-          <p className="rectangle-text total-text">Tax: $0.00</p>
-          <p className="rectangle-text total-text">Total: $0.00</p>
+          <p className="rectangle-text total-text">Tax: ${tax || "0.00"}</p>
+          <p className="rectangle-text total-text">
+            Total: ${grandTotal || "0.00"}
+          </p>
+
           {/* <Link to="/checkout-ticket">
             <button type="button" className="purchase-button">
               Proceed to Checkout
@@ -144,8 +151,6 @@ function PaymentPage() {
       </PayPalScriptProvider>
       <Message content={message} />
     </div>
-    
-
   );
 }
 
