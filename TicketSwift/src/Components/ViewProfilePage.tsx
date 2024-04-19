@@ -63,6 +63,16 @@ function ViewProfilePage() {
       <Link to="/reset-password" className="button">
         <button className="button reset-password-button">Reset Password</button>
       </Link>
+
+      <Link to="/readqr" className="button">
+        <button className="button">Read QR</button>
+      </Link>
+      {/* {isAdmin && (
+        <Link to="/readqr" className="button">
+          <button className="button">Read QR</button>
+        </Link>
+      )} */}
+
       <Link to="/">
         <div className="logo-circle">
           <img src={TicketSwiftLogo} alt="logo" />
