@@ -23,7 +23,6 @@ function LoginPage() {
       cookies.set("token", response.data);
       console.log(response);
       localStorage.setItem("token", response.data);
-      // Optionally, you can redirect the user to another page upon successful registration
       navigate("/profile");
     } catch (error) {
       console.log(errorMsg);

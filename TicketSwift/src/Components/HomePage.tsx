@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 import TicketSwiftLogo from "../TicketSwiftLogo.png";
 import Profile from "../profile.jpg";
-import bootstrap from 'bootstrap';
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -29,9 +28,9 @@ function HomePage() {
             <div className="dropdown">
             
               <div className="dropdown-content">
+                <Link to="/">Home Page</Link>
                 <Link to="/profile">My Account</Link>
-                <Link to="/find-routes">Find Routes</Link>
-                <Link to="/register-ticket">Register for Tickets</Link>
+                <Link to="/ticket">Tickets</Link>                
               </div>
             </div>
           </div>
