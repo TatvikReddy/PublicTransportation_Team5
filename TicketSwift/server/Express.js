@@ -400,6 +400,7 @@ const generateAccessToken = async () => {
       "shopping cart information passed from the frontend createOrder() callback:",
       cart,
     );
+    console.log(cart[0].price)
   
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders`;
@@ -412,7 +413,7 @@ const generateAccessToken = async () => {
         {
           amount: {
             currency_code: "USD",
-            value: price,
+            value: cart[0].price,
           },
         },
       ],

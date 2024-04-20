@@ -69,9 +69,10 @@ function PaymentPage() {
     )
   })
 
+
   return (
     <div className="App-purchase">
-      <p>Trip: {trip.start} - {trip.end}</p>
+      <p>Trip: {trip?.start} - {trip?.end}</p>
       <ul>{ ticketList }</ul>
       <p>Subtotal: {price}</p>
       <p>Tax: {Number((0.1 * (price)).toFixed(2))}</p>
@@ -97,7 +98,7 @@ function PaymentPage() {
                     {
                       id: "YOUR_PRODUCT_ID",
                       quantity: "YOUR_PRODUCT_QUANTITY",
-                      price: price/2
+                      price: price
                     },
                   ],
                 }),
