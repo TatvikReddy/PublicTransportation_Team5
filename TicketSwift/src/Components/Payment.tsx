@@ -8,7 +8,10 @@ function Message({ content }: any) {
   return <p>{content}</p>;
 }
 
+
+
 function PaymentPage() {
+  const [trip, setTrip] = useState("");
   const params = useParams();
   var price = 0;
   let uuid = params.uuid;
@@ -26,6 +29,7 @@ function PaymentPage() {
           }
         );
         console.log(response.data);
+        setTrip(response.data);
         for (let i in response.data.tickets){
           console.log(response.data.tickets[i])
           console.log(response.data.tickets[i].price)
@@ -169,8 +173,9 @@ function PaymentPage() {
                   orderData,
                   JSON.stringify(orderData, null, 2)
                 );
-
-                const response = axios.post("http://localhost:3001/api/verify");
+                const token = localStorage.getItem("token");
+                console.log("token: " + token)
+                const response = axios.post("http://localhost:3001/api/verify", {paypal : orderData, trip : trip, token: token});
               }
             } catch (error) {
               console.error(error);

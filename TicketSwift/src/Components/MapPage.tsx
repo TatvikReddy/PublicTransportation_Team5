@@ -160,7 +160,7 @@ function Directions() {
     console.log(routes[directionsRenderer?.getRouteIndex() as number])
     for (let step in routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps){
       if (routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].travel_mode === "TRANSIT"){
-
+        let ticketid = crypto.randomUUID()
         let ticket = {
           name: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.line.name,
           arrival_time: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.arrival_time,
@@ -169,7 +169,9 @@ function Directions() {
           departure_stop: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.departure_stop.name,
           agency: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.line.agencies,
           distance: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance,
-          price: ((routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance!.value) * 0.00062137) * 0.22}
+          price: ((routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance!.value) * 0.00062137) * 0.22,
+          confirmed: false,
+          uuid: ticketid}
           console.log(ticket)
         
         tickets.push(ticket);

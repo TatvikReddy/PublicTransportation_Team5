@@ -33,6 +33,35 @@ const ticketSchema = new mongoose.Schema({
       required: true,
       unique: true,
   },
+  name : {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  arrival_time :  {
+    
+  },
+  departure_time:  {
+    
+  },
+  arrival_stop:  {
+    
+  },
+  departure_stop:  {
+    
+  },
+  agency:  {
+    
+  },
+  distance:  {
+    
+  },
+  price:  {
+    
+  },
+  confirmed:  {
+    
+  },
 });
 
 const userSchema = new mongoose.Schema({
@@ -75,9 +104,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tickets: {
+    trips: {
       type: Array,
-      of: String,
       require: true,
     }
 });
@@ -306,8 +334,15 @@ app.post('/api/readqr', async (req, res) => {
 
 app.post('/api/verify', async (req, res) => {
   try {
-      console.log("works")
-      res.send(200)
+      console.log(req.body.trip.tickets);
+      Ticket.insertMany(req.body.trip.tickets);
+      emailHandling.sendEmail(req.body.paypal.payer.email_address, "Ticket Swift Comfirmation and Receipt", "works");
+      var base64Payload = req.body.token.split('.')[1];
+      var payload = Buffer.from(base64Payload, 'base64');
+      payload = JSON.parse(payload.toString())
+      const email = payload.email;
+      let existingUser = await User.findOneAndUpdate({ $or: [{ email }] }, { $push: {trips: req.body.trip} });
+      res.send(200);
 
   } catch (error) {
       console.error("Error registering user:", error);
