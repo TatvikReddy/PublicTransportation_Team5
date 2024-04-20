@@ -57,7 +57,7 @@ function ViewProfilePage() {
   //currently fetching all trips but is being weird with typing
   const ticketList = userInfo?.trips?.map(trip => {
     return (
-      <p>{}</p>
+      <p>{trip.uuid}</p>
     )
   })
 
