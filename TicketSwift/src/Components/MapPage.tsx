@@ -157,6 +157,7 @@ function Directions() {
     const rate = 0
 
     var tickets: any[] = []
+
     console.log(routes[directionsRenderer?.getRouteIndex() as number])
     for (let step in routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps){
       if (routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].travel_mode === "TRANSIT"){
@@ -198,7 +199,7 @@ function Directions() {
     }
     console.log(routes[directionsRenderer?.getRouteIndex() as number]);
     
-    navigate(`/payment/${uuid}`);
+    navigate(`/payment/${uuid}`, {state: {tripInfo}});
   };
 
   return (
