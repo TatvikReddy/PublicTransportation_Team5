@@ -7,7 +7,20 @@ import Profile from "../profile.jpg";
 import ScrollSpy from "react-ui-scrollspy";
 
 function ViewProfilePage() {
-  const [userInfo, setUserInfo] = useState({
+  interface Trip {
+    uuid: string;
+    // other properties...
+  }
+
+  interface UserInfo {
+    name: string;
+    email: string;
+    paymentInfo: string;
+    travelHistory: string;
+    trips: Trip[];
+  }
+
+  const [userInfo, setUserInfo] = useState<UserInfo>({
     name: "",
     email: "",
     paymentInfo: "",
