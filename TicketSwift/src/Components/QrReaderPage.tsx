@@ -5,7 +5,7 @@ import axios, { AxiosError } from "axios";
 import { Html5QrcodeScanner } from 'html5-qrcode';
 
 function QrReaderPage() {
-    const [scanResult, setScanResult] = useState(null)
+    const [scanResult, setScanResult] = useState("")
 
     useEffect(() => {
         const scanner = new Html5QrcodeScanner('reader', { qrbox: { height: 250, width: 250 }, fps: 5 }, true);
@@ -18,7 +18,7 @@ function QrReaderPage() {
                 const response = axios.post('http://localhost:3001/api/readqr', {
                     result
                 });
-                setScanResult(result);
+                setScanResult("Success!");
             } catch (error) {
                 console.log(error)
             }
@@ -31,7 +31,7 @@ function QrReaderPage() {
 
     return (
         <div className="qr-reader-page">
-            <h1>hello</h1>
+            <h1>QR Scanner</h1>
             {scanResult
                 ? <div>{scanResult}</div>
                 : <div id="reader"></div>

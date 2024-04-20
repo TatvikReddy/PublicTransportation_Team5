@@ -293,10 +293,12 @@ app.post('/api/readqr', async (req, res) => {
         const { uuid } = req.body;
 
         let qrCheck = await Ticket.findOne({ $or: [{ uuid }] });
+        console.log(qrCheck);
         if (qrCheck !== null){
             return res.status(200).send('true')
+            console.log('worky');
         }
-        return res.status(400).send("invalid qr")
+        return res.status(200).send("invalid qr")
 
     } catch (error) {
         console.error("Error registering user:", error);

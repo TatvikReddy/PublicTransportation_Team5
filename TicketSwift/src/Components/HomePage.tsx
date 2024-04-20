@@ -68,14 +68,7 @@ function HomePage() {
 
         <button
           className="button-map"
-          onClick={handleMapButtonClick}
-          style={{
-            width: "135px",
-            height: "38px",
-            marginTop: "20px",
-            borderRadius: "5px",
-          }}
-        >
+          onClick={handleMapButtonClick}>
           View Map
         </button>
       </header>

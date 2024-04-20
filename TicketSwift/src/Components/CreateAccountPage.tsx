@@ -58,7 +58,7 @@ function CreateAccountPage() {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <div className="register-form" style={{ width: '50%' }}>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <input
                             type="text"
                             name="firstName"
