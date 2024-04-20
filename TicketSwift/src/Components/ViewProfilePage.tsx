@@ -4,6 +4,7 @@ import "../App.css";
 import TicketSwiftLogo from "../TicketSwiftLogo.png";
 import axios from "axios";
 import Profile from "../profile.jpg";
+import ScrollSpy from "react-ui-scrollspy";
 
 function ViewProfilePage() {
   const [userInfo, setUserInfo] = useState({
@@ -11,7 +12,10 @@ function ViewProfilePage() {
     email: "",
     paymentInfo: "",
     travelHistory: "",
+    trips: []
   });
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     // Placeholder for fetching data from database
@@ -19,7 +23,6 @@ function ViewProfilePage() {
     async function fetchUserData() {
       try {
         // this apparently imulate an API call
-        const token = localStorage.getItem("token");
         const response = await axios.post(
           "http://localhost:3001/api/userinfo",
           {
@@ -41,6 +44,22 @@ function ViewProfilePage() {
     // Replace this with the actual logic, such as showing a form or modal
     console.log("Report issue clicked");
   };
+  const response = axios.post(
+    "http://localhost:3001/api/trips",
+    {
+      token : token
+    }
+  );
+
+  //logging promise
+  console.log(response)
+
+  //currently fetching all trips but is being weird with typing
+  const ticketList = userInfo?.trips?.map(trip => {
+    return (
+      <p>{}</p>
+    )
+  })
 
   return (
     <div className="view-profile-page">
@@ -51,6 +70,10 @@ function ViewProfilePage() {
       </div>
 
       <button className="button email-button">Email: {userInfo.email}</button>
+
+      <div style={{overflowY : "auto", height : "200px", width : "600px", background: "white"}}>
+        <ul>{ ticketList }</ul>
+      </div>
 
       <Link to="/report-issue" className="button">
         <button className="button report-issue-button">Report Issue</button>

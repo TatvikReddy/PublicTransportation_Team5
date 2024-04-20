@@ -350,6 +350,21 @@ app.post('/api/verify', async (req, res) => {
   }
 })
 
+app.post('/api/trips', async (req, res) => {
+  try {
+      var base64Payload = req.body.token.split('.')[1];
+      var payload = Buffer.from(base64Payload, 'base64');
+      payload = JSON.parse(payload.toString())
+      const email = payload.email;
+      let existingUser = await User.findOne({ $or: [{ email }] });
+      res.send(existingUser.trips);
+
+  } catch (error) {
+      console.error("Error registering user:", error);
+      res.status(500).send("Internal Server Error");
+  }
+})
+
 
 ///
 const generateAccessToken = async () => {
@@ -385,7 +400,6 @@ const generateAccessToken = async () => {
       "shopping cart information passed from the frontend createOrder() callback:",
       cart,
     );
-    let price = parseInt((cart[0].price), 10) + 0.99;
   
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders`;

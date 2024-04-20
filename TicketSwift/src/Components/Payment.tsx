@@ -11,9 +11,10 @@ function Message({ content }: any) {
 
 
 function PaymentPage() {
-  const [trip, setTrip] = useState("");
+  const [trip, setTrip] = useState<any>();
+  const [tickets, setTickets] = useState<any>();
+  const [price, setPrice] = useState(0);
   const params = useParams();
-  var price = 0;
   let uuid = params.uuid;
   useEffect(() => {
     // Placeholder for fetching data from database
@@ -30,18 +31,21 @@ function PaymentPage() {
         );
         console.log(response.data);
         setTrip(response.data);
+        setTickets(response.data.tickets);
+        var temp = 0;
         for (let i in response.data.tickets){
           console.log(response.data.tickets[i])
           console.log(response.data.tickets[i].price)
-          price += response.data.tickets[i].price;
+          temp += response.data.tickets[i].price;
           console.log(price)
         }
-        console.log(price)
+        console.log(temp)
+        setPrice(temp)
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
-
+    
     fetchData();
   }, [])
 
@@ -59,35 +63,20 @@ function PaymentPage() {
   const [tax, setTax] = useState("");
   const [grandTotal, setGrandTotal] = useState("");
 
+  const ticketList = tickets?.map(ticket => {
+    return (
+      <p>{`${ticket?.name}           $${ticket.price}`}</p>
+    )
+  })
+
   return (
     <div className="App-purchase">
-      <form>
-        <div className="rectangle-container">
-          <div className="rectangle"></div>
-          <p className="rectangle-text">Ticket</p>
-          <p className="rectangle-text">Each: ${eachPrice || "0.00"}</p>
-          <p className="rectangle-text">Qty: {quantity || "1"}</p>
-          <p className="rectangle-text">Total: ${totalPrice || "0.00"}</p>
-        </div>
-        <div className="input-container">
-          <p className="rectangle-text total-text">Tax: ${tax || "0.00"}</p>
-          <p className="rectangle-text total-text">
-            Total: ${grandTotal || "0.00"}
-          </p>
-
-          {/* <Link to="/checkout-ticket">
-            <button type="button" className="purchase-button">
-              Proceed to Checkout
-            </button>
-          </Link> */}
-        </div>
-
-        {/* <Link to="/">
-          <div className="logo-circle">
-            <img src={TicketSwiftLogo} alt="logo" />
-          </div>
-        </Link> */}
-      </form>
+      <p>Trip: {trip.start} - {trip.end}</p>
+      <ul>{ ticketList }</ul>
+      <p>Subtotal: {price}</p>
+      <p>Tax: {Number((0.1 * (price)).toFixed(2))}</p>
+      <p>Total: {Number(price + Number((0.1 * (price)).toFixed(2))).toFixed(2)}</p>
+      
       <PayPalScriptProvider options={initialOptions}>
         <PayPalButtons
           style={{

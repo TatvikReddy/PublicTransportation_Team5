@@ -169,7 +169,7 @@ function Directions() {
           departure_stop: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.departure_stop.name,
           agency: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].transit?.line.agencies,
           distance: routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance,
-          price: ((routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance!.value) * 0.00062137) * 0.22,
+          price: Math.round(((routes[directionsRenderer?.getRouteIndex() as number].legs[0].steps[step].distance!.value) * 0.00062137) * 0.22) + 0.99,
           confirmed: false,
           uuid: ticketid}
           console.log(ticket)
