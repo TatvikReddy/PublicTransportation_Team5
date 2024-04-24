@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "../App.css";
 import TicketSwiftLogo from "../TicketSwiftLogo.png";
 import axios from "axios";
-import Profile from "../profile.jpg";
+import Profile from "../profilepic.png";
 import ScrollSpy from "react-ui-scrollspy";
 import { Button, Divider, Loader, Modal } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
