@@ -321,10 +321,12 @@ app.post('/api/readqr', async (req, res) => {
         const { uuid } = req.body;
 
         let qrCheck = await Ticket.findOne({ $or: [{ uuid }] });
+        console.log(qrCheck)
+        console.log(uuid)
         if (qrCheck !== null){
-            return res.status(200).send('true')
+            return res.send('Valid')
         }
-        return res.status(400).send("invalid qr")
+        return res.send("Invalid")
 
     } catch (error) {
         console.error("Error registering user:", error);
@@ -363,6 +365,17 @@ app.post('/api/trips', async (req, res) => {
       console.error("Error registering user:", error);
       res.status(500).send("Internal Server Error");
   }
+})
+
+app.post('/api/ticket', async (req, res) => {
+  const { uuid } = req.body;
+
+  let qrCheck = await Ticket.findOne({ $or: [{ uuid }] });
+  if (qrCheck.confirmed) return res.status(200).send(qrCheck);
+  qrCheck.confirmed = true;
+  await qrCheck.save();
+  qrCheck.confirmed = false
+  return res.status(200).send(qrCheck);
 })
 
 

@@ -130,7 +130,7 @@ function ViewProfilePage() {
             }}
           >
             <Modal.Header>
-              <Modal.Title><h3>{ticketName} {ticket.arrival_time.value.split('T')[0] + " " + ticket.arrival_time.text}</h3></Modal.Title>
+              <Modal.Title><h5>{ticketName} {ticket.arrival_time.value.split('T')[0] + " " + ticket.arrival_time.text}</h5></Modal.Title>
             </Modal.Header>
             <Modal.Body>
 
