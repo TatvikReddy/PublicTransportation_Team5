@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
-import TicketSwiftLogo from "../TicketSwiftLogo.png";
-import Profile from "../profile.jpg";
+import TicketSwiftLogo1 from "../1TicketSwiftLogo.jpg";
+import Profile from "../profilepic.png";
 
 function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -51,7 +51,7 @@ function HomePage() {
         <span className="circle-text">Profile</span>
       </div>
       <header className="App-header">
-        <img src={TicketSwiftLogo} className="App-logo" alt="logo" />
+        <img src={TicketSwiftLogo1} className="App-logo" alt="logo" />
         <p>
           Welcome to TicketSwift, please sign in or create an account to buy
           transportation tickets.
@@ -74,9 +74,10 @@ function HomePage() {
             height: "38px",
             marginTop: "20px",
             borderRadius: "5px",
+            fontSize: "20px"
           }}
         >
-          View Map
+          View Map 
         </button>
       </header>
     </div>
