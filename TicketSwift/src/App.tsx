@@ -6,7 +6,6 @@ import LoginPage from "./Components/LoginPage";
 import CreateAccountPage from "./Components/CreateAccountPage";
 import ResetPasswordPage from "./Components/ResetPasswordPage";
 import ViewProfilePage from "./Components/ViewProfilePage";
-import TicketPage from "./Components/TicketPage";
 import ReportIssuePage from "./Components/ReportIssuePage";
 
 import QrReaderPage from "./Components/QrReaderPage";
@@ -46,7 +45,6 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ViewProfilePage />} />
         <Route path="/map" element={<MapPage />} />
-        <Route path="/ticket" element={<TicketPage />} />
         <Route path="/report-issue" element={<ReportIssuePage />} />        
         <Route path="/readqr" element={<QrReaderPage />} />
         <Route path="/makeqr" element={<QrMakerPage />} />

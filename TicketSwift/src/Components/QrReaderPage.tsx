@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import {Link} from "react-router-dom";
 import '../App.css';
 import TicketSwiftLogo from '../TicketSwiftLogo.png';
 import axios, { AxiosError } from "axios";
@@ -83,7 +84,7 @@ function QrReaderPage() {
                                   </>
                                 : <>
                                     <div style={{alignItems : "center"}}>
-                                        <h4>Ticket Has Already Been Confrimed</h4>
+                                        <h4>Ticket Has Already Been Confirmed</h4>
                                         <p> {confirmed} </p>
                                     </div>
                                   </>
@@ -102,6 +103,11 @@ function QrReaderPage() {
                  
                 : <div id="reader"></div>
             }
+        <Link to="/">
+          <div className="logo-circle">
+            <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+        </Link>
         </div>
     );
 }

@@ -204,9 +204,7 @@ function ViewProfilePage() {
         <button className="button report-issue-button">Report Issue</button>
       </Link>
 
-      <Link to="/ticket" className="button">
-        <button className="button ticket-button">View Tickets</button>
-      </Link>
+      
 
       <Link to="/reset-password" className="button">
         <button className="button reset-password-button">Reset Password</button>

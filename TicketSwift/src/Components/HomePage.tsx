@@ -30,7 +30,7 @@ function HomePage() {
               <div className="dropdown-content">
                 <Link to="/">Home Page</Link>
                 <Link to="/profile">My Account</Link>
-                <Link to="/ticket">Tickets</Link>                
+                <Link to="/login">Login</Link>                
               </div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, redirect } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios, { AxiosError } from "axios";
+import TicketSwiftLogo from "../TicketSwiftLogo.png";
+
 
 // Renders errors or successfull transactions on the screen.
 function Message({ content }: any) {
@@ -13,9 +15,11 @@ function Message({ content }: any) {
 function PaymentPage() {
   const [trip, setTrip] = useState<any>();
   const [tickets, setTickets] = useState<any>();
-  const [price, setPrice] = useState(0);
+  var [price, setPrice] = useState(0);
+  var [redirect, setRedirect] = useState(false);
   const params = useParams();
   let uuid = params.uuid;
+  
   useEffect(() => {
     // Placeholder for fetching data from database
     // replace this with your actual data fetching logic
@@ -86,6 +90,7 @@ function PaymentPage() {
           }}
           createOrder={async () => {
             try {
+              if (price === 0) price = 1;
               const response = await fetch("http://localhost:3001/api/orders", {
                 method: "POST",
                 headers: {
@@ -166,6 +171,7 @@ function PaymentPage() {
                 const token = localStorage.getItem("token");
                 console.log("token: " + token)
                 const response = axios.post("http://localhost:3001/api/verify", {paypal : orderData, trip : trip, token: token});
+                window.location.href = "http://localhost:3000/profile"
               }
             } catch (error) {
               console.error(error);
@@ -177,6 +183,11 @@ function PaymentPage() {
         />
       </PayPalScriptProvider>
       <Message content={message} />
+      <Link to="/">
+          <div className="logo-circle">
+            <img src={TicketSwiftLogo} alt="logo" />
+          </div>
+        </Link>
     </div>
   );
 }

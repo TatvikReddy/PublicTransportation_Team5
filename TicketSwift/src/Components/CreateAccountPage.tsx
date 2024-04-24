@@ -56,9 +56,9 @@ function CreateAccountPage() {
         <div className="register-page">
             <h1>Register</h1>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <div className="register-form" style={{ width: '50%' }}>
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column'}}>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', marginLeft: '55px'}}>
                         <input
                             type="text"
                             name="firstName"
@@ -117,9 +117,8 @@ function CreateAccountPage() {
                             value={securityQuestion}
                             onChange={(e) => setSecurityQuestion(e.target.value)}
                             required
-                            style={{ margin: '10px 0' }}
-                        >
-                            <option value="">Please select a security question...</option>
+                            style={{ margin: '10px 0' }}>
+                            <option value="">Select a security question...</option>
                             <option value="What is your favorite fruit?">What is your favorite fruit?</option>
                             <option value="What is your favorite brand of cereal?">What is your favorite brand of cereal?</option>
                             <option value="What is your mother's name?">What is your mother's name?</option>
