@@ -12,6 +12,8 @@ function QrReaderPage() {
     const [toTime, setToTime] = useState("");
     const [fromTime, setFromTime] = useState("");
     const [confirmed, setConfirmed] = useState(false);
+    const options = ["Greyhound", "Flix Bus", "Other"];
+    const [myValue, setMyValue] = useState(options[0]);
 
     useEffect(() => {
         const scanner = new Html5QrcodeScanner('reader', { qrbox: { height: 250, width: 250 }, fps: 5 }, true);
@@ -58,7 +60,14 @@ function QrReaderPage() {
     return (
         <div className="qr-reader-page">
             <h1>Scan Ticket</h1>
-            
+            {/* <select
+            onChange={(e) => setMyValue(e.target.value)}
+            defaultValue={myValue}
+        >
+            {options.map((option, idx) => (
+            <option key={idx}>{option}</option>
+            ))}
+        </select> */}
             {scanResult
                 ? <>
                     <div style={{textAlign : "center"}}>
