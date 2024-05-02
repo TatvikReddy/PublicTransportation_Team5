@@ -15,7 +15,7 @@ import Payment from "./Payment";
 import axios, { AxiosError } from "axios";
 import createHash from "crypto";
 
-const API_KEY = "AIzaSyBg10NuAAJhZGNyd9xQBU-Oy50kqSw5Deo";
+const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
 const App = () => (
   <APIProvider apiKey={API_KEY}>
